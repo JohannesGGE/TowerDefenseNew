@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    private int level;
+    private GameObject ob;
+
+    public void Update()
+    {
+        
+    }
 
     public void BackToMain()
     {
@@ -12,9 +19,18 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
+    public void StartLevel()
+    {
+        string lev = gameObject.name;
+//            GetComponent<TextMesh>().text;
+        Debug.Log("Level " +lev+ " geklickt");
+
+        SceneManager.LoadScene(lev);
+    }
+
     public void StartLevelOne()
     {
-        SceneManager.LoadScene(2);
+        SceneManager.LoadScene("LevelOne");
     }
 
     public void QuitGame()
