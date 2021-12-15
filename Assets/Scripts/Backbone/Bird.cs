@@ -2,6 +2,8 @@ using Classes;
 using UnityEngine;
 
 namespace Backbone {
+    
+    // NUR EIN TEMPLATE FUER DIE VOEGEL
     public class Bird : MonoBehaviour {
         private GameManager _gameManager;
 

@@ -2,6 +2,8 @@ using Classes;
 using UnityEngine;
 
 namespace Backbone {
+    
+    // NUR EIN TEMPLATE FUER DIE TOWER
     public class Tower : MonoBehaviour {
         private GameManager _gameManager;
 
