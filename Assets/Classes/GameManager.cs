@@ -30,11 +30,11 @@ namespace Classes {
         }
 
         public void StartGame() {
-            _paused = true;
+            _paused = false;
         }
 
         public void PauseGame() {
-            _paused = false;
+            _paused = true;
         }
 
         public void ReduceLives(int lives) {
