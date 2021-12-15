@@ -2,6 +2,8 @@ using Classes;
 using UnityEngine;
 
 namespace Backbone {
+    
+    // NUR EIN TEMPLATE FUER DIE STACHEL
     public class Bullet : MonoBehaviour {
         private GameManager _gameManager;
 
