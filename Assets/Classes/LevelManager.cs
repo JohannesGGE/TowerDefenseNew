@@ -19,8 +19,6 @@ namespace Classes {
             SetLevelConfig();
         }
 
-        public List<Level> Levels => _levels;
-
         //Evt. bessere Implementierung möglich 
         private void SetLevelConfig() {
             Wave wave1 = new Wave(new[] {Small, Small, Small, Small});
@@ -35,5 +33,7 @@ namespace Classes {
             _levels.Add(level1);
             _levels.Add(level2);
         }
+        
+        public List<Level> Levels => _levels;
     }
 }
