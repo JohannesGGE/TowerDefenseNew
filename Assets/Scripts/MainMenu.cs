@@ -5,9 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    private int level;
-    private GameObject ob;
-
+    //public SceneFader fader;
+    
+   
     public void Update()
     {
         
@@ -19,13 +19,9 @@ public class MainMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    public void StartLevel()
+    public void StartLevel(string levelName)
     {
-        string lev = gameObject.name;
-//            GetComponent<TextMesh>().text;
-        Debug.Log("Level " +lev+ " geklickt");
-
-        SceneManager.LoadScene(lev);
+        //fader.FadeTo(levelName);
     }
 
     public void StartLevelOne()
