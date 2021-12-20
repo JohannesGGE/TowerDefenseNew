@@ -11,7 +11,7 @@ namespace Backbone {
             _gameManager = GameManager.GetInstance();
         }
 
-        protected void Start() {
+        void Start() {
             
         }
 
