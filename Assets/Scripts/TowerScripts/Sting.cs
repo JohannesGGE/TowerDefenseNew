@@ -14,10 +14,13 @@ namespace Backbone
           _gameManager = GameManager.GetInstance();
         }
 
-        private Transform target;
 
-        public float speed = 40f;
+        [Header("Attributes")]
+        public float speed = 20f;
         public float turnSpeed = 100f;
+
+        [Header("Unity Setup - Do not change!")]
+        private Transform target;
         public GameObject impactEffect;
 
         public void Seek (Transform _target)
@@ -51,6 +54,10 @@ namespace Backbone
                 return;
               }
               transform.Translate(dir.normalized * distanceThisFrame, Space.World);
+            }
+            else
+            {
+              speed = 0f;
             }
         }
         void HitTarget()

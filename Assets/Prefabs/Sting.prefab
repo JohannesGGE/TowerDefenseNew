@@ -144,10 +144,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 34390882750466582}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9e163d52fff0c4fd7966738d33c5dcd2, type: 3}
+  m_Script: {fileID: 11500000, guid: 2e4c8eb49a97743419f487b4c6168290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 40
+  speed: 20
   turnSpeed: 100
   impactEffect: {fileID: 8154920335585700225, guid: b3a9c4a445f6a4cf09f3d82bca79dba5, type: 3}
 --- !u!96 &1848939282416399014
