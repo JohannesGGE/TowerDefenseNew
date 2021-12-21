@@ -2,17 +2,17 @@ using Classes;
 using UnityEngine;
 
 namespace Backbone {
-    
+
     // NUR EIN TEMPLATE FUER DIE TOWER
-    public class Tower : MonoBehaviour {
+    public class TowerTemplate : MonoBehaviour {
         private GameManager _gameManager;
 
-        public Tower() {
+        public TowerTemplate() {
             _gameManager = GameManager.GetInstance();
         }
 
         void Start() {
-            
+
         }
 
         void Update() {
