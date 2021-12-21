@@ -147,7 +147,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e163d52fff0c4fd7966738d33c5dcd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
+  speed: 40
+  turnSpeed: 100
   impactEffect: {fileID: 8154920335585700225, guid: b3a9c4a445f6a4cf09f3d82bca79dba5, type: 3}
 --- !u!96 &1848939282416399014
 TrailRenderer:
