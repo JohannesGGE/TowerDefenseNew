@@ -65,8 +65,11 @@ public class Tower : MonoBehaviour
       ///Rotate the firepoint to the Position of the target
       ///3D Vector with the direction on Tower -> Target
       Vector3 dir = target.position - transform.position;
+      ///Quaternion: Variable that manages rotation around all three axis.
+      ///Mathematically it is a number system that extends real numbers with i, j and k instead just with the i(maginary part) of complex numbers.
+      //Thus it forms the quotient of two vectors in three dimensional space.
+      //The <c>Lerp</c> is only used to make the movement of the rotation smoother.
       Vector3 rotatedVectorDir = Quaternion.Euler(0,0,180)*dir;
-      ///Quaternion: Variable that manages rotation around all three axis
       Quaternion lookRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorDir);
       Quaternion rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed);
       partToRotate.rotation = rotation;
