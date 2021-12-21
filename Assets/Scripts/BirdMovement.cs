@@ -18,7 +18,14 @@ public class BirdMovement : MonoBehaviour
     void Update()
     {
       rb.velocity = Vector3.right*3f;
+
+      if(Input.GetKeyDown(KeyCode.D))
+      {
+        Destroy(gameObject);
+      }
     }
+
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
