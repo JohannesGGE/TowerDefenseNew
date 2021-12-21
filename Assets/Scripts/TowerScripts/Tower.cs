@@ -44,6 +44,7 @@ namespace Backbone
           float shortestDistance = Mathf.Infinity;
           GameObject nearestEnemy = null;
 
+          //TODO Enemy selection based on distance of the enemy to the goal rather than the distance to the tower.
           foreach (GameObject enemy in enemies)
           {
             float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -64,9 +65,29 @@ namespace Backbone
         }
 
 
-        // Update is called once per frame
+        /// Update is called once per frame
         void Update()
         {
+          /// DEBUG start/pause function
+          if(Input.GetKeyDown(KeyCode.Space))
+          {
+              if(!_gameManager.Paused)
+              {
+                _gameManager.PauseGame();
+                if(_gameManager.Paused)
+                {
+                  Debug.Log("Pause");
+                }
+              }
+              else
+              {
+                _gameManager.StartGame();
+                if(!_gameManager.Paused)
+                {
+                  Debug.Log("Start");
+                }
+              }
+          }
           ///silence this method, while there is no enemy in Range
           if (target == null)
             return;
@@ -83,7 +104,8 @@ namespace Backbone
           Quaternion rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed);
           partToRotate.rotation = rotation;
 
-          if (fireCountdown <= 0f)
+          //shoot in given intervall, if the game is not paused
+          if (fireCountdown <= 0f && !_gameManager.Paused)
           {
             Shoot();
             fireCountdown = 1f / fireRate;
