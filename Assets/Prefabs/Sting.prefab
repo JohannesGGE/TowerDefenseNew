@@ -147,7 +147,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4c8eb49a97743419f487b4c6168290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 0
+  effect: 
   speed: 10
+  pauseSpeed: 0
+  pauseEndSpeed: 10
   turnSpeed: 100
   impactEffect: {fileID: 8154920335585700225, guid: b3a9c4a445f6a4cf09f3d82bca79dba5, type: 3}
 --- !u!96 &1848939282416399014
