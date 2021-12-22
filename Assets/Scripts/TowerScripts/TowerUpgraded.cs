@@ -5,11 +5,11 @@ using UnityEngine;
 
 namespace Backbone
 {
-    public class Tower : MonoBehaviour
+    public class TowerUpgraded : MonoBehaviour
     {
         private GameManager _gameManager;
 
-        public Tower()
+        public TowerUpgraded()
         {
             _gameManager = GameManager.GetInstance();
         }
@@ -17,7 +17,7 @@ namespace Backbone
         private Transform target;
 
         [Header("Hit Effects")]
-        public int towerDamage = 30;
+        public int towerDamage = 50;
         public string towerEffect = "ice";
 
         [Header("Attributes")]
@@ -32,10 +32,6 @@ namespace Backbone
 
         public GameObject stingPrefab;
         public Transform firePoint;
-        ///TODO Trying to Upgrade the Tower by exchanging the script – dysfunctional
-        ///Exchanging the script itself does work, but I haven't figured out yet
-        ///how to assing the firePoint to the Attributes firePoint and partToRotate
-        ///private TowerUpgraded towerUpgraded;
 
 
 
@@ -43,13 +39,6 @@ namespace Backbone
         void Start()
         {
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        }
-
-        void Awake()
-        {
-          ///towerUpgraded = GetComponent<TowerUpgraded>();
-          ///towerUpgraded.firePoint = GetComponent<firePoint>();
-          ///towerUpgraded.partToRotate = GetComponent<firePoint>();
         }
 
         ///save all enemies in Range in an Array, <c>nearestEnemy</c> is the target
@@ -108,12 +97,6 @@ namespace Backbone
                 }
               }
           }
-
-          if(Input.GetKeyDown(KeyCode.U))
-          {
-            ///gameObject.AddComponent<TowerUpgraded>();
-            ///DestroyScriptInstance();
-          }
           ///silence this method, while there is no enemy in Range
           if (target == null)
             return;
@@ -162,12 +145,6 @@ namespace Backbone
         {
           Gizmos.color = Color.red;
           Gizmos.DrawWireSphere(transform.position, range);
-        }
-
-        ///to upgrade, we need to destroy
-        void DestroyScriptInstance()
-        {
-          Destroy(this);
         }
     }
 }
