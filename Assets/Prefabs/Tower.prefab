@@ -98,13 +98,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b304b6cc97b4543ae9da17736891fe78, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  towerDamage: 30
+  towerEffect: ice
   range: 5
   fireRate: 1
   enemyTag: Bird
-  partToRotate: {fileID: 0}
+  partToRotate: {fileID: 8173858461079087077}
   turnSpeed: 10
   stingPrefab: {fileID: 34390882750466582, guid: 60a94c17100e34582ae164d2fd110d9f, type: 3}
-  firePoint: {fileID: 0}
+  firePoint: {fileID: 8173858461079087077}
 --- !u!1 &7768471152581068633
 GameObject:
   m_ObjectHideFlags: 0
