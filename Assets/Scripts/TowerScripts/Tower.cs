@@ -32,24 +32,11 @@ namespace Backbone
 
         public GameObject stingPrefab;
         public Transform firePoint;
-        ///TODO Trying to Upgrade the Tower by exchanging the script – dysfunctional
-        ///Exchanging the script itself does work, but I haven't figured out yet
-        ///how to assing the firePoint to the Attributes firePoint and partToRotate
-        ///private TowerUpgraded towerUpgraded;
-
-
 
         // Start is called before the first frame update
         void Start()
         {
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
-        }
-
-        void Awake()
-        {
-          ///towerUpgraded = GetComponent<TowerUpgraded>();
-          ///towerUpgraded.firePoint = GetComponent<firePoint>();
-          ///towerUpgraded.partToRotate = GetComponent<firePoint>();
         }
 
         ///save all enemies in Range in an Array, <c>nearestEnemy</c> is the target
@@ -109,11 +96,13 @@ namespace Backbone
               }
           }
 
+          ///Upgrade
           if(Input.GetKeyDown(KeyCode.U))
           {
-            ///gameObject.AddComponent<TowerUpgraded>();
-            ///DestroyScriptInstance();
+            gameObject.AddComponent<TowerUpgraded>();
+            DestroyScriptInstance();
           }
+
           ///silence this method, while there is no enemy in Range
           if (target == null)
             return;
