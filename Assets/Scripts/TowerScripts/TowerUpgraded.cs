@@ -38,6 +38,9 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
+          firePoint=gameObject.GetComponent<Tower>().firePoint;
+          partToRotate=gameObject.GetComponent<Tower>().firePoint;
+          stingPrefab=gameObject.GetComponent<Tower>().stingPrefab;
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
