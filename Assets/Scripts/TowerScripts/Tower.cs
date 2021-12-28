@@ -23,7 +23,7 @@ namespace Backbone
         [Header("Attributes")]
         public float range = 5f;
         public float fireRate = 1f;
-        private float fireCountdown = 0f;
+        protected float fireCountdown = 0f;
 
         [Header("Unity Setup - Do not change!")]
         public string enemyTag = "Bird";
