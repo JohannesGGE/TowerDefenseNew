@@ -23,12 +23,7 @@ public class MainMenu : MonoBehaviour
     {
         //fader.FadeTo(levelName);
     }
-
-    public void StartLevelOne()
-    {
-        SceneManager.LoadScene("LevelOne");
-    }
-
+    
     public void QuitGame()
     {
         Debug.Log("Quit Game");
