@@ -5,23 +5,24 @@ using UnityEngine;
 
 namespace Backbone
 {
-    public class TowerUpgraded : Tower
+    public class BasicTower3 : Tower
     {
         private GameManager _gameManager;
 
-        public TowerUpgraded()
+        public BasicTower3()
         {
             _gameManager = GameManager.GetInstance();
         }
 
         // Start is called before the first frame update
-        void Start()
+        //new keyword because hiding the Base Class Method is intended
+        new void Start()
         {
-          firePoint=gameObject.GetComponent<Tower>().firePoint;
-          partToRotate=gameObject.GetComponent<Tower>().firePoint;
-          stingPrefab=gameObject.GetComponent<Tower>().stingPrefab;
-          towerDamage = 50;
-          towerEffect = "ice";
+          firePoint=gameObject.GetComponent<BasicTower2>().firePoint;
+          partToRotate=gameObject.GetComponent<BasicTower2>().firePoint;
+          stingPrefab=gameObject.GetComponent<BasicTower2>().stingPrefab;
+          towerDamage = 100;
+          towerEffect = "none";
           range = 5f;
           fireRate = 1f;
           fireCountdown = 0f;

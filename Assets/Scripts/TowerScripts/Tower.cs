@@ -17,8 +17,8 @@ namespace Backbone
         private Transform target;
 
         [Header("Hit Effects")]
-        public int towerDamage = 30;
-        public string towerEffect = "ice";
+        public int towerDamage = 30; ///DEBUG
+        public string towerEffect = "ice"; ///DEBUG
 
         [Header("Attributes")]
         public float range = 5f;
@@ -32,6 +32,7 @@ namespace Backbone
 
         public GameObject stingPrefab;
         public Transform firePoint;
+        public
 
         // Start is called before the first frame update
         void Start()
@@ -99,8 +100,7 @@ namespace Backbone
           ///Upgrade
           if(Input.GetKeyDown(KeyCode.U))
           {
-            gameObject.AddComponent<TowerUpgraded>();
-            DestroyScriptInstance();
+            Upgrade();
           }
 
           ///silence this method, while there is no enemy in Range
@@ -153,8 +153,14 @@ namespace Backbone
           Gizmos.DrawWireSphere(transform.position, range);
         }
 
+        ///virtual keyword enables override
+        protected virtual void Upgrade()
+        {
+          return;
+        }
+
         ///to upgrade, we need to destroy
-        void DestroyScriptInstance()
+        protected void DestroyScriptInstance()
         {
           Destroy(this);
         }
