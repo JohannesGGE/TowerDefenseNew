@@ -14,6 +14,16 @@ namespace Classes {
         /// Variable <c>_paused</c> enthaelt, ob das Spiel pausiert ist
         /// </summary>
         private bool _paused;
+
+        /// <summary>
+        /// Variable <c>_allEnemySpawned</c> enthaelt, ob in der letzen Welle der letze Vogel gespawnt wurde
+        /// </summary>
+        private bool _allEnemySpawned;
+
+        /// <summary>
+        /// Variable <c>_lastEnemyKilled</c> enthaelt, ob der letzte Vogel getoetet wurde (nicht unbedingt letzer gespawnter!)
+        /// </summary>
+        private bool _lastEnemyKilled;
         
         /// <summary>
         /// Variable <c>_lives</c> enthaelt die verbleibenden Leben 
@@ -56,6 +66,8 @@ namespace Classes {
         /// </summary>
         public void ResetGameManager() {
             _paused = true;
+            _allEnemySpawned = false;
+            _lastEnemyKilled = false;
             _lives = 100;
             _coins = 0;
             _level = null;
@@ -103,6 +115,22 @@ namespace Classes {
         /// enthaelt, ob das Spiel pausiert ist
         /// </summary>
         public bool Paused => _paused;
+
+        /// <summary>
+        /// enthaelt, ob in der letzen Welle der letze Vogel gespawnt wurde
+        /// </summary>
+        public bool AllEnemySpawned {
+            get => _allEnemySpawned;
+            set => _allEnemySpawned = value;
+        }
+
+        /// <summary>
+        /// enthaelt, ob der letzte Vogel getoetet wurde (nicht unbedingt letzer gespawnter!)
+        /// </summary>
+        public bool LastEnemyKilled {
+            get => _lastEnemyKilled;
+            set => _lastEnemyKilled = value;
+        }
 
         /// <summary>
         /// enthaelt die verbleibenden Leben 
