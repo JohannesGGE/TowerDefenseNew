@@ -45,12 +45,12 @@ namespace Classes {
             //Evt. bessere Implementierung möglich 
             Wave wave1 = new Wave(new[] {Small, Small, Small, Small});
             Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium});
-            Level level1 = new Level(new []{wave1, wave2});
+            Level level1 = new Level(new []{wave1, wave2}, true);
             
             wave1 = new Wave(new[] {Small, Small, Small, Small});
             wave2 = new Wave( new [] {Small, Medium, Small, Medium});
             Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Small, Medium});
-            Level level2 = new Level(new []{wave1, wave2, wave3});
+            Level level2 = new Level(new []{wave1, wave2, wave3}, false);
 
             _levels.Add(level1);
             _levels.Add(level2);
