@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using UnityEngine;
 using static Classes.Birds;
 
 namespace Classes {
@@ -13,6 +14,16 @@ namespace Classes {
         /// </summary>
         private static LevelManager _instance;
         
+        /// <summary>
+        /// Variable <c>_filename</c> enthealt den Namen der Datei fuer LevelStatusSpeicherung
+        /// </summary>
+        [SerializeField] private string _filename;
+
+        /// <summary>
+        /// Variable <c>_entries</c> enthealt die gelesenen oder zuschreibenen LevelStatusInformationen
+        /// </summary>
+        private List<LevelEntry> _entries;
+
         /// <summary>
         /// Variable <c>_levels</c> enhaelt die alle Level-Informationen
         /// </summary>
@@ -35,6 +46,8 @@ namespace Classes {
         /// </summary>
         private LevelManager() {
             _levels = new List<Level>();
+            _entries = new List<LevelEntry> ();
+            _filename = "towerdefense.json";
             SetLevelConfig();
         }
 
@@ -54,6 +67,30 @@ namespace Classes {
 
             _levels.Add(level1);
             _levels.Add(level2);
+        }
+
+        /// <summary>
+        /// Lead die LevelStatusInformationen aus externer Datei falls vorhanden
+        /// </summary>
+        public void LoadLevelStatus() {
+            _entries = FileHandler.ReadListFromJSON<LevelEntry> (_filename);
+
+            if(_entries.Count == _levels.Count) {
+                for(int i = 0; i < _levels.Count; i++) {
+                    _levels[i].Unlocked = _entries[i].unlocked;
+                    _levels[i].Stars = _entries[i].stars;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Speichert die LevelStatusInformationen in externer Datei
+        /// </summary>
+        public void SaveLevelStatus() {
+            foreach(Level level in _levels) {
+                _entries.Add(new LevelEntry(level.Unlocked, level.Stars));
+            }
+            FileHandler.SaveToJSON<LevelEntry> (_entries, _filename);
         }
         
         /// <summary>
