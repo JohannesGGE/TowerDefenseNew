@@ -16,14 +16,25 @@ namespace Backbone
         }
 
         [Header("Hit Effects – given by Tower")]
-        public int damage;
-        public string effect;
+        private int _damage;
+        public int Damage
+        {
+          get {return _damage;}
+          set {_damage = value;}
+        }
+        private string _effect;
+        public string Effect
+        {
+          get {return _effect;}
+          set {_effect = value;}
+        }
+
 
         [Header("Attributes")]
-        public float speed = 20f;
-        public float pauseSpeed = 0f;
-        public float pauseEndSpeed = 20f;
-        public float turnSpeed = 100f;
+        private float _speed = 20f;
+        private float _pauseSpeed = 0f;
+        private float _pauseEndSpeed = 20f;
+        private float _turnSpeed = 100f;
 
         [Header("Unity Setup - Do not change!")]
         private Transform target;
@@ -50,7 +61,7 @@ namespace Backbone
           ///VFX.playRate = timeScale;
           if(!_gameManager.Paused)
           {
-              speed = pauseEndSpeed;
+              _speed = _pauseEndSpeed;
               ///timeScale = 1.0f;
               if (target != null)
               {
@@ -59,9 +70,9 @@ namespace Backbone
                   dirBackup=dir;
                   Vector3 rotatedVectorDir = Quaternion.Euler(0,0,90)*dir;
                   Quaternion lookRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorDir);
-                  Quaternion rotation = Quaternion.Lerp(gameObject.transform.rotation, lookRotation, Time.deltaTime * turnSpeed);
+                  Quaternion rotation = Quaternion.Lerp(gameObject.transform.rotation, lookRotation, Time.deltaTime * _turnSpeed);
                   gameObject.transform.rotation = rotation;
-                  float distanceThisFrame = speed * Time.deltaTime;
+                  float distanceThisFrame = _speed * Time.deltaTime;
 
                   if (dir.magnitude <= distanceThisFrame)
                   {
@@ -72,7 +83,7 @@ namespace Backbone
               }
               else
               {   ///go on flying for 4 seconds before selfdestruct
-                  float distanceThisFrame = speed * Time.deltaTime;
+                  float distanceThisFrame = _speed * Time.deltaTime;
                   transform.Translate(dirBackup.normalized * distanceThisFrame, Space.World);
                   Destroy(gameObject, 4f);
               }
@@ -80,13 +91,13 @@ namespace Backbone
             }
             else
             {
-              speed = pauseSpeed;
+              _speed = _pauseSpeed;
               ///timeScale = 0f;
             }
         }
         void HitTarget()
         {
-              Debug.Log("Hit: "+damage+" damage dealt and "+effect+" effect");
+              Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
               GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
               Destroy(effectInstance, 2f);
               Destroy(gameObject);

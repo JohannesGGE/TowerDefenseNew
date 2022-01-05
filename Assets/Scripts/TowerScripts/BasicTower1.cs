@@ -16,13 +16,13 @@ namespace Backbone
 
         // Start is called before the first frame update
         //new keyword because hiding the Base Class Method is intended
-        new void Start()
+        void Start()
         {
-          towerDamage = 30;
-          towerEffect = "none";
-          range = 5f;
-          fireRate = 1f;
-          fireCountdown = 0f;
+          TowerDamage = 30;
+          TowerEffect = "none";
+          Range = 5f;
+          FireRate = 1f;
+          FireCountdown = 0f;
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
