@@ -5,17 +5,34 @@ using Classes;
 
 public class WaveSpawner : MonoBehaviour
 {
+    /// <summary>
+    /// Variable <c> enemyPrefab </c> 
+    /// </summary>
     public Transform enemyPrefab;
-
+    /// <summary>
+    /// Variable <c> waves </c> 
+    /// </summary>
     public Wave[] waves;
-
+    /// <summary>
+    /// Variable <c> spawnPoint </c> 
+    /// </summary>
     public Transform spawnPoint;
-
+    /// <summary>
+    /// Variable <c> timeBetweenWaves </c> 
+    /// </summary>
     public float timeBetweenWaves = 5f;
+    /// <summary>
+    /// Variable <c> countdown </c> 
+    /// </summary>
     private float countdown = 2f;
-
+    /// <summary>
+    /// Variable <c> waveIndex </c> 
+    /// </summary>
     private int waveIndex = 0;
 
+    /// <summary>
+    /// berechnet Zeit zwischen Wellen
+    /// </summary>
     void Update ()
     {
         if(countdown <= 0f)
@@ -27,7 +44,9 @@ public class WaveSpawner : MonoBehaviour
 
         countdown -= Time.deltaTime;
     }
-
+    /// <summary>
+    /// Spawnt die Welle
+    /// </summary>
     IEnumerator SpawnWave()
     {
         Wave wave = waves[waveIndex];
@@ -41,7 +60,9 @@ public class WaveSpawner : MonoBehaviour
 
         waveIndex++;
     }
-
+    /// <summary>
+    /// Spawnt den Vogel
+    /// </summary>
     void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
