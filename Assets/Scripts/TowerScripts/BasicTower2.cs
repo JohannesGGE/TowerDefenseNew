@@ -16,16 +16,16 @@ namespace Backbone
 
         // Start is called before the first frame update
         //new keyword because hiding the Base Class Method is intended
-        new void Start()
+        void Start()
         {
-          firePoint=gameObject.GetComponent<BasicTower1>().firePoint;
-          partToRotate=gameObject.GetComponent<BasicTower1>().firePoint;
-          stingPrefab=gameObject.GetComponent<BasicTower1>().stingPrefab;
-          towerDamage = 50;
-          towerEffect = "none";
-          range = 5f;
-          fireRate = 1f;
-          fireCountdown = 0f;
+          FirePoint=gameObject.GetComponent<BasicTower1>().FirePoint;
+          PartToRotate=gameObject.GetComponent<BasicTower1>().FirePoint;
+          StingPrefab=gameObject.GetComponent<BasicTower1>().StingPrefab;
+          TowerDamage = 50;
+          TowerEffect = "none";
+          Range = 5f;
+          FireRate = 1f;
+          FireCountdown = 0f;
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }

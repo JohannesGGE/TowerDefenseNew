@@ -17,26 +17,65 @@ namespace Backbone
         private Transform target;
 
         [Header("Hit Effects")]
-        public int towerDamage = 30; ///DEBUG
-        public string towerEffect = "ice"; ///DEBUG
+        private int _towerDamage = 0; ///DEBUG
+
+        public int TowerDamage
+        {
+          get {return _towerDamage;}
+          protected set {_towerDamage = value;}
+        }
+
+        private string _towerEffect = "none"; ///DEBUG
+
+        public string TowerEffect
+        {
+          get {return _towerEffect;}
+          protected set {_towerEffect = value;}
+        }
 
         [Header("Attributes")]
-        public float range = 5f;
-        public float fireRate = 1f;
-        protected float fireCountdown = 0f;
+        private float _range = 5f;
+
+        public float Range
+        {
+          get {return _range;}
+          protected set {_range = value;}
+        }
+
+        private float _fireRate = 1f;
+
+        public float FireRate
+        {
+          get {return _fireRate;}
+          protected set {_fireRate = value;}
+        }
+
+        private float _fireCountdown = 0f;
+
+        public float FireCountdown
+        {
+          get {return _fireCountdown;}
+          protected set {_fireCountdown = value;}
+        }
 
         [Header("Unity Setup - Do not change!")]
-        public string enemyTag = "Bird";
-        public Transform partToRotate;
-        public float turnSpeed = 10f;
+        public readonly string enemyTag = "Bird";
+        private float _turnSpeed = 10f;
 
-        public GameObject stingPrefab;
-        public Transform firePoint;
-        public
+        ///To make these private I have to assign their values (Objects/Prefabs) within the Script
+        ///Not via the drag and drop functionality of the Unity GUI
+        ///I can not figure out, if and how that would be possible
+        public Transform PartToRotate;
+        public Transform FirePoint;
+        public GameObject StingPrefab;
+
+
+
 
         // Start is called before the first frame update
         void Start()
         {
+
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
@@ -61,7 +100,7 @@ namespace Backbone
                   nearestEnemy = enemy;
                 }
               }
-              if (nearestEnemy != null && shortestDistance <= range)
+              if (nearestEnemy != null && shortestDistance <= _range)
               {
                 target = nearestEnemy.transform;
               }
@@ -118,29 +157,29 @@ namespace Backbone
               //The <c>Lerp</c> is only used to make the movement of the rotation smoother.
               Vector3 rotatedVectorDir = Quaternion.Euler(0,0,180)*dir;
               Quaternion lookRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorDir);
-              Quaternion rotation = Quaternion.Lerp(partToRotate.rotation, lookRotation, Time.deltaTime * turnSpeed);
-              partToRotate.rotation = rotation;
+              Quaternion rotation = Quaternion.Lerp(PartToRotate.rotation, lookRotation, Time.deltaTime * _turnSpeed);
+              PartToRotate.rotation = rotation;
 
               //shoot in given intervall
-              if (fireCountdown <= 0f)
+              if (_fireCountdown <= 0f)
               {
                 Shoot();
-                fireCountdown = 1f / fireRate;
+                _fireCountdown = 1f / _fireRate;
               }
 
-              fireCountdown -= Time.deltaTime;
+              _fireCountdown -= Time.deltaTime;
           }
         }
 
         void Shoot()
         {
           Debug.Log("shots fired"); ///debug
-          GameObject stingGO = (GameObject)Instantiate (stingPrefab, firePoint.position, firePoint.rotation);
+          GameObject stingGO = (GameObject)Instantiate (StingPrefab, FirePoint.position, FirePoint.rotation);
           Sting sting = stingGO.GetComponent<Sting>();
           if (sting != null)
           {
-            sting.damage=towerDamage;
-            sting.effect=towerEffect;
+            sting.Damage=_towerDamage;
+            sting.Effect=_towerEffect;
             sting.Seek(target);
           }
         }
@@ -150,7 +189,7 @@ namespace Backbone
         void OnDrawGizmosSelected ()
         {
           Gizmos.color = Color.red;
-          Gizmos.DrawWireSphere(transform.position, range);
+          Gizmos.DrawWireSphere(transform.position, _range);
         }
 
         ///virtual keyword enables override
