@@ -67,6 +67,11 @@ public class WaveSpawner : MonoBehaviour
         {
             countdown -= Time.deltaTime;
         }
+
+        if (waveIndex == waves.Length && canSpawn == true)
+        {
+            /// Last Wave, AllEnemies spawned, no Enemies Alive -> GameManager auf true
+        }
     }
     /// <summary>
     /// Spawnt die Welle
