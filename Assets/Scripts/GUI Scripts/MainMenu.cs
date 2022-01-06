@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
-    //public SceneFader fader;
+   
     
    
     public void Update()
@@ -13,16 +13,13 @@ public class MainMenu : MonoBehaviour
         
     }
 
-    public void BackToMain()
+    
+    public void OpenMain()
     {
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
         SceneManager.LoadScene(1);
-    }
+    } 
 
-    public void StartLevel(string levelName)
-    {
-        //fader.FadeTo(levelName);
-    }
     
     public void QuitGame()
     {
