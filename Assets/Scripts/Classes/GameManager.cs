@@ -108,7 +108,7 @@ namespace Classes {
         /// </summary>
         /// <param name="coins">abzuziehende Coins</param>
         public void ReduceCoins(int coins) {
-            _coins -= _coins;
+            _coins -= coins;
         }
 
         /// <summary>
