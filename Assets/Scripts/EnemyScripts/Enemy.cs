@@ -1,12 +1,26 @@
 using UnityEngine;
 using System.Collections;
+using Classes;
 
 public class Enemy : MonoBehaviour
 {
+    private GameManager _gameManager;
+
+    public Enemy()
+    {
+        _gameManager = GameManager.GetInstance();
+    }
+
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Geschwindigkeit des Vogels
     /// </summary>
-    public float _speed = 10f;
+    public float _speed;
+
+    /// <summary>
+    /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
+    /// </summary>
+    public float _startspeed = 10f;
+
     private float _dist = 0;
     /// <summary>
     /// Variable <c>_dist </c> enthaelt zurueckgelegte Strecke des Vogels
@@ -37,6 +51,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = Waypoints.points[0];
+        _speed = _startspeed;
     }
 
     void Update()
@@ -52,6 +67,8 @@ public class Enemy : MonoBehaviour
         {
             GetNextWaypoint();
         }
+
+        _speed = _startspeed;
 
         /// <summary>
         /// Erhoeht die zurueckgelegte Strecke 
@@ -96,7 +113,7 @@ public class Enemy : MonoBehaviour
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
     public void TakeSlow (float _pct)
     {
-        _speed = _speed * (1f - _pct);
+        _speed = _startspeed * (1f - _pct);
     }
     /// <summary>
     /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
@@ -136,7 +153,7 @@ public class Enemy : MonoBehaviour
     {
         Destroy(gameObject);
 
-        //SpielerGeld geht hoch
+        _gameManager.AddCoins(10);
     }
 
     /// <summary>
@@ -144,7 +161,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Die()
     {
-        //SpielerLeben gehen runter
+        _gameManager.ReduceLives(5);
 
         Destroy(gameObject);
     }
