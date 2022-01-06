@@ -41,13 +41,13 @@ public class LevelSelect : MonoBehaviour
     private void Start()
     {
 
-        int levelSolved = PlayerPrefs.GetInt("levelSolved", 1);
+        int levelSolved = PlayerPrefs.GetInt("levelSolved", 5);
 
         for (int i = 0; i < levelButtons.Length; i++)
         {
             child = levelButtons[i].transform.GetChild(1).gameObject; //muss erst in child gespeichert werden, damit änderungen möglich sind
 
-            if (i > levelSolved)
+            if (i + 1 > levelSolved)
             { levelButtons[i].interactable = false;
                 
                 child.GetComponent<Image>().color = Color.grey;
