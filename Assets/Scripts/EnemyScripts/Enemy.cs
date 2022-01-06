@@ -69,7 +69,7 @@ public class Enemy : MonoBehaviour
     {
         if(wavepointIndex >= Waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            Die();
             return;
         }
 
@@ -87,7 +87,7 @@ public class Enemy : MonoBehaviour
 
         if (health <= 0)
         {
-            Die();
+            Kill();
         }
     }
     /// <summary>
@@ -130,12 +130,22 @@ public class Enemy : MonoBehaviour
         
     }
     /// <summary>
-    /// Zerstoert den Vogel und fuegt Coins beim Spieler hinzu
+    /// Toetet den Vogel und fuegt Coins beim Spieler hinzu
     /// </summary>
-    void Die()
+    void Kill()
     {
         Destroy(gameObject);
 
         //SpielerGeld geht hoch
+    }
+
+    /// <summary>
+    /// Zerstoert Vogel am ende des Weges und zieht dem Spieler Leben ab
+    /// </summary>
+    void Die()
+    {
+        //SpielerLeben gehen runter
+
+        Destroy(gameObject);
     }
 }

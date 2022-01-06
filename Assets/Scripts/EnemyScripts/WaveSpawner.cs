@@ -10,11 +10,11 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     public Transform enemyPrefab;
     /// <summary>
-    /// Variable <c> waves </c> 
+    /// Variable <c> waves </c> enthaelt die verschiedenen Wellen
     /// </summary>
     public Wave[] waves;
     /// <summary>
-    /// Variable <c> spawnPoint </c> 
+    /// Variable <c> spawnPoint </c> enthaelt die Stelle, an welcher die Voegel spawnen
     /// </summary>
     public Transform spawnPoint;
     /// <summary>
@@ -31,18 +31,42 @@ public class WaveSpawner : MonoBehaviour
     private int waveIndex = 0;
 
     /// <summary>
+    /// Variable <c> canSpawn </c> gibt an, ob vorherige Welle abgeschlossen ist 
+    /// </summary>
+    private bool canSpawn = false;
+
+    /// <summary>
+    /// Variable <c> waveEnemies</c> gibt an, wie viele Voegel gespawnt wurden
+    /// </summary>
+    private int spawnedEnemies = 0;
+
+    /// <summary>
+    /// Variable <c> totalEnemies </c> gibt an, wie viele Voegel in einer Welle spawnen
+    /// </summary>
+    private int totalEnemies;
+
+    /// <summary>
     /// berechnet Zeit zwischen Wellen
     /// </summary>
     void Update ()
     {
+        if(spawnedEnemies == totalEnemies)
+        {
+            canSpawn = true;
+        }
+
         if(countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
             countdown = timeBetweenWaves;
+            canSpawn = false;
             return;
         }
 
-        countdown -= Time.deltaTime;
+        if (canSpawn == true)
+        {
+            countdown -= Time.deltaTime;
+        }
     }
     /// <summary>
     /// Spawnt die Welle
@@ -66,5 +90,6 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(GameObject enemy)
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        spawnedEnemies += 1;
     }
 }
