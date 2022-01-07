@@ -17,7 +17,7 @@ namespace Backbone
         private Transform target;
 
         [Header("Hit Effects")]
-        private int _towerDamage = 0; ///DEBUG
+        private int _towerDamage = 0;
 
         public int TowerDamage
         {
@@ -25,13 +25,31 @@ namespace Backbone
           protected set {_towerDamage = value;}
         }
 
-        private string _towerEffect = "none"; ///DEBUG
+        private string _towerEffect = "none";
 
         public string TowerEffect
         {
           get {return _towerEffect;}
           protected set {_towerEffect = value;}
         }
+
+        private float _iceDuration = 0;
+
+        public float IceDuration
+        {
+          get {return _iceDuration;}
+          protected set {_iceDuration = value;}
+        }
+
+        private float _iceDelay = 0;
+
+        public float IceDelay
+        {
+          get {return _iceDelay;}
+          protected set {_iceDelay = value;}
+        }
+
+
 
         [Header("Attributes")]
         private float _range = 5f;
@@ -75,7 +93,6 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
-
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
