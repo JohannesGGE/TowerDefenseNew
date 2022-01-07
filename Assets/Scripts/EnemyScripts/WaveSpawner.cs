@@ -12,8 +12,6 @@ public class WaveSpawner : MonoBehaviour
         _gameManager = GameManager.GetInstance();
     }
 
-    
-
     /// <summary>
     /// Variable <c> enemyPrefab </c> 
     /// </summary>
@@ -54,15 +52,21 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     private int _totalEnemies;
 
+    public string enemyTag = "Bird";
+
+    void Start ()
+    {
+      waves = _gameManager.Level.Waves;
+    }
+
     /// <summary>
     /// berechnet Zeit zwischen Wellen
     /// </summary>
     void Update ()
     {
-        if(_spawnedEnemies == _totalEnemies)
-        {
-            _canSpawn = true;
-        }
+
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
 
         if(_countdown <= 0f)
         {
@@ -79,7 +83,10 @@ public class WaveSpawner : MonoBehaviour
 
         if (_waveIndex == waves.Length && _canSpawn == true)
         {
-            /// Last Wave, AllEnemies spawned, no Enemies Alive -> GameManager auf true
+            if(enemies.Length == 0)
+            {
+                /// GameManager irgendwas auf True
+            }
         }
     }
     /// <summary>
@@ -90,12 +97,13 @@ public class WaveSpawner : MonoBehaviour
         Wave wave = waves[_waveIndex];
 
 
-        for (int i = 0; i < wave.count; i++)
+        for (int i = 0; i < wave.Birds.Length; i++)
         {
             SpawnEnemy(wave.enemy);
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
+        _canSpawn = true;
         _waveIndex++;
     }
     /// <summary>
