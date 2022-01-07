@@ -1,10 +1,16 @@
+using UnityEngine;
+
 namespace Classes {
     
     /// <summary>
     /// Klasse <c>Wave</c> enthaelt die Wellen-Informationen fuer eine Welle
     /// </summary>
     public class Wave {
-        
+
+        public GameObject enemy;
+        public int count;
+        public float rate;
+
         /// <summary>
         /// Variable <c>_birds</c> enthaelt die Voegel der Welle
         /// </summary>
