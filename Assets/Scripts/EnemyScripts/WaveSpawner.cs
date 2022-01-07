@@ -10,12 +10,15 @@ public class WaveSpawner : MonoBehaviour
     public WaveSpawner()
     {
         _gameManager = GameManager.GetInstance();
+        LevelManager levelManager = LevelManager.GetInstance();
+        _gameManager.ResetGameManager();
+        _gameManager.Level = levelManager.Levels[1];
     }
 
     /// <summary>
     /// Variable <c> enemyPrefab </c> 
     /// </summary>
-    private Transform _enemyPrefab;
+    public Transform _enemyPrefab;
     /// <summary>
     /// Variable <c> waves </c> enthaelt die verschiedenen Wellen
     /// </summary>
@@ -40,7 +43,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Variable <c> canSpawn </c> gibt an, ob vorherige Welle abgeschlossen ist 
     /// </summary>
-    private bool _canSpawn = false;
+    private bool _canSpawn = true;
 
     /// <summary>
     /// Variable <c> waveEnemies</c> gibt an, wie viele Voegel gespawnt wurden
@@ -65,7 +68,7 @@ public class WaveSpawner : MonoBehaviour
     void Update ()
     {
 
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+       /// GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
 
         if(_countdown <= 0f)
@@ -81,14 +84,14 @@ public class WaveSpawner : MonoBehaviour
             _countdown -= Time.deltaTime;
         }
 
-        if (_waveIndex == waves.Length && _canSpawn == true)
+       /* if (_waveIndex == waves.Length && _canSpawn == true)
         {
             if(enemies.Length == 0)
             {
                 /// GameManager irgendwas auf True
             }
-        }
-    }
+        }*/
+    } 
     /// <summary>
     /// Spawnt die Welle
     /// </summary>
@@ -100,7 +103,7 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < wave.Birds.Length; i++)
         {
             SpawnEnemy(wave.enemy);
-            yield return new WaitForSeconds(1f / wave.rate);
+            yield return new WaitForSeconds(1f / 2);
         }
 
         _canSpawn = true;
