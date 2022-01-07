@@ -19,7 +19,6 @@ namespace Backbone
         void Start()
         {
           TowerDamage = 30;
-          TowerEffect = "none";
           Range = 5f;
           FireRate = 1f;
           FireCountdown = 0f;
