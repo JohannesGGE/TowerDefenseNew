@@ -119,11 +119,17 @@ public class Enemy : MonoBehaviour
     /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
     /// </summary>
     /// <param name ="other"> ankommender Stachel </param>
-    void OnTriggerEnter(Collider other)
+
+    public void TakeFire (float amount, float count)
+    {
+
+    }
+
+    public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Fire" && !_onFire)
         {
-            StartCoroutine(TakeFire(amount, 3, duration));
+            StartCoroutine(Fire(amount, 3, duration));
         }
     }
 
@@ -133,7 +139,7 @@ public class Enemy : MonoBehaviour
     /// <param name ="amount"> zugefuegter Schaden </param>
     /// <param name ="count"> Anzahl der Ticks </param>
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
-    IEnumerator TakeFire(float amount, float count, float duration)
+    IEnumerator Fire(float amount, float count, float duration)
     {
     
          int currentCount = 0;

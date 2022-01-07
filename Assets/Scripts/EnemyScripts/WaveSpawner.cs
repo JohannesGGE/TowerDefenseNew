@@ -5,10 +5,19 @@ using Classes;
 
 public class WaveSpawner : MonoBehaviour
 {
+    private GameManager _gameManager;
+
+    public WaveSpawner()
+    {
+        _gameManager = GameManager.GetInstance();
+    }
+
+    
+
     /// <summary>
     /// Variable <c> enemyPrefab </c> 
     /// </summary>
-    public Transform enemyPrefab;
+    private Transform _enemyPrefab;
     /// <summary>
     /// Variable <c> waves </c> enthaelt die verschiedenen Wellen
     /// </summary>
@@ -24,51 +33,51 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Variable <c> countdown </c> 
     /// </summary>
-    private float countdown = 2f;
+    private float _countdown = 2f;
     /// <summary>
     /// Variable <c> waveIndex </c> 
     /// </summary>
-    private int waveIndex = 0;
+    private int _waveIndex = 0;
 
     /// <summary>
     /// Variable <c> canSpawn </c> gibt an, ob vorherige Welle abgeschlossen ist 
     /// </summary>
-    private bool canSpawn = false;
+    private bool _canSpawn = false;
 
     /// <summary>
     /// Variable <c> waveEnemies</c> gibt an, wie viele Voegel gespawnt wurden
     /// </summary>
-    private int spawnedEnemies = 0;
+    private int _spawnedEnemies = 0;
 
     /// <summary>
     /// Variable <c> totalEnemies </c> gibt an, wie viele Voegel in einer Welle spawnen
     /// </summary>
-    private int totalEnemies;
+    private int _totalEnemies;
 
     /// <summary>
     /// berechnet Zeit zwischen Wellen
     /// </summary>
     void Update ()
     {
-        if(spawnedEnemies == totalEnemies)
+        if(_spawnedEnemies == _totalEnemies)
         {
-            canSpawn = true;
+            _canSpawn = true;
         }
 
-        if(countdown <= 0f)
+        if(_countdown <= 0f)
         {
             StartCoroutine(SpawnWave());
-            countdown = timeBetweenWaves;
-            canSpawn = false;
+            _countdown = timeBetweenWaves;
+            _canSpawn = false;
             return;
         }
 
-        if (canSpawn == true)
+        if (_canSpawn == true)
         {
-            countdown -= Time.deltaTime;
+            _countdown -= Time.deltaTime;
         }
 
-        if (waveIndex == waves.Length && canSpawn == true)
+        if (_waveIndex == waves.Length && _canSpawn == true)
         {
             /// Last Wave, AllEnemies spawned, no Enemies Alive -> GameManager auf true
         }
@@ -78,7 +87,7 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     IEnumerator SpawnWave()
     {
-        Wave wave = waves[waveIndex];
+        Wave wave = waves[_waveIndex];
 
 
         for (int i = 0; i < wave.count; i++)
@@ -87,14 +96,14 @@ public class WaveSpawner : MonoBehaviour
             yield return new WaitForSeconds(1f / wave.rate);
         }
 
-        waveIndex++;
+        _waveIndex++;
     }
     /// <summary>
     /// Spawnt den Vogel
     /// </summary>
     void SpawnEnemy(GameObject enemy)
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        spawnedEnemies += 1;
+        Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        _spawnedEnemies += 1;
     }
 }
