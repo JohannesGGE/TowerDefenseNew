@@ -1148,9 +1148,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82e50c48d927864f9a8b1e50ca8951d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyPrefab: {fileID: 8697055965843131306, guid: 55df35b0a6e324546ac0e47307c8f3e6, type: 3}
+  _enemyPrefab: {fileID: 8697055965843131306, guid: 55df35b0a6e324546ac0e47307c8f3e6, type: 3}
   spawnPoint: {fileID: 1440619051}
   timeBetweenWaves: 5
+  enemyTag: Bird
 --- !u!4 &1678838185
 Transform:
   m_ObjectHideFlags: 0
