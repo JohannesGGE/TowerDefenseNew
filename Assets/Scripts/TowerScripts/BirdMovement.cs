@@ -9,6 +9,16 @@ namespace Backbone
     {
         private GameManager _gameManager;
 
+        private float _dist = 0;
+        /// <summary>
+        /// Variable <c>_dist </c> enthaelt zurueckgelegte Strecke des Vogels
+        /// </summary>
+        public float dist {
+            get => _dist;
+            set => _dist = value;
+        }
+        Vector3 oldPos;
+
         public BirdMovement()
         {
             _gameManager = GameManager.GetInstance();
@@ -39,6 +49,19 @@ namespace Backbone
           if(Input.GetKeyDown(KeyCode.D))
           {
             Destroy(gameObject);
+          }
+
+          /// <summary>
+          /// Erhoeht die zurueckgelegte Strecke
+          /// </summary>
+          Vector3 _distanceVector = transform.position - oldPos;
+          float _distanceThisFrame = _distanceVector.magnitude;
+          _dist += _distanceThisFrame;
+          oldPos = transform.position;
+
+          if(Input.GetKeyDown(KeyCode.W))
+          {
+            Debug.Log("Distance is "+_dist); ///DEBUG
           }
         }
 
