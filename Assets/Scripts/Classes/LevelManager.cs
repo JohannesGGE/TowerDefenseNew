@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
-using static Classes.Birds;
+using static Classes.BirdLevel;
 
 namespace Classes {
     
@@ -56,13 +56,13 @@ namespace Classes {
         /// </summary>
         private void SetLevelConfig() {
             //Evt. bessere Implementierung möglich 
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small});
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium});
+            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
+            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
             Level level1 = new Level(new []{wave1, wave2}, true);
             
-            wave1 = new Wave(new[] {Small, Small, Small, Small});
-            wave2 = new Wave( new [] {Small, Medium, Small, Medium});
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Small, Medium});
+            wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
+            wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
+            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Small, Medium}, 2f);
             Level level2 = new Level(new []{wave1, wave2, wave3}, false);
 
             _levels.Add(level1);

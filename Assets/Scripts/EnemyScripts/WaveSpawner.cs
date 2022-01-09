@@ -102,7 +102,7 @@ public class WaveSpawner : MonoBehaviour
 
         for (int i = 0; i < wave.Birds.Length; i++)
         {
-            SpawnEnemy(wave.enemy);
+            SpawnEnemy(wave.Birds[i]);
             yield return new WaitForSeconds(1f / 2);
         }
 
@@ -112,7 +112,7 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Spawnt den Vogel
     /// </summary>
-    void SpawnEnemy(GameObject enemy)
+    void SpawnEnemy(BirdLevel birdLevel)
     {
         Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         _spawnedEnemies += 1;
