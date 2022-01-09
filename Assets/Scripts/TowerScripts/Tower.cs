@@ -97,7 +97,7 @@ namespace Backbone
         }
 
         ///<summary>
-        ///save all enemies in Range in an Array, <c>nearestEnemy</c> is the target
+        ///save all enemies in Range in an Array, <c>farthestEnemy</c> is the target
         ///</summary>
         void UpdateTarget()
         {
@@ -159,6 +159,11 @@ namespace Backbone
 
 
         /// Update is called once per frame
+        ///<summary>
+        ///Rotation of the <c>Tower</c> towards the <c>target</c>
+        ///call of the <c>Upgrade()</c> and the <c>Shoot()</c> methods
+        ///Start/Pause functionality TODO change the Pause trigger from pressen 'Space' Key to GUI trigger
+        ///</summary>
         void Update()
         {
           /// DEBUG start/pause function
@@ -245,7 +250,9 @@ namespace Backbone
 
         ///<summary>
         ///Upgrade functionality, defined within the subclasses. Virtual keyword enables override
+        ///The current <c>Tower</c> script gets swapped with the next one e.g. <c>BasicTower1</c> -> <c>BasicTower2</c>
         ///</summary>
+        ///TODO: change trigger from pressing Key 'D' to GUI trigger
         protected virtual void Upgrade()
         {
           return;
