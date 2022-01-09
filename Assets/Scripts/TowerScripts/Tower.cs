@@ -96,7 +96,9 @@ namespace Backbone
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
+        ///<summary>
         ///save all enemies in Range in an Array, <c>nearestEnemy</c> is the target
+        ///</summary>
         void UpdateTarget()
         {
           ///while game is paused Enemy search is inactive. This should be unnecessary for game logic
@@ -104,10 +106,36 @@ namespace Backbone
           if(!_gameManager.Paused)
           {
               GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-              float shortestDistance = Mathf.Infinity;
-              GameObject nearestEnemy = null;
+              ///float shortestDistance = Mathf.Infinity;
+              ///GameObject nearestEnemy = null;
 
-              //TODO Enemy selection based on distance of the enemy to the goal rather than the distance to the tower.
+              //Enemy selection based on distance of the enemy to the goal rather than the distance to the tower.
+              float longestWay = 0;
+              GameObject farthestEnemy = null;
+              foreach (GameObject enemy in enemies)
+              {
+                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
+                float way = enemy.GetComponent<BirdMovement>().dist;
+                if (way >= longestWay && distanceToEnemy <= _range)
+                  {
+                    longestWay = way;
+                    farthestEnemy = enemy;
+                  }
+
+                  if (farthestEnemy != null)
+                  {
+                    target = farthestEnemy.transform;
+                  }
+                  else
+                  {
+                    target = null;
+                  }
+              }
+
+
+
+              /// Enemy selection based on Distance to Tower
+              /*
               foreach (GameObject enemy in enemies)
               {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
@@ -125,6 +153,7 @@ namespace Backbone
               {
                 target=null;
               }
+              */
           }
         }
 
@@ -188,6 +217,10 @@ namespace Backbone
           }
         }
 
+        ///<summary>
+        ///instantiate Sting Object and set it's values <c>_damage </c> and <c>_effect </c>
+        ///according to the towers abilities
+        ///</summary>
         void Shoot()
         {
           Debug.Log("shots fired"); ///debug
@@ -201,21 +234,26 @@ namespace Backbone
           }
         }
 
-
+        ///<summary>
         ///draw circle Sphere around the Tower to mark up the Range (in scene View only)
+        ///</summary>
         void OnDrawGizmosSelected ()
         {
           Gizmos.color = Color.red;
           Gizmos.DrawWireSphere(transform.position, _range);
         }
 
-        ///virtual keyword enables override
+        ///<summary>
+        ///Upgrade functionality, defined within the subclasses. Virtual keyword enables override
+        ///</summary>
         protected virtual void Upgrade()
         {
           return;
         }
 
-        ///to upgrade, we need to destroy
+        ///<summary>
+        ///helper for <c> Upgrade() </c> method
+        ///</summary>
         protected void DestroyScriptInstance()
         {
           Destroy(this);
