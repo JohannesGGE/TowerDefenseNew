@@ -15,7 +15,7 @@ namespace Backbone
         }
 
         // Start is called before the first frame update
-        //new keyword because hiding the Base Class Method is intended
+        //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
           TowerDamage = 30;

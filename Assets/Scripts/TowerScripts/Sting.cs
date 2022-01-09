@@ -45,6 +45,10 @@ namespace Backbone
         ///[SerializeField] float timeScale = 1.0f;
         ///[SerializeField] VisualEffect VFX;
 
+        ///<summary>
+        ///Method called in <c>Tower </c> script
+        ///On instantiating the <c> Sting </c> object, the <param name ="target"> Target </param> of the tower is passed to the Sting.
+        ///</summary>
         public void Seek (Transform _target)
         {
           target = _target;
@@ -56,6 +60,10 @@ namespace Backbone
         }
 
         // Update is called once per frame
+        ///<summary>
+        ///Calculation of the direction of the Sting
+        ///Also: Call of the <c> HitTarget() </c> method and Start/Pause Implementation
+        ///</summary>
         void Update()
         {
           ///VFX.playRate = timeScale;
@@ -82,7 +90,7 @@ namespace Backbone
                   transform.Translate(dir.normalized * distanceThisFrame, Space.World);
               }
               else
-              {   ///go on flying for 4 seconds before selfdestruct
+              {   /// if the targets gets destroyed before hitting it, go on flying for 4 seconds before selfdestruct
                   float distanceThisFrame = _speed * Time.deltaTime;
                   transform.Translate(dirBackup.normalized * distanceThisFrame, Space.World);
                   Destroy(gameObject, 4f);
@@ -95,6 +103,10 @@ namespace Backbone
               ///timeScale = 0f;
             }
         }
+
+        ///<summary>
+        ///Effects on the Sting on hitting a target: <c> impactEffect </c> and selfdestruction.
+        ///</summary>
         void HitTarget()
         {
               Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
@@ -103,7 +115,10 @@ namespace Backbone
               Destroy(gameObject);
         }
 
+        ///<summary>
         ///if another collision should appear, <c>HitTarget</c> if it is a bird, selfdestruct otherwise.
+        ///<param name ="collision"> collsion effect </param>
+        ///</summary>
         private void OnCollisionEnter2D(Collision2D collision)
         {
           if(collision.gameObject.tag=="Bird")

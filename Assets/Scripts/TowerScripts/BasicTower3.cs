@@ -15,7 +15,6 @@ namespace Backbone
         }
 
         // Start is called before the first frame update
-        //new keyword because hiding the Base Class Method is intended
         void Start()
         {
           FirePoint=gameObject.GetComponent<BasicTower2>().FirePoint;
