@@ -9,6 +9,11 @@ namespace Classes {
         /// Variable <c>_waves</c> enthaelt die Wellen
         /// </summary>
         private Wave[] _waves;
+
+        /// <summary>
+        /// Variable <c>_unlocked</c> enthaelt ob das Level freigeschaltet ist (spielbar)
+        /// </summary>
+        private bool _unlocked;
         
         /// <summary>
         /// Variable <c>_stars</c> enthaelt die erreichten Sterne fuer das Level
@@ -19,8 +24,9 @@ namespace Classes {
         /// Konstruktor, setzt die Uebergebenen Wellen und setzt Sterne 0
         /// </summary>
         /// <param name="waves">zu setzende Wellen</param>
-        public Level(Wave[] waves) {
+        public Level(Wave[] waves, bool unlocked) {
             _waves = waves;
+            _unlocked = unlocked;
             _stars = 0;
         }
 
@@ -28,6 +34,14 @@ namespace Classes {
         /// enthaelt die Wellen
         /// </summary>
         public Wave[] Waves => _waves;
+
+        /// <summary>
+        /// enthaelt ob das Level freigeschaltet ist (spielbar)
+        /// </summary>
+        public bool Unlocked {
+            get => _unlocked;
+            set => _unlocked = value;
+        }
 
         /// <summary>
         /// enthaelt die erreichten Sterne fuer das Level
