@@ -5,37 +5,33 @@ using UnityEngine.EventSystems;
 
 public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler//, IDropHandler
 {
-    //[SerializeField] private Canvas canvas;
-    private RectTransform rectTransform;
-    private CanvasGroup canvasGroup;
-   
-
+    private RectTransform _rectTransform;
+    private CanvasGroup _canvasGroup;
 
     private void Awake()
     {
-        rectTransform = GetComponent<RectTransform>();    
-        canvasGroup = GetComponent<CanvasGroup>(); 
-        
+        _rectTransform = GetComponent<RectTransform>();    
+        _canvasGroup = GetComponent<CanvasGroup>();    
     }
 
     public void OnBeginDrag(PointerEventData eventData)
     {
         Debug.Log("OnBeginDrag");
-        canvasGroup.alpha = .6f;
-        canvasGroup.blocksRaycasts = false;
+        _canvasGroup.alpha = .6f;
+        _canvasGroup.blocksRaycasts = false;
     }
 
     public void OnDrag(PointerEventData eventData)
     {
         Debug.Log("OnDrag");
-        rectTransform.anchoredPosition += eventData.delta; // / canvas.scaleFactor;
+        _rectTransform.anchoredPosition += eventData.delta;
     }
 
     public void OnEndDrag(PointerEventData eventData)
     {
         Debug.Log("OnEndDrag");
-        canvasGroup.alpha = 1f;
-        canvasGroup.blocksRaycasts = true;
+        _canvasGroup.alpha = 1f;
+        _canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -46,8 +42,7 @@ public class Drag : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndD
     public void OnDrop(PointerEventData eventData)
     {
         Debug.Log("OnDroppedInDrag");
-        canvasGroup.blocksRaycasts = false;
-        throw new System.NotImplementedException();
+        _canvasGroup.blocksRaycasts = false;
     }
     
 }
