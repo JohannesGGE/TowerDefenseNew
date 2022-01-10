@@ -5,12 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
-    //public SceneFader fader;
 
+    public GameObject TowerPrefab;
 
     public void Update()
     {
-        /*
+        /**
          * Überprüfung auf Win oder Lose
          * Variable Leben aus GameManager holen
         if (Leben < 1)
@@ -22,14 +22,28 @@ public class LevelMenu : MonoBehaviour
         */
     }
 
+    /// <summary>
+    /// Methode <c> BackToMain </c> ermöglicht den wechsel aus der Spielszene zurück in die Hauptmenü Szene
+    /// </summary>
     public void BackToMain()
     { 
         SceneManager.LoadScene(1);
     }
 
-    public void QuitGame()
+
+
+
+
+    private void OnMouseOver()
     {
-        Debug.Log("Quit Game");
-        Application.Quit();
+        if (Input.GetMouseButtonDown(0))
+        {
+            PlaceTower();
+        }
+    }
+    private void PlaceTower()
+    {
+        Debug.Log("Placing a tower");
+        Instantiate(TowerPrefab, transform.position, Quaternion.identity);
     }
 }

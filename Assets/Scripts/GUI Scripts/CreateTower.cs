@@ -4,23 +4,17 @@ using UnityEngine;
 
 public class CreateTower : MonoBehaviour
 {
-
-    public GameObject tower;
-    public Transform createPlace;
-
-
-
-
+    public GameObject Tower;
+    public Transform FolderToBuild;
 
     public void InstantiateObject()
     {
         Vector2 spawn = new Vector2(gameObject.transform.position.x, gameObject.transform.position.y);
         Debug.Log("spawnPosition: " + gameObject.transform.position.x + gameObject.transform.position.y);
-        Instantiate(tower, new Vector3(spawn.x, spawn.y - 250, 0), Quaternion.identity, createPlace);
-
-
-     //GameObject tmp = Instantiate(tower, createPlace, false);
-     //tmp.gameObject.transform.position = createPlace.position;
-
+        Instantiate(Tower, new Vector3(spawn.x, spawn.y + 250, 0), Quaternion.identity, FolderToBuild);
+     
+     // alternatives instanziieren
+        //GameObject tmp = Instantiate(tower, createPlace, false);
+        //tmp.gameObject.transform.position = createPlace.position;
     }
 }
