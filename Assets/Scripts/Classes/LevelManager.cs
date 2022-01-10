@@ -1,5 +1,6 @@
 using System.Collections.Generic;
-using static Classes.Birds;
+using UnityEngine;
+using static Classes.BirdLevel;
 
 namespace Classes {
     
@@ -13,6 +14,16 @@ namespace Classes {
         /// </summary>
         private static LevelManager _instance;
         
+        /// <summary>
+        /// Variable <c>_filename</c> enthealt den Namen der Datei fuer LevelStatusSpeicherung
+        /// </summary>
+        [SerializeField] private string _filename;
+
+        /// <summary>
+        /// Variable <c>_entries</c> enthealt die gelesenen oder zuschreibenen LevelStatusInformationen
+        /// </summary>
+        private List<LevelEntry> _entries;
+
         /// <summary>
         /// Variable <c>_levels</c> enhaelt die alle Level-Informationen
         /// </summary>
@@ -35,6 +46,8 @@ namespace Classes {
         /// </summary>
         private LevelManager() {
             _levels = new List<Level>();
+            _entries = new List<LevelEntry> ();
+            _filename = "towerdefense.json";
             SetLevelConfig();
         }
 
@@ -43,17 +56,41 @@ namespace Classes {
         /// </summary>
         private void SetLevelConfig() {
             //Evt. bessere Implementierung möglich 
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small});
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium});
-            Level level1 = new Level(new []{wave1, wave2});
+            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
+            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
+            Level level1 = new Level(new []{wave1, wave2}, true);
             
-            wave1 = new Wave(new[] {Small, Small, Small, Small});
-            wave2 = new Wave( new [] {Small, Medium, Small, Medium});
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Small, Medium});
-            Level level2 = new Level(new []{wave1, wave2, wave3});
+            wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
+            wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
+            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Small, Medium}, 2f);
+            Level level2 = new Level(new []{wave1, wave2, wave3}, false);
 
             _levels.Add(level1);
             _levels.Add(level2);
+        }
+
+        /// <summary>
+        /// Lead die LevelStatusInformationen aus externer Datei falls vorhanden
+        /// </summary>
+        public void LoadLevelStatus() {
+            _entries = FileHandler.ReadListFromJSON<LevelEntry> (_filename);
+
+            if(_entries.Count == _levels.Count) {
+                for(int i = 0; i < _levels.Count; i++) {
+                    _levels[i].Unlocked = _entries[i].unlocked;
+                    _levels[i].Stars = _entries[i].stars;
+                }
+            }
+        }
+
+        /// <summary>
+        /// Speichert die LevelStatusInformationen in externer Datei
+        /// </summary>
+        public void SaveLevelStatus() {
+            foreach(Level level in _levels) {
+                _entries.Add(new LevelEntry(level.Unlocked, level.Stars));
+            }
+            FileHandler.SaveToJSON<LevelEntry> (_entries, _filename);
         }
         
         /// <summary>

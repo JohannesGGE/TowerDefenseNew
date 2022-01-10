@@ -1,0 +1,79 @@
+using Classes;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+namespace Backbone
+{
+    public class BirdMovement : MonoBehaviour
+    {
+        private GameManager _gameManager;
+
+        private float _dist = 0;
+        /// <summary>
+        /// Variable <c>_dist </c> enthaelt zurueckgelegte Strecke des Vogels
+        /// </summary>
+        public float dist {
+            get => _dist;
+            set => _dist = value;
+        }
+        Vector3 oldPos;
+
+        public BirdMovement()
+        {
+            _gameManager = GameManager.GetInstance();
+        }
+
+        Rigidbody2D rb;
+        // Start is called before the first frame update
+
+        void Start()
+        {
+            Debug.Log("Start");
+            rb = GetComponent<Rigidbody2D>();
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+          if (!_gameManager.Paused)
+          {
+              rb.velocity = Vector3.right*3f;
+
+          }
+          else
+          {
+              rb.velocity = Vector3.right*0f;
+          }
+          ///DEBUG tool
+          if(Input.GetKeyDown(KeyCode.D))
+          {
+            Destroy(gameObject);
+          }
+
+          /// <summary>
+          /// Erhoeht die zurueckgelegte Strecke
+          /// </summary>
+          Vector3 _distanceVector = transform.position - oldPos;
+          float _distanceThisFrame = _distanceVector.magnitude;
+          _dist += _distanceThisFrame;
+          oldPos = transform.position;
+
+          if(Input.GetKeyDown(KeyCode.W))
+          {
+            Debug.Log("Distance is "+_dist); ///DEBUG
+          }
+        }
+
+
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+          if(collision.gameObject.tag=="Tower")
+          {
+            Destroy(gameObject);
+            Destroy(collision.gameObject);
+          }
+        }
+    }
+}
