@@ -7,6 +7,9 @@ namespace Backbone
 {
     public class BasicTower3 : Tower
     {
+        /// <summary>
+        /// Variable <c>_gameManager</c> for instatiating the GameManager class
+        /// </summary>
         private GameManager _gameManager;
 
         public BasicTower3()

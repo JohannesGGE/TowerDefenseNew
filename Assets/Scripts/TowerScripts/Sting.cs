@@ -9,20 +9,43 @@ namespace Backbone
 {
     public class Sting : MonoBehaviour
     {
+        /// <summary>
+        /// Variable <c>_gameManager</c> for instatiating the GameManager class
+        /// </summary>
         private GameManager _gameManager;
 
-        public Sting() {
+        /// <summary>
+        /// Constructor <c>Sting</c> constructs a Sting Instance refering to the GameManager Instance
+        /// </summary>
+        public Sting()
+        {
           _gameManager = GameManager.GetInstance();
         }
 
         [Header("Hit Effects – given by Tower")]
+
+        /// <summary>
+        /// Variable <c>_damage</c> carries the damage defined by Tower type
+        /// </summary>
         private int _damage;
+
+        /// <summary>
+        /// Getters and Setters <c>Damage</c> for <c>_damage</c>
+        /// </summary>
         public int Damage
         {
           get {return _damage;}
           set {_damage = value;}
         }
+
+        /// <summary>
+        /// Variable <c>_effect</c> carries the effect defined by Tower type
+        /// </summary>
         private string _effect;
+
+        /// <summary>
+        /// Getters and Setters <c>Effect</c> for <c>_effect</c>
+        /// </summary>
         public string Effect
         {
           get {return _effect;}
@@ -31,49 +54,77 @@ namespace Backbone
 
 
         [Header("Attributes")]
+        /// <summary>
+        /// Variable <c>_speed</c> defines movement speed of projectile
+        /// </summary>
         private float _speed = 20f;
+
+        /// <summary>
+        /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused
+        /// </summary>
         private float _pauseSpeed = 0f;
+
+        /// <summary>
+        /// Variable <c>_pauseEndSpeed</c> defines movement speed of projectile when pause ends
+        /// </summary>
         private float _pauseEndSpeed = 20f;
+
+        /// <summary>
+        /// Variable <c>_turnSpeed</c> defines turning speed of projectile
+        /// </summary>
         private float _turnSpeed = 100f;
 
         [Header("Unity Setup - Do not change!")]
+
+        /// <summary>
+        /// Variable <c>target</c> contains the current target handed over by the shooting <c>Tower</c>
+        /// </summary>
         private Transform target;
+
+        /// <summary>
+        /// Variable <c>impactEffect</c> contains the Component of Sting that produces the fragmenting effect
+        /// </summary>
         public GameObject impactEffect;
+
+        /// <summary>
+        /// Variable <c>dirBackup</c> saves the direction of a Sting before the target gets destroyed
+        /// </summary>
         Vector3 dirBackup;
-        ///experimental, trying to Pause the particle System
-        ///does not work and makes the whole script dysfunctional.
-        ///[SerializeField] float timeScale = 1.0f;
-        ///[SerializeField] VisualEffect VFX;
+        //experimental, trying to Pause the particle System
+        //does not work and makes the whole script dysfunctional.
+        //[SerializeField] float timeScale = 1.0f;
+        //[SerializeField] VisualEffect VFX;
 
         ///<summary>
-        ///Method called in <c>Tower </c> script
-        ///On instantiating the <c> Sting </c> object, the <param name ="target"> Target </param> of the tower is passed to the Sting.
+        ///Function <c>Seek()</c> called by <c>Tower</c> when instantiation this <c>Sting</c> object
         ///</summary>
+        ///<param name ="target">Target</param>
         public void Seek (Transform _target)
         {
           target = _target;
         }
 
+        //not in use right now
         void Start()
         {
-          ///VFX = GetComponent<VisualEffect>();
+          //VFX = GetComponent<VisualEffect>();
         }
 
         // Update is called once per frame
         ///<summary>
-        ///Calculation of the direction of the Sting
-        ///Also: Call of the <c> HitTarget() </c> method and Start/Pause Implementation
+        ///Function <c>Update()</c> calculates the direction of the Sting
+        ///Also: Call of the <c>HitTarget()</c> method and Start/Pause Implementation
         ///</summary>
         void Update()
         {
-          ///VFX.playRate = timeScale;
+          //VFX.playRate = timeScale;
           if(!_gameManager.Paused)
           {
               _speed = _pauseEndSpeed;
-              ///timeScale = 1.0f;
+              //timeScale = 1.0f;
               if (target != null)
               {
-                  ///rotate the Sting towards the target
+                  //rotate the Sting towards the target
                   Vector3 dir = target.position - transform.position;
                   dirBackup=dir;
                   Vector3 rotatedVectorDir = Quaternion.Euler(0,0,90)*dir;
@@ -90,7 +141,7 @@ namespace Backbone
                   transform.Translate(dir.normalized * distanceThisFrame, Space.World);
               }
               else
-              {   /// if the targets gets destroyed before hitting it, go on flying for 4 seconds before selfdestruct
+              {   //if the targets gets destroyed before hitting it, go on flying for 4 seconds before selfdestruct
                   float distanceThisFrame = _speed * Time.deltaTime;
                   transform.Translate(dirBackup.normalized * distanceThisFrame, Space.World);
                   Destroy(gameObject, 4f);
@@ -100,12 +151,12 @@ namespace Backbone
             else
             {
               _speed = _pauseSpeed;
-              ///timeScale = 0f;
+              //timeScale = 0f;
             }
         }
 
         ///<summary>
-        ///Effects on the Sting on hitting a target: <c> impactEffect </c> and selfdestruction.
+        ///Function <c>HitTarget()</c>: Effects on the Sting on hitting a target: <c>impactEffect</c> and selfdestruction.
         ///</summary>
         void HitTarget()
         {
@@ -116,9 +167,9 @@ namespace Backbone
         }
 
         ///<summary>
-        ///if another collision should appear, <c>HitTarget</c> if it is a bird, selfdestruct otherwise.
-        ///<param name ="collision"> collsion effect </param>
+        ///Function <c>OnCollisionEnter2D()</c>if another collision should appear: <c>HitTarget</c> if it is a bird, selfdestruct otherwise.
         ///</summary>
+        ///<param name ="collision"> collsion effect </param>
         private void OnCollisionEnter2D(Collision2D collision)
         {
           if(collision.gameObject.tag=="Bird")
