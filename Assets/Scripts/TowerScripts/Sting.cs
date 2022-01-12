@@ -57,7 +57,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
-        private float _speed = 20f;
+        private float _speed = 5f;
 
         /// <summary>
         /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused
@@ -67,7 +67,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_pauseEndSpeed</c> defines movement speed of projectile when pause ends
         /// </summary>
-        private float _pauseEndSpeed = 20f;
+        private float _pauseEndSpeed = 5f;
 
         /// <summary>
         /// Variable <c>_turnSpeed</c> defines turning speed of projectile
@@ -127,7 +127,7 @@ namespace Backbone
                   //rotate the Sting towards the target
                   Vector3 dir = target.position - transform.position;
                   dirBackup=dir;
-                  Vector3 rotatedVectorDir = Quaternion.Euler(0,0,90)*dir;
+                  Vector3 rotatedVectorDir = Quaternion.Euler(0,0,-90)*dir;
                   Quaternion lookRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorDir);
                   Quaternion rotation = Quaternion.Lerp(gameObject.transform.rotation, lookRotation, Time.deltaTime * _turnSpeed);
                   gameObject.transform.rotation = rotation;
