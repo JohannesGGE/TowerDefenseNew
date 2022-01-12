@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 34390882750466582}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.11, y: -1.96, z: 0}
-  m_LocalScale: {x: 1, y: 0.3625, z: 1}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -56,7 +56,7 @@ SpriteRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 68b5e842392b34bb2b3e6d9d31531567, type: 2}
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -77,7 +77,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
+  m_Sprite: {fileID: 21300000, guid: ea70bc92b7d48495388a62e47fe90df5, type: 3}
   m_Color: {r: 0.8679245, g: 0.59939927, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -105,7 +105,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 19.2, y: 10.8}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -147,12 +147,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2e4c8eb49a97743419f487b4c6168290, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 0
-  effect: 
-  speed: 10
-  pauseSpeed: 0
-  pauseEndSpeed: 10
-  turnSpeed: 100
   impactEffect: {fileID: 8154920335585700225, guid: b3a9c4a445f6a4cf09f3d82bca79dba5, type: 3}
 --- !u!96 &1848939282416399014
 TrailRenderer:

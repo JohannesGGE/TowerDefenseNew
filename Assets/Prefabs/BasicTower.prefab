@@ -27,7 +27,7 @@ Transform:
   m_GameObject: {fileID: 2110241707122140384}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2.04, y: -0.22, z: 0}
-  m_LocalScale: {x: 1.0422, y: 1.9283, z: 1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 6169333839429344073}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 3121994c319334c6080acc6fdbfbdbba, type: 3}
   m_Color: {r: 0.42929408, g: 0.6132076, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -98,8 +98,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b31dbf8adde1042cc8072b10939a3d63, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PartToRotate: {fileID: 6169333839429344073}
   FirePoint: {fileID: 6169333839429344073}
+  PartToRotate: {fileID: 6169333839429344073}
   StingPrefab: {fileID: 34390882750466582, guid: 60a94c17100e34582ae164d2fd110d9f, type: 3}
 --- !u!1 &5709904468972010485
 GameObject:
@@ -125,7 +125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5709904468972010485}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.52, y: 0.11, z: 0}
+  m_LocalPosition: {x: -3.1, y: -0.4, z: 0}
   m_LocalScale: {x: 0.91161, y: 0.91161, z: 0.91161}
   m_ConstrainProportionsScale: 0
   m_Children: []
