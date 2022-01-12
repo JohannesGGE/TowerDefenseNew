@@ -1,5 +1,7 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,29 +10,51 @@ public class LevelMenu : MonoBehaviour
 
     public GameObject TowerPrefab;
 
+    private GameManager _gameManager;
+    
+    private void Start() {
+        _gameManager = GameManager.GetInstance();
+    }
+
     public void Update()
     {
-        /**
-         * Überprüfung auf Win oder Lose
-         * Variable Leben aus GameManager holen
-        if (Leben < 1)
-            { End Level -> Lost }
+        if(_gameManager.Lives <= 0) {
+            _gameManager.PauseGame();
+            // TODO GAME OVER!!!
+        }
+        
+        if(_gameManager.LastEnemyKilled) {
+            _gameManager.PauseGame();
+            // TODO WIN !!!!
+            CalculateAndSaveStars();
+            UnlockNextLevel();
+        }
 
-        Variable lastEnemyKilled aus GameManager holen!
-        if (lastEnemyKilled == true && Leben > 0)
-        { End level -> Win  }
-        */
+        // TODO DISPLAY COINS AND LIVES
+        // _gameManager.Coins;
+        // _gameManager.Lives;
     }
 
     /// <summary>
-    /// Methode <c> BackToMain </c> ermöglicht den wechsel aus der Spielszene zurück in die Hauptmenü Szene
+    /// Methode <c> BackToMain </c> ermï¿½glicht den wechsel aus der Spielszene zurï¿½ck in die Hauptmenï¿½ Szene
     /// </summary>
     public void BackToMain()
-    { 
+    {
+        _gameManager.PauseGame();
         SceneManager.LoadScene(1);
     }
 
-
+    // TODO implement function call
+    /// <summary>
+    /// Pausiert oder setzt das Spiel fort
+    /// </summary>
+    public void PauseButtonClick() {
+        if(_gameManager.Paused) {
+            _gameManager.StartGame();
+        } else {
+            _gameManager.PauseGame();
+        }
+    }
 
 
 
@@ -45,5 +69,39 @@ public class LevelMenu : MonoBehaviour
     {
         Debug.Log("Placing a tower");
         Instantiate(TowerPrefab, transform.position, Quaternion.identity);
+    }
+
+    
+    /// <summary>
+    /// Schaut wie viele Leben noch uebrig sind und speichert entsprechende Sterne, falls bis jetzt nur schlechter
+    /// im Level
+    /// </summary>
+    private void CalculateAndSaveStars() {
+        if(_gameManager.Level.Stars <= 0) {
+            _gameManager.Level.Stars = 1;
+        }
+        
+        if(_gameManager.Lives > 50 && _gameManager.Level.Stars <= 1) {
+            _gameManager.Level.Stars = 2;
+        }
+
+        if(_gameManager.Lives > 95 && _gameManager.Level.Stars <= 2) {
+            _gameManager.Level.Stars = 3;
+        }
+    }
+
+    /// <summary>
+    /// Unlocked das naechste Level, falls vorhanden
+    /// </summary>
+    private void UnlockNextLevel() {
+        LevelManager levelManager = LevelManager.GetInstance();
+        for(int i = 0; i < levelManager.Levels.Count; i++) {
+            if(_gameManager.Level == levelManager.Levels[i]) {
+                if((i+1) < levelManager.Levels.Count) {
+                    levelManager.Levels[i + 1].Unlocked = true;
+                    break;
+                }
+            }
+        }
     }
 }
