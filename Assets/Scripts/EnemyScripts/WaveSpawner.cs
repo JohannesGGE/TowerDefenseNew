@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Variable <c> enemyPrefab </c> 
+    /// Variable <c> enemyPrefab </c>  entaehlt Position und Skalierung des Vogels
     /// </summary>
     public Transform _enemyPrefab;
     /// <summary>
@@ -28,16 +28,12 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     public Transform spawnPoint;
     /// <summary>
-    /// Variable <c> timeBetweenWaves </c> 
+    /// Variable <c> timeBetweenWaves </c> enthaelt die Zeit zwischen den Wellen
     /// </summary>
     public float timeBetweenWaves = 5f;
-    /// <summary>
-    /// Variable <c> countdown </c> 
-    /// </summary>
+    
     private float _countdown = 2f;
-    /// <summary>
-    /// Variable <c> waveIndex </c> 
-    /// </summary>
+    
     private int _waveIndex = 0;
 
     /// <summary>
@@ -45,18 +41,11 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     private bool _canSpawn = true;
 
-    /// <summary>
-    /// Variable <c> waveEnemies</c> gibt an, wie viele Voegel gespawnt wurden
-    /// </summary>
-    private int _spawnedEnemies = 0;
-
-    /// <summary>
-    /// Variable <c> totalEnemies </c> gibt an, wie viele Voegel in einer Welle spawnen
-    /// </summary>
-    private int _totalEnemies;
-
     public string enemyTag = "Bird";
 
+    /// <summary>
+    /// Initialisiert die Waves ueber den GameManager
+    /// </summary>
     void Start ()
     {
       waves = _gameManager.Level.Waves;
@@ -115,6 +104,6 @@ public class WaveSpawner : MonoBehaviour
     void SpawnEnemy(BirdLevel birdLevel)
     {
         Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        _spawnedEnemies += 1;
+ 
     }
 }

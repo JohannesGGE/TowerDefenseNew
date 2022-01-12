@@ -12,19 +12,20 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Variable <c>_speed </c> enthaelt die Geschwindigkeit des Vogels
+    /// Variable <c>speed </c> enthaelt die Geschwindigkeit des Vogels
     /// </summary>
-    public float _speed;
+    public float speed;
 
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
     public float _startspeed = 10f;
 
-    private float _dist = 0;
     /// <summary>
-    /// Variable <c>_dist </c> enthaelt zurueckgelegte Strecke des Vogels
+    /// Variable <c> dist </c> enthaelt zurueckgelegte Strecke des Vogels
     /// </summary>
+    private float _dist = 0;
+   
     public float dist {
         get => _dist;
         set => _dist = value;
@@ -34,7 +35,7 @@ public class Enemy : MonoBehaviour
     private int wavepointIndex = 0;
 
     /// <summary>
-    /// Variable <c>_health </c> enthaelt Leben des Vogels
+    /// Variable <c> health </c> enthaelt Leben des Vogels
     /// </summary>
     private float _health = 100;
     public float health {
@@ -54,25 +55,25 @@ public class Enemy : MonoBehaviour
         _speed = _startspeed;
     }
 
+    /// <summary>
+    /// Bestimmt die Richtung und Geschwindigkeit der Voegel
+    /// </summary>
+    /// 
     void Update()
     {
-        /// <summary>
-        /// Bestimmt die Richtung und Geschwindigkeit der Voegel
-        /// </summary>
        
         Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * _speed * Time.deltaTime, Space.World);
+        transform.Translate(dir.normalized * speed * Time.deltaTime, Space.World);
     
         if (Vector3.Distance(transform.position, target.position) <= 0.4f)
         {
             GetNextWaypoint();
         }
 
-        _speed = _startspeed;
+        speed = _startspeed;
 
-        /// <summary>
+
         /// Erhoeht die zurueckgelegte Strecke 
-        /// </summary>
         Vector3 _distanceVector = transform.position - oldPos;
         float _distanceThisFrame = _distanceVector.magnitude;
         _dist += _distanceThisFrame;
@@ -113,18 +114,18 @@ public class Enemy : MonoBehaviour
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
     public void TakeSlow (float _pct)
     {
-        _speed = _startspeed * (1f - _pct);
+        speed = _startspeed * (1f - _pct);
     }
-    /// <summary>
-    /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
-    /// </summary>
-    /// <param name ="other"> ankommender Stachel </param>
 
     public void TakeFire (float amount, float count)
     {
 
     }
 
+    /// <summary>
+    /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
+    /// </summary>
+    /// <param name ="other"> ankommender Stachel </param>
     public void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Fire" && !_onFire)
@@ -163,7 +164,7 @@ public class Enemy : MonoBehaviour
     }
 
     /// <summary>
-    /// Zerstoert Vogel am ende des Weges und zieht dem Spieler Leben ab
+    /// Zerstoert Vogel am Ende des Weges und zieht dem Spieler Leben ab
     /// </summary>
     void Die()
     {
