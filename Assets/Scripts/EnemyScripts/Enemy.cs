@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         target = Waypoints.points[0];
-        _speed = _startspeed;
+        speed = _startspeed;
     }
 
     /// <summary>
