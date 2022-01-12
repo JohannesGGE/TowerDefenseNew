@@ -18,9 +18,12 @@ public class MainMenu : MonoBehaviour
         //** alternativer Aufruf der Szene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    
     public void QuitGame()
     {
         //Debug.Log("Quit Game");
+        LevelManager levelManager = LevelManager.GetInstance();
+        levelManager.SaveLevelStatus();
         Application.Quit();
     }
 }
