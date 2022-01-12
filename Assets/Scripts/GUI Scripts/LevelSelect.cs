@@ -15,9 +15,11 @@ public class LevelSelect : MonoBehaviour
     public Sprite ThreeStar;
 
     private LevelManager _levelManager;
+    private GameManager _gameManager;
     
     public LevelSelect() {
         _levelManager = LevelManager.GetInstance();
+        _gameManager = GameManager.GetInstance();
     }
 
 
@@ -62,42 +64,52 @@ public class LevelSelect : MonoBehaviour
     /// Methoden zum aufrufen verschiedener Level
     public void StartLevelOne() {
         SceneManager.LoadScene("LevelOne");
+        _gameManager.PrepareLevel(_levelManager.Levels[0]);
     }
 
     public void StartLevelTwo() {
         SceneManager.LoadScene("LevelTwo");
+        _gameManager.PrepareLevel(_levelManager.Levels[1]);
     }
 
     public void StartLevelThree() {
         SceneManager.LoadScene("LevelThree");
+        _gameManager.PrepareLevel(_levelManager.Levels[2]);
     }
 
     public void StartLevelFour() {
         SceneManager.LoadScene("LevelFour");
+        _gameManager.PrepareLevel(_levelManager.Levels[3]);
     }
 
     public void StartLevelFive() {
         SceneManager.LoadScene("LevelFive");
+        _gameManager.PrepareLevel(_levelManager.Levels[4]);
     }
 
     public void StartLevelSix() {
         SceneManager.LoadScene("LevelSix");
+        _gameManager.PrepareLevel(_levelManager.Levels[5]);
     }
 
     public void StartLevelSeven() {
         SceneManager.LoadScene("LevelSeven");
+        _gameManager.PrepareLevel(_levelManager.Levels[6]);
     }
 
     public void StartLevelEight() {
         SceneManager.LoadScene("LevelEight");
+        _gameManager.PrepareLevel(_levelManager.Levels[7]);
     }
 
     public void StartLevelNine() {
         SceneManager.LoadScene("LevelNine");
+        _gameManager.PrepareLevel(_levelManager.Levels[8]);
     }
 
     public void StartLevelTen() {
         SceneManager.LoadScene("LevelTen");
+        _gameManager.PrepareLevel(_levelManager.Levels[9]);
     }
 }
 
