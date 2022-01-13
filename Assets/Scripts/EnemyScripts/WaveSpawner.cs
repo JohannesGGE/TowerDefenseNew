@@ -18,7 +18,12 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Variable <c> enemyPrefab </c>  entaehlt Position und Skalierung des Vogels
     /// </summary>
-    public Transform _enemyPrefab;
+    public Transform smallPrefab;
+
+    public Transform mediumPrefab;
+
+    public Transform bigPrefab;
+
     /// <summary>
     /// Variable <c> waves </c> enthaelt die verschiedenen Wellen
     /// </summary>
@@ -77,12 +82,10 @@ public class WaveSpawner : MonoBehaviour
         {
 
             _gameManager.AllEnemySpawned = true;
-            Debug.Log("Last Enemy spawned");
 
             if(enemies.Length == 0)
             {
                 _gameManager.LastEnemyKilled = true;
-                Debug.Log("Last Enemy killed");
             }
         }
     } 
@@ -97,7 +100,7 @@ public class WaveSpawner : MonoBehaviour
         for (int i = 0; i < wave.Birds.Length; i++)
         {
             SpawnEnemy(wave.Birds[i]);
-            yield return new WaitForSeconds(1f / 2);
+            yield return new WaitForSeconds(wave.SpawnRate);
         }
 
         _canSpawn = true;
@@ -108,7 +111,15 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     void SpawnEnemy(BirdLevel birdLevel)
     {
-        Instantiate(_enemyPrefab, spawnPoint.position, spawnPoint.rotation);
- 
+        if(birdLevel == BirdLevel.Small)
+        {
+        Instantiate(smallPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
+        else if(birdLevel == BirdLevel.Medium)
+            {
+            Instantiate(mediumPrefab, spawnPoint.position, spawnPoint.rotation);
+            }
+                 else
+                 Instantiate(bigPrefab, spawnPoint.position, spawnPoint.rotation);
     }
 }
