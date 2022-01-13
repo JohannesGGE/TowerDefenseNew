@@ -7,12 +7,18 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
+    //Buttons die im Levelauswahlmenü gedrückt werden können, um ein entsprechendes Level aufzurufen
     public Button[] LevelButtons;
-    public GameObject Child; // TODO kann private sein, weil zu Laufzeit initialisiert?
+
+    //temporäres Objekt zum ansprechen eines Child-Objekts
+    private GameObject _child;
+    
+    //verschiedene Sprites, zur Darstellung der erreichten Sterne eines Levels
     public Sprite ZeroStar;
     public Sprite OneStar;
     public Sprite TwoStar;
     public Sprite ThreeStar;
+
 
     private LevelManager _levelManager;
     private GameManager _gameManager;
@@ -22,19 +28,26 @@ public class LevelSelect : MonoBehaviour
         _gameManager = GameManager.GetInstance();
     }
 
+    //Variable die speichert wie viele Sterne in einem Level erreicht wurden
+    public int StarsReached;
 
+
+    /// <summary>
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgeführt wird
+    /// </summary>
     private void Start()
     {
         for (int i = 0; i < LevelButtons.Length; i++)
         {
-            ///das zu verï¿½ndernde Object muss erst in child gespeichert werden, damit ï¿½nderungen mï¿½glich sind
-            Child = LevelButtons[i].transform.GetChild(1).gameObject;
+
+            _child = LevelButtons[i].transform.GetChild(1).gameObject; 
+
 
             if (!_levelManager.Levels[i].Unlocked)
             { 
                 LevelButtons[i].interactable = false;
                 
-                Child.GetComponent<Image>().color = Color.grey;
+                _child.GetComponent<Image>().color = Color.grey;
 
                 //**Ausgabe zum testen
                 //Debug.Log("Kind: " + child.name);
@@ -43,25 +56,30 @@ public class LevelSelect : MonoBehaviour
             }
             else
             {
+
                 switch(_levelManager.Levels[i].Stars) {
                     case 0:
-                        Child.gameObject.GetComponent<Image>().sprite = ZeroStar;
+                        _child.gameObject.GetComponent<Image>().sprite = ZeroStar;
                         break;
                     case 1:
-                        Child.gameObject.GetComponent<Image>().sprite = OneStar;
+                        _child.gameObject.GetComponent<Image>().sprite = OneStar;
                         break;
                     case 2:
-                        Child.gameObject.GetComponent<Image>().sprite = TwoStar;
+                        _child.gameObject.GetComponent<Image>().sprite = TwoStar;
                         break;
                     case 3:
-                        Child.gameObject.GetComponent<Image>().sprite = ThreeStar;
+                        _child.gameObject.GetComponent<Image>().sprite = ThreeStar;
                         break;
                 }
+
             }
         }
     }
 
+
+    /// <summary>
     /// Methoden zum aufrufen verschiedener Level
+    /// </summary>
     public void StartLevelOne() {
         SceneManager.LoadScene("LevelOne");
         _gameManager.PrepareLevel(_levelManager.Levels[0]);
@@ -111,5 +129,6 @@ public class LevelSelect : MonoBehaviour
         SceneManager.LoadScene("LevelTen");
         _gameManager.PrepareLevel(_levelManager.Levels[9]);
     }
+
 }
 
