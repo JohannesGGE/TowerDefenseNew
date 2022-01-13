@@ -57,10 +57,10 @@ public class WaveSpawner : MonoBehaviour
     void Update ()
     {
 
-       /// GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+       GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
 
-        if(_countdown <= 0f)
+        if(_countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
             StartCoroutine(SpawnWave());
             _countdown = timeBetweenWaves;
@@ -73,13 +73,18 @@ public class WaveSpawner : MonoBehaviour
             _countdown -= Time.deltaTime;
         }
 
-       /* if (_waveIndex == waves.Length && _canSpawn == true)
+        if (_waveIndex == waves.Length && _canSpawn == true)
         {
+
+            _gameManager.AllEnemySpawned = true;
+            Debug.Log("Last Enemy spawned");
+
             if(enemies.Length == 0)
             {
-                /// GameManager irgendwas auf True
+                _gameManager.LastEnemyKilled = true;
+                Debug.Log("Last Enemy killed");
             }
-        }*/
+        }
     } 
     /// <summary>
     /// Spawnt die Welle
