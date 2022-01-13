@@ -16,6 +16,9 @@ public class LevelMenu : MonoBehaviour
     /// </summary>
     private void Start() {
         _gameManager = GameManager.GetInstance();
+
+        // TODO DISPLAY COINS AND LIVES ausprobieren wie man darauf zugreift!
+        Debug.Log("");
     }
 
     /// <summary>
@@ -35,8 +38,9 @@ public class LevelMenu : MonoBehaviour
             UnlockNextLevel();
         }
 
+
         // TODO DISPLAY COINS AND LIVES
-        // _gameManager.Coins;
+        // _gameManager.Coins;  Zugriff für LevelManager ermöglichen
         // _gameManager.Lives;
     }
 
