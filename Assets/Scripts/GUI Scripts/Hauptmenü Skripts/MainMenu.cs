@@ -16,14 +16,13 @@ public class MainMenu : MonoBehaviour
     /// <summary>
     /// öffnet bei Interaktion (Klick auf Button) das Hauptmenü
     /// </summary>
-    /**
     public void OpenMain()
     {
         SceneManager.LoadScene(1);
         //** alternativer Aufruf der Szene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    */
+    
 
     
 

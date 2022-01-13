@@ -10,15 +10,8 @@ public class DragNeu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     private RectTransform _rectTransform;
 
 
-
-    //tempor�re Variable, um die CanvasGroup Eigenschaft eines Objektes anzusprechen
-    private CanvasGroup _canvasGroup;
-
-
     public GameObject Tower;
-    
     public Transform FolderToBuild;
-
     private GameObject towerDrag;
 
     /// <summary>
@@ -31,12 +24,9 @@ public class DragNeu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
         
         _rectTransform = towerDrag.GetComponent<RectTransform>();    
-        _canvasGroup = towerDrag.GetComponent<CanvasGroup>();   
         
         Debug.Log("OnBeginDrag");
-        // kA, was das macht
-        // _canvasGroup.alpha = .6f;
-        // _canvasGroup.blocksRaycasts = false;
+
     }
 
     /// <summary>
@@ -57,8 +47,6 @@ public class DragNeu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
     {
         Destroy(towerDrag);
         Debug.Log("OnEndDrag");
-        //_canvasGroup.alpha = 1f;
-        //_canvasGroup.blocksRaycasts = true;
     }
 
     public void OnPointerDown(PointerEventData eventData) {
