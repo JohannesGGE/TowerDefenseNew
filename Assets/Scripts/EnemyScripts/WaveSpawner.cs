@@ -62,9 +62,11 @@ public class WaveSpawner : MonoBehaviour
     void Update ()
     {
        /// Array mit lebenden Voegeln anlegen
-       GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
         Debug.Log(enemies.Length);
 
+        if (!_gameManager.Paused)
+        { 
         /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
         if (_countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
@@ -92,7 +94,8 @@ public class WaveSpawner : MonoBehaviour
                 _gameManager.LastEnemyKilled = true;
             }
         }
-    } 
+       }
+    }
     /// <summary>
     /// Spawnt die Welle
     /// </summary>

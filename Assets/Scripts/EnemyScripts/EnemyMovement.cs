@@ -24,6 +24,8 @@ public class EnemyMovement : MonoBehaviour
 
         _target = Waypoints.points[0];
 
+        _gameManager.StartGame();
+
     }
 
     /// <summary>
@@ -33,7 +35,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
 
-        if (_gameManager.Paused)
+        if (!_gameManager.Paused)
         {
             Vector3 dir = _target.position - transform.position;
         transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
