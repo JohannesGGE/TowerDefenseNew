@@ -63,9 +63,10 @@ public class WaveSpawner : MonoBehaviour
     {
        /// Array mit lebenden Voegeln anlegen
        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        Debug.Log(enemies.Length);
 
         /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
-        if(_countdown <= 0f && _gameManager.AllEnemySpawned == false)
+        if (_countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
             StartCoroutine(SpawnWave());
             _countdown = timeBetweenWaves;
@@ -124,5 +125,6 @@ public class WaveSpawner : MonoBehaviour
             }
                  else
                  Instantiate(bigPrefab, spawnPoint.position, spawnPoint.rotation);
+
     }
 }

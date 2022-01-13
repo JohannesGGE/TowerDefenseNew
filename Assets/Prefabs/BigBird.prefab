@@ -75,6 +75,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BigBird
       objectReference: {fileID: 0}
+    - target: {fileID: 54058512767473980, guid: bcc3b6c927f579847ad391ea7d6eff7d, type: 3}
+      propertyPath: m_TagString
+      value: Bird
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bcc3b6c927f579847ad391ea7d6eff7d, type: 3}
 --- !u!1 &479595756811267954 stripped
@@ -107,4 +111,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 3
-  _startspeed: 5
+  startSpeed: 5
