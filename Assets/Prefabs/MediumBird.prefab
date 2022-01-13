@@ -11,9 +11,10 @@ GameObject:
   - component: {fileID: 8697055965843131306}
   - component: {fileID: 6840620047622916227}
   - component: {fileID: 4905523734293295147}
-  - component: {fileID: 3140997550137572224}
+  - component: {fileID: 8955620760576823998}
+  - component: {fileID: 4558835164321435435}
   m_Layer: 0
-  m_Name: Eagle Normal_0
+  m_Name: MediumBird
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,7 +107,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3140997550137572224
+--- !u!114 &8955620760576823998
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -115,7 +116,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3243457844856209305}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f601b377d4056cc41bfcb552473e825e, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ee9b166014413542b9e3382c45c2e29, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 3
+  _startspeed: 5
+--- !u!114 &4558835164321435435
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3243457844856209305}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1426a8bb87d36d34595c437a7e025f92, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

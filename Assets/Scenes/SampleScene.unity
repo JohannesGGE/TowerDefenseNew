@@ -1148,7 +1148,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a82e50c48d927864f9a8b1e50ca8951d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _enemyPrefab: {fileID: 8697055965843131306, guid: 55df35b0a6e324546ac0e47307c8f3e6, type: 3}
+  smallPrefab: {fileID: 665360246272630115, guid: b1fc34028c6e659409aca31863e381a2, type: 3}
+  mediumPrefab: {fileID: 8697055965843131306, guid: 55df35b0a6e324546ac0e47307c8f3e6, type: 3}
+  bigPrefab: {fileID: 479595756811267957, guid: 83c2eb7b2a4392d43969ef7a95d96986, type: 3}
   spawnPoint: {fileID: 1440619051}
   timeBetweenWaves: 5
   enemyTag: Bird
