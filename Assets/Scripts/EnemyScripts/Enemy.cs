@@ -4,7 +4,7 @@ using Classes;
 
 public class Enemy : MonoBehaviour
 {
-    private GameManager _gameManager;
+    protected GameManager _gameManager;
 
 
     public Enemy()
@@ -30,7 +30,6 @@ public class Enemy : MonoBehaviour
    
     public float Dist {
         get => _dist;
-        set => _dist = value;
     }
 
     /// <summary>
@@ -41,29 +40,22 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c> health </c> enthaelt Leben des Vogels
     /// </summary>
-    private float _health;
+    protected float _health;
     public float Health {
         get => _health;
-        set => _health = value;
     }
 
     /// <summary>
     /// Variable <c> worth </c> enthaelt Wert des Vogels
     /// </summary>
-    private int _worth;
-    public int Worth {
-        get => _worth;
-        set => _worth = value;
-    }
+    protected int _worth;
+
 
     /// <summary>
     /// Variable <c> worth </c> enthaelt Wert des Vogels
     /// </summary>
-    private int _birdDamage;
-    public int BirdDamage {
-        get => _birdDamage;
-        set => _birdDamage = value;
-    }
+    protected int _birdDamage;
+
 
     /// <summary>
     /// Variable <c>_onFire </c> prueft ob ein Vogel bereits brennt
@@ -90,9 +82,9 @@ public class Enemy : MonoBehaviour
     /// <param name ="_dmg"> zugefuegter Schaden </param>
     public void TakeDamage (float _dmg)
     {
-        Health -= _dmg;
+        _health -= _dmg;
 
-        if (Health <= 0)
+        if (_health <= 0)
         {
             Kill();
         }
@@ -145,7 +137,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
 
 
-        _gameManager.AddCoins(Worth);
+        _gameManager.AddCoins(_worth);
     }
 
     /// <summary>
@@ -153,7 +145,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        _gameManager.ReduceLives(BirdDamage);
+        _gameManager.ReduceLives(_birdDamage);
 
         Destroy(gameObject);
 

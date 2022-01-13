@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Classes;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -10,6 +11,13 @@ public class EnemyMovement : MonoBehaviour
 
     private Enemy _enemy;
 
+    private GameManager _gameManager;
+
+    public EnemyMovement()
+    {
+        /// Initialisierung des GameManagers
+        _gameManager = GameManager.GetInstance();
+    }
     void Start()
     {
         _enemy = GetComponent<Enemy>();
@@ -24,7 +32,10 @@ public class EnemyMovement : MonoBehaviour
     /// 
     void Update()
     {
-        Vector3 dir = _target.position - transform.position;
+
+        if (_gameManager.Paused)
+        {
+            Vector3 dir = _target.position - transform.position;
         transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
@@ -33,7 +44,10 @@ public class EnemyMovement : MonoBehaviour
 		}
 
 		_enemy.speed = _enemy.startSpeed;
-	}
+	
+        }
+    }
+
 
     /// <summary>
     /// waehlt den naechsten Waypoint aus und zerstoert den Vogel, falls es der letzte Waypoint ist
