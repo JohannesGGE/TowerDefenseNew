@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class EnemyMovement : MonoBehaviour
 {
-    private Transform target;
-    private int wavepointIndex = 0;
+    private Transform _target;
 
-    private Enemy enemy;
+    private int _wavepointIndex = 0;
+
+    private Enemy _enemy;
+
     void Start()
     {
-        enemy = GetComponent<Enemy>();
+        _enemy = GetComponent<Enemy>();
 
-        target = Waypoints.points[0];
+        _target = Waypoints.points[0];
 
     }
 
@@ -22,15 +24,15 @@ public class EnemyMovement : MonoBehaviour
     /// 
     void Update()
     {
-        Vector3 dir = target.position - transform.position;
-        transform.Translate(dir.normalized * enemy.speed * Time.deltaTime, Space.World);
+        Vector3 dir = _target.position - transform.position;
+        transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
 
-        if (Vector3.Distance(transform.position, target.position) <= 0.4f)
+        if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
 		{
 			GetNextWaypoint();
 		}
 
-		enemy.speed = enemy._startspeed;
+		_enemy.speed = _enemy.startSpeed;
 	}
 
     /// <summary>
@@ -38,14 +40,14 @@ public class EnemyMovement : MonoBehaviour
     /// </summary>
 	void GetNextWaypoint()
 	{
-		if (wavepointIndex >= Waypoints.points.Length - 1)
+		if (_wavepointIndex >= Waypoints.points.Length - 1)
 		{
-			enemy.Die();
+			_enemy.Die();
 			return;
 		}
 
-		wavepointIndex++;
-		target = Waypoints.points[wavepointIndex];
+		_wavepointIndex++;
+		_target = Waypoints.points[_wavepointIndex];
 	}
     
 }

@@ -6,8 +6,10 @@ public class Enemy : MonoBehaviour
 {
     private GameManager _gameManager;
 
+
     public Enemy()
     {
+        /// Initialisierung des GameManagers
         _gameManager = GameManager.GetInstance();
     }
 
@@ -19,25 +21,28 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
-    public float _startspeed = 5f;
+    public float startSpeed = 5f;
 
     /// <summary>
     /// Variable <c> dist </c> enthaelt zurueckgelegte Strecke des Vogels
     /// </summary>
     private float _dist = 0;
    
-    public float dist {
+    public float Dist {
         get => _dist;
         set => _dist = value;
     }
-    Vector3 oldPos;
-    private Transform target;
+
+    /// <summary>
+    /// Variable <c> _oldPos </c> enthaelt die alte Position des Vogels
+    /// </summary>
+    private Vector3 _oldPos;
 
     /// <summary>
     /// Variable <c> health </c> enthaelt Leben des Vogels
     /// </summary>
     private float _health;
-    public float health {
+    public float Health {
         get => _health;
         set => _health = value;
     }
@@ -46,7 +51,7 @@ public class Enemy : MonoBehaviour
     /// Variable <c> worth </c> enthaelt Wert des Vogels
     /// </summary>
     private int _worth;
-    public int worth {
+    public int Worth {
         get => _worth;
         set => _worth = value;
     }
@@ -55,7 +60,7 @@ public class Enemy : MonoBehaviour
     /// Variable <c> worth </c> enthaelt Wert des Vogels
     /// </summary>
     private int _birdDamage;
-    public int birdDamage {
+    public int BirdDamage {
         get => _birdDamage;
         set => _birdDamage = value;
     }
@@ -64,22 +69,19 @@ public class Enemy : MonoBehaviour
     /// Variable <c>_onFire </c> prueft ob ein Vogel bereits brennt
     /// </summary>
     private bool _onFire;
-    private float duration = 5;
-    private float amount = 10;
 
     void Start()
     {
-        target = Waypoints.points[0];
-        speed = _startspeed;
+        speed = startSpeed;
     }
 
     void Update()
     {
         /// Erhoeht die zurueckgelegte Strecke 
-        Vector3 _distanceVector = transform.position - oldPos;
+        Vector3 _distanceVector = transform.position - _oldPos;
         float _distanceThisFrame = _distanceVector.magnitude;
         _dist += _distanceThisFrame;
-        oldPos = transform.position;
+        _oldPos = transform.position;
     }
 
     /// <summary>
@@ -88,9 +90,9 @@ public class Enemy : MonoBehaviour
     /// <param name ="_dmg"> zugefuegter Schaden </param>
     public void TakeDamage (float _dmg)
     {
-        health -= _dmg;
+        Health -= _dmg;
 
-        if (health <= 0)
+        if (Health <= 0)
         {
             Kill();
         }
@@ -101,12 +103,7 @@ public class Enemy : MonoBehaviour
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
     public void TakeSlow (float _pct)
     {
-        speed = _startspeed * (1f - _pct);
-    }
-
-    public void TakeFire (float amount, float count)
-    {
-
+        speed = startSpeed * (1f - _pct);
     }
 
     /// <summary>
@@ -117,7 +114,7 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Fire" && !_onFire)
         {
-            StartCoroutine(Fire(amount, 3, duration));
+            StartCoroutine(TakeFire(2, 3, 5));
         }
     }
 
@@ -127,7 +124,7 @@ public class Enemy : MonoBehaviour
     /// <param name ="amount"> zugefuegter Schaden </param>
     /// <param name ="count"> Anzahl der Ticks </param>
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
-    IEnumerator Fire(float amount, float count, float duration)
+    public IEnumerator TakeFire(float amount, float count, float duration)
     {
     
          int currentCount = 0;
@@ -148,7 +145,7 @@ public class Enemy : MonoBehaviour
         Destroy(gameObject);
 
 
-        _gameManager.AddCoins(worth);
+        _gameManager.AddCoins(Worth);
     }
 
     /// <summary>
@@ -156,7 +153,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     public void Die()
     {
-        _gameManager.ReduceLives(birdDamage);
+        _gameManager.ReduceLives(BirdDamage);
 
         Destroy(gameObject);
 

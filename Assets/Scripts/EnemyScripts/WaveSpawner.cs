@@ -16,7 +16,7 @@ public class WaveSpawner : MonoBehaviour
     }
 
     /// <summary>
-    /// Variable <c> enemyPrefab </c>  entaehlt Position und Skalierung des Vogels
+    /// Variable <c> enemyPrefab </c>  entaehlt Position,Skalierung und Art des Vogels
     /// </summary>
     public Transform smallPrefab;
 
@@ -61,10 +61,10 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     void Update ()
     {
-
+       /// Array mit lebenden Voegeln anlegen
        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
-
+        /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
         if(_countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
             StartCoroutine(SpawnWave());
@@ -73,16 +73,19 @@ public class WaveSpawner : MonoBehaviour
             return;
         }
 
+        /// wenn letzter Vogel gespawnt ist, beginnt der Timer
         if (_canSpawn == true)
         {
             _countdown -= Time.deltaTime;
         }
 
+        /// wenn letzte Welle gespawnt ist
         if (_waveIndex == waves.Length && _canSpawn == true)
         {
 
             _gameManager.AllEnemySpawned = true;
 
+            /// wenn letzter Gegner getoetet ist 
             if(enemies.Length == 0)
             {
                 _gameManager.LastEnemyKilled = true;
@@ -115,7 +118,7 @@ public class WaveSpawner : MonoBehaviour
         {
         Instantiate(smallPrefab, spawnPoint.position, spawnPoint.rotation);
         }
-        else if(birdLevel == BirdLevel.Medium)
+            else if(birdLevel == BirdLevel.Medium)
             {
             Instantiate(mediumPrefab, spawnPoint.position, spawnPoint.rotation);
             }

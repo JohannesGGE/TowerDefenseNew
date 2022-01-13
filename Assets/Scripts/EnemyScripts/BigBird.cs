@@ -11,9 +11,9 @@ namespace Backbone {
         }
 
         void Start() {
-            health = 100;
-            worth = 20;
-            birdDamage = 10;
+            Health = 100;
+            Worth = 20;
+            BirdDamage = 10;
             
         }
     }
