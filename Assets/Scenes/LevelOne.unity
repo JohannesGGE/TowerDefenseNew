@@ -7138,7 +7138,7 @@ GameObject:
   - component: {fileID: 604563448}
   m_Layer: 5
   m_Name: PlacedTower
-  m_TagString: Untagged
+  m_TagString: PlacedTowerObject
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7165,7 +7165,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 1920, y: 1080}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &622191621
 PrefabInstance:
@@ -8679,6 +8679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c13a000bdcc76447b743c2f6793ccfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerPrefab: {fileID: 0}
 --- !u!1001 &745304196
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -11150,7 +11151,7 @@ GameObject:
   - component: {fileID: 990555561}
   - component: {fileID: 990555560}
   - component: {fileID: 990555559}
-  - component: {fileID: 990555562}
+  - component: {fileID: 990555563}
   m_Layer: 5
   m_Name: Green
   m_TagString: Untagged
@@ -11260,7 +11261,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 990555556}
   m_CullTransparentMesh: 1
---- !u!114 &990555562
+--- !u!114 &990555563
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -11269,7 +11270,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 990555556}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e51be2752d241349b92db0d594d0a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7a4e926a4b4697bdabede7a2652200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Tower: {fileID: 8686296281774333028, guid: 82ff6f5f7ad684a4b9a02ea1cea9b8bf, type: 3}
@@ -17094,6 +17095,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0c13a000bdcc76447b743c2f6793ccfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  TowerPrefab: {fileID: 0}
 --- !u!1001 &1683796983
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -17419,7 +17421,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1695007104}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e51be2752d241349b92db0d594d0a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7a4e926a4b4697bdabede7a2652200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Tower: {fileID: 8686296281774333028, guid: 956bd0cf97f6e414f9f56aa710fa8394, type: 3}
@@ -20363,7 +20365,7 @@ GameObject:
   - component: {fileID: 1903982129}
   - component: {fileID: 1903982128}
   - component: {fileID: 1903982127}
-  - component: {fileID: 1903982130}
+  - component: {fileID: 1903982131}
   m_Layer: 5
   m_Name: Red
   m_TagString: Untagged
@@ -20436,7 +20438,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1903982130}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: CreateTower, PlayAssembly
         m_MethodName: InstantiateObject
         m_Mode: 1
@@ -20486,7 +20488,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1903982124}
   m_CullTransparentMesh: 1
---- !u!114 &1903982130
+--- !u!114 &1903982131
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -20495,7 +20497,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1903982124}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e51be2752d241349b92db0d594d0a52, type: 3}
+  m_Script: {fileID: 11500000, guid: 2f7a4e926a4b4697bdabede7a2652200, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   Tower: {fileID: 8686296281774333028, guid: 794a3ce5952485f4f814cdff2c2e749b, type: 3}
@@ -22921,11 +22923,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8686296281774333031, guid: 794a3ce5952485f4f814cdff2c2e749b, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 734
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8686296281774333031, guid: 794a3ce5952485f4f814cdff2c2e749b, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 352
+      value: 500
       objectReference: {fileID: 0}
     - target: {fileID: 8686296281774333031, guid: 794a3ce5952485f4f814cdff2c2e749b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
