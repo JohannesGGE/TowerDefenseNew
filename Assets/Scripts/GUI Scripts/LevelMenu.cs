@@ -7,15 +7,20 @@ using UnityEngine.SceneManagement;
 
 public class LevelMenu : MonoBehaviour
 {
-
     public GameObject TowerPrefab;
 
     private GameManager _gameManager;
-    
+
+    /// <summary>
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgeführt wird
+    /// </summary>
     private void Start() {
         _gameManager = GameManager.GetInstance();
     }
 
+    /// <summary>
+    /// Methode die jedes Frame aufgerufen wird, während das Skript läuft
+    /// </summary>
     public void Update()
     {
         if(_gameManager.Lives <= 0) {
@@ -36,7 +41,7 @@ public class LevelMenu : MonoBehaviour
     }
 
     /// <summary>
-    /// Methode <c> BackToMain </c> ermï¿½glicht den wechsel aus der Spielszene zurï¿½ck in die Hauptmenï¿½ Szene
+    /// Methode <c> BackToMain </c> ermöglicht den Wechsel aus der Spielszene zurück in die Hauptmenü Szene
     /// </summary>
     public void BackToMain()
     {
@@ -55,7 +60,6 @@ public class LevelMenu : MonoBehaviour
             _gameManager.PauseGame();
         }
     }
-
 
 
     private void OnMouseOver()

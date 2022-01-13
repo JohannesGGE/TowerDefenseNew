@@ -12,13 +12,24 @@ public class MainMenu : MonoBehaviour
         levelManager.LoadLevelStatus();
     }
 
+
+    /// <summary>
+    /// öffnet bei Interaktion (Klick auf Button) das Hauptmenü
+    /// </summary>
+    /**
     public void OpenMain()
     {
         SceneManager.LoadScene(1);
         //** alternativer Aufruf der Szene
         //SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
+    */
+
     
+
+    /// <summary>
+    /// beendet bei Interaktion (Klick auf Button) das Spiel
+    /// </summary>
     public void QuitGame()
     {
         //Debug.Log("Quit Game");
