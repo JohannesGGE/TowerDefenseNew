@@ -64,9 +64,26 @@ namespace Classes {
             wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
             Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
             Level level2 = new Level(new []{wave1, wave2, wave3}, false);
+            
+            Level level3 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level4 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level5 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level6 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level7 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level8 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level9 = new Level(new []{wave1, wave2, wave3}, false);
+            Level level10 = new Level(new []{wave1, wave2, wave3}, false);
 
             _levels.Add(level1);
             _levels.Add(level2);
+            _levels.Add(level3);
+            _levels.Add(level4);
+            _levels.Add(level5);
+            _levels.Add(level6);
+            _levels.Add(level7);
+            _levels.Add(level8);
+            _levels.Add(level9);
+            _levels.Add(level10);
         }
 
         /// <summary>
@@ -74,7 +91,7 @@ namespace Classes {
         /// </summary>
         public void LoadLevelStatus() {
             _entries = FileHandler.ReadListFromJSON<LevelEntry> (_filename);
-
+            
             if(_entries.Count == _levels.Count) {
                 for(int i = 0; i < _levels.Count; i++) {
                     _levels[i].Unlocked = _entries[i].unlocked;
@@ -87,6 +104,7 @@ namespace Classes {
         /// Speichert die LevelStatusInformationen in externer Datei
         /// </summary>
         public void SaveLevelStatus() {
+            _entries.Clear();
             foreach(Level level in _levels) {
                 _entries.Add(new LevelEntry(level.Unlocked, level.Stars));
             }
