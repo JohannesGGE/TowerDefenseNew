@@ -83,6 +83,18 @@ namespace Backbone
 
         [Header("Attributes")]
         /// <summary>
+        /// Variable <c>stingTag</c> given by Tower
+        /// </summary>
+        private string _stingTag = "Basic";
+
+        public string StingTag
+        {
+          get {return _stingTag;}
+          set {_stingTag = value;}
+        }
+
+
+        /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
         private float _speed = 20f;
@@ -190,6 +202,21 @@ namespace Backbone
         {
               Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
               GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+
+              //Calling effect methods in Enemy Script
+              //TODO need public getter for _onFire
+              /*
+              if (target.GetComponent<Enemy>() != null)
+              {
+                  target.GetComponent<Enemy>().TakeDamage(_damage);
+
+                  if (_effect=="fire" && !target.GetComponent<Enemy>()._onFire)
+                  {target.GetComponent<Enemy>().TakeFire(_damage, 3, 5);}
+
+                  if (_effect=="ice")
+                  {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting);}
+              }
+              */
               Destroy(effectInstance, 2f);
               Destroy(gameObject);
         }
