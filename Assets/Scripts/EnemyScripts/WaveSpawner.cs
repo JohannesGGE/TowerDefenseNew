@@ -54,6 +54,7 @@ public class WaveSpawner : MonoBehaviour
     void Start ()
     {
       waves = _gameManager.Level.Waves;
+      _gameManager.StartGame();
     }
 
     /// <summary>
