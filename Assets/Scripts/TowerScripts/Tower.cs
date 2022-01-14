@@ -189,7 +189,7 @@ namespace Backbone
               foreach (GameObject enemy in enemies)
               {
                 float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                float way = enemy.GetComponent<BirdMovement>().dist;
+                float way = enemy.GetComponent<Enemy>().Dist;
                 if (way >= longestWay && distanceToEnemy <= _range)
                   {
                     longestWay = way;
