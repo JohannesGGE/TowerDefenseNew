@@ -52,12 +52,40 @@ namespace Backbone
           set {_effect = value;}
         }
 
+        /// <summary>
+        /// Variable <c>_iceDurationSting</c> passed on by <c>Tower</c>
+        /// </summary>
+        private float _iceDurationSting = 0;
+
+        /// <summary>
+        /// Getters and Setters <c>IceDurationSting</c> for <c>_iceDurationSting</c>
+        /// </summary>
+        public float IceDurationSting
+        {
+          get {return _iceDurationSting;}
+          set {_iceDurationSting = value;}
+        }
+
+        /// <summary>
+        /// Variable <c>_iceDuration</c> passed on by <c>Tower</c>
+        /// </summary>
+        private float _iceDelaySting = 0;
+
+        /// <summary>
+        /// Getters and Setters <c>IceDelaySting</c> for <c>_iceDelaySting</c>
+        /// </summary>
+        public float IceDelaySting
+        {
+          get {return _iceDelaySting;}
+          set {_iceDelaySting = value;}
+        }
+
 
         [Header("Attributes")]
         /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
-        private float _speed = 5f;
+        private float _speed = 20f;
 
         /// <summary>
         /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused

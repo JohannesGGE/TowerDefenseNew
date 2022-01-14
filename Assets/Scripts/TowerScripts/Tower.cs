@@ -310,6 +310,8 @@ namespace Backbone
           {
             sting.Damage=_towerDamage;
             sting.Effect=_towerEffect;
+            sting.IceDelaySting=_iceDelay;
+            sting.IceDurationSting=_iceDuration;
             sting.Seek(target);
           }
         }
