@@ -5,11 +5,20 @@ using Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+
+using TMPro;
+
+
+
 public class LevelMenu : MonoBehaviour
 {
     public GameObject TowerPrefab;
 
     private GameManager _gameManager;
+
+    private TextMeshProUGUI _live;
+    private TextMeshProUGUI _money;
+    private int _damage;
 
     /// <summary>
     /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgeführt wird
@@ -18,7 +27,20 @@ public class LevelMenu : MonoBehaviour
         _gameManager = GameManager.GetInstance();
 
         // TODO DISPLAY COINS AND LIVES ausprobieren wie man darauf zugreift!
-        Debug.Log("");
+        // Zugriff über: GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>().text
+
+        _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
+        _damage = 50;
+        //Life ändern
+        _live.text = _damage.ToString();
+
+        _money = GameObject.FindWithTag("Money").GetComponent<TextMeshProUGUI>();
+
+        Debug.Log("Money: " + _money.text);
+        Debug.Log("Lives: " + _live.text);
+
+
+
     }
 
     /// <summary>
