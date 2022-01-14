@@ -21,7 +21,7 @@ namespace Backbone
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
-          TowerDamage = 30;
+          TowerDamage = 5;
           Range = 5f;
           FireRate = 1f;
           FireCountdown = 0f;
