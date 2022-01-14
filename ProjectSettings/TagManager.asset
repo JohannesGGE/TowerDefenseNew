@@ -8,6 +8,8 @@ TagManager:
   - Sting
   - PlacedTowerObject
   - TowerSlot
+  - Money
+  - Life
   layers:
   - Default
   - TransparentFX
