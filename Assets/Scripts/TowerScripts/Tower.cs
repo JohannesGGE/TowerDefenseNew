@@ -308,8 +308,18 @@ namespace Backbone
           Sting sting = stingGO.GetComponent<Sting>();
           if (sting != null)
           {
+            if(_towerEffect=="ice")
+            {
+              sting.StingTag="Ice";
+            }
+            if(_towerEffect=="fire")
+            {
+              sting.StingTag="Fire";
+            }
             sting.Damage=_towerDamage;
             sting.Effect=_towerEffect;
+            sting.IceDelaySting=_iceDelay;
+            sting.IceDurationSting=_iceDuration;
             sting.Seek(target);
           }
         }

@@ -62,6 +62,10 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private bool _onFire;
 
+    public bool OnFire {
+        get => _onFire;
+    }
+
     void Start()
     {
         speed = startSpeed;
@@ -121,13 +125,15 @@ public class Enemy : MonoBehaviour
     
          int currentCount = 0;
 
+        if (!_gameManager.Paused)
+        {
             while (currentCount < count)
             {
                 TakeDamage(amount);
                 yield return new WaitForSeconds(duration);
                 currentCount++;
             }
-        
+        }
     }
     /// <summary>
     /// Toetet den Vogel und fuegt Coins beim Spieler hinzu

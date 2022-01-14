@@ -23,7 +23,7 @@ namespace Backbone
           FirePoint=gameObject.GetComponent<BasicTower1>().FirePoint;
           PartToRotate=gameObject.GetComponent<BasicTower1>().FirePoint;
           StingPrefab=gameObject.GetComponent<BasicTower1>().StingPrefab;
-          TowerDamage = 50;
+          TowerDamage = 7;
           Range = 5f;
           FireRate = 1f;
           FireCountdown = 0f;

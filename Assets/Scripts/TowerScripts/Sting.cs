@@ -52,12 +52,52 @@ namespace Backbone
           set {_effect = value;}
         }
 
+        /// <summary>
+        /// Variable <c>_iceDurationSting</c> passed on by <c>Tower</c>
+        /// </summary>
+        private float _iceDurationSting = 0;
+
+        /// <summary>
+        /// Getters and Setters <c>IceDurationSting</c> for <c>_iceDurationSting</c>
+        /// </summary>
+        public float IceDurationSting
+        {
+          get {return _iceDurationSting;}
+          set {_iceDurationSting = value;}
+        }
+
+        /// <summary>
+        /// Variable <c>_iceDuration</c> passed on by <c>Tower</c>
+        /// </summary>
+        private float _iceDelaySting = 0;
+
+        /// <summary>
+        /// Getters and Setters <c>IceDelaySting</c> for <c>_iceDelaySting</c>
+        /// </summary>
+        public float IceDelaySting
+        {
+          get {return _iceDelaySting;}
+          set {_iceDelaySting = value;}
+        }
+
 
         [Header("Attributes")]
         /// <summary>
+        /// Variable <c>stingTag</c> given by Tower
+        /// </summary>
+        private string _stingTag = "Basic";
+
+        public string StingTag
+        {
+          get {return _stingTag;}
+          set {_stingTag = value;}
+        }
+
+
+        /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
-        private float _speed = 5f;
+        private float _speed = 20f;
 
         /// <summary>
         /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused
@@ -162,6 +202,21 @@ namespace Backbone
         {
               Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
               GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
+
+              //Calling effect methods in Enemy Script
+              //TODO need public getter for _onFire
+              /*
+              if (target.GetComponent<Enemy>() != null)
+              {
+                  target.GetComponent<Enemy>().TakeDamage(_damage);
+
+                  if (_effect=="fire" && !target.GetComponent<Enemy>()._onFire)
+                  {target.GetComponent<Enemy>().TakeFire(_damage, 3, 5);}
+
+                  if (_effect=="ice")
+                  {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting);}
+              }
+              */
               Destroy(effectInstance, 2f);
               Destroy(gameObject);
         }
