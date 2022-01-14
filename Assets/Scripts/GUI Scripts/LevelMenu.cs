@@ -4,10 +4,7 @@ using System.Collections.Generic;
 using Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
-
 using TMPro;
-
 
 
 public class LevelMenu : MonoBehaviour
@@ -27,7 +24,7 @@ public class LevelMenu : MonoBehaviour
         _gameManager = GameManager.GetInstance();
 
         // TODO DISPLAY COINS AND LIVES ausprobieren wie man darauf zugreift!
-        // Zugriff über: GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>().text
+        // Zugriff über: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
 
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
         _damage = 50;
