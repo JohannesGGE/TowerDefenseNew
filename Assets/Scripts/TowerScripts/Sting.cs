@@ -205,18 +205,18 @@ namespace Backbone
 
               //Calling effect methods in Enemy Script
               //TODO need public getter for _onFire
-              /*
+              
               if (target.GetComponent<Enemy>() != null)
               {
                   target.GetComponent<Enemy>().TakeDamage(_damage);
 
-                  if (_effect=="fire" && !target.GetComponent<Enemy>()._onFire)
+                  if (_effect=="fire" && !target.GetComponent<Enemy>().OnFire)
                   {target.GetComponent<Enemy>().TakeFire(_damage, 3, 5);}
 
                   if (_effect=="ice")
                   {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting);}
               }
-              */
+              
               Destroy(effectInstance, 2f);
               Destroy(gameObject);
         }
