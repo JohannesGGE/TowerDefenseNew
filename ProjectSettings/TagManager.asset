@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Bird
   - Sting
+  - PlacedTowerObject
+  - TowerSlot
+  - Money
+  - Life
   layers:
   - Default
   - TransparentFX
