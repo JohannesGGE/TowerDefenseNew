@@ -27,7 +27,7 @@ public class LevelMenu : MonoBehaviour
         // Zugriff über: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
 
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
-        _damage = 50;
+        //_damage = 50;
         //Life ändern
         _live.text = _damage.ToString();
 
@@ -59,6 +59,7 @@ public class LevelMenu : MonoBehaviour
 
 
         // TODO DISPLAY COINS AND LIVES
+        _live.text = _gameManager.Lives.ToString();
         // _gameManager.Coins;  Zugriff für LevelManager ermöglichen
         // _gameManager.Lives;
     }
