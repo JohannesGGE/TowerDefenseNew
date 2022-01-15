@@ -7,6 +7,6 @@ public class Testing : MonoBehaviour{
     private Grid grid;
 
     private void Start(){
-        grid = new Grid(20, 11, 2f, new Vector3(0, 0));
+        grid = new Grid(13, 9, 120f, new Vector3(-960, -540));
     }
 }
