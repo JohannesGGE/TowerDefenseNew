@@ -10,6 +10,10 @@ TagManager:
   - TowerSlot
   - Money
   - Life
+  - GreenTower
+  - RedTower
+  - YellowTower
+  - BasicTower
   layers:
   - Default
   - TransparentFX

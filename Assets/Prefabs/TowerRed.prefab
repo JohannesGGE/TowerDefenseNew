@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4744332029968764909}
   m_Layer: 5
   m_Name: TowerRed
-  m_TagString: Untagged
+  m_TagString: RedTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -37,7 +37,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: -907, y: -445}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 120, y: 120}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8686296281774333032
 CanvasRenderer:
