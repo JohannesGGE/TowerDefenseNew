@@ -13,6 +13,8 @@ public class EnemyMovement : MonoBehaviour
 
     private GameManager _gameManager;
 
+    private SpriteRenderer mySpriteRenderer;
+
     public EnemyMovement()
     {
         /// Initialisierung des GameManagers
@@ -26,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
 
         _gameManager.StartGame();
 
+        mySpriteRenderer = GetComponent<SpriteRenderer>();
+
     }
 
     /// <summary>
@@ -38,7 +42,11 @@ public class EnemyMovement : MonoBehaviour
         if (!_gameManager.Paused)
         {
             Vector3 dir = _target.position - transform.position;
-        transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
+            transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
+            if(_target.position.y < transform.position.y)
+            {
+                mySpriteRenderer.flipX = false;
+            }
 
         if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
 		{
