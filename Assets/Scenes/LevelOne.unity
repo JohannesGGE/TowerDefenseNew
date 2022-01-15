@@ -69439,7 +69439,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a9f6677a9466793d82c9144e301c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 8686296281774333028, guid: 956bd0cf97f6e414f9f56aa710fa8394, type: 3}
+  Tower: {fileID: 8686296281774333028, guid: 374fe65c01d0db244b7f8a7a5781e4ac, type: 3}
   FolderToBuild: {fileID: 604563448}
 --- !u!1001 &1695830343
 PrefabInstance:
@@ -79147,7 +79147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a9f6677a9466793d82c9144e301c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 8686296281774333028, guid: 794a3ce5952485f4f814cdff2c2e749b, type: 3}
+  Tower: {fileID: 8686296281774333028, guid: 9de8fda6570fb6a43ab988d9f5265f3d, type: 3}
   FolderToBuild: {fileID: 604563448}
 --- !u!1001 &1904498430
 PrefabInstance:
