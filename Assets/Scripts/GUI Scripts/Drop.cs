@@ -8,6 +8,7 @@ public class Drop : MonoBehaviour, IDropHandler
 {
 
     private GameObject _tower;
+    private GameObject[] _towerBasic;
     
     private Transform FolderToBuild;
 
@@ -32,13 +33,14 @@ public class Drop : MonoBehaviour, IDropHandler
             // Überprüfung welche Farbe der gedraggte Kaktus hat
             switch (eventData.pointerDrag.name) {
                 case "Red":
-                    _tower = Instantiate(Resources.Load("TowerRed", typeof(GameObject))) as GameObject;
+                _tower = GameObject.FindGameObjectWithTag("RedTower");
                     break;
                 case "Green":
-                _tower = Instantiate(Resources.Load("TowerGreen", typeof(GameObject))) as GameObject;
+                _tower = GameObject.FindGameObjectWithTag("GreenTower");
+                //_towerBasic = GameObject.FindGameObjectWithTag("BasicTower");
                     break;
                 case "Yellow":
-                _tower = Instantiate(Resources.Load("TowerYellow", typeof(GameObject))) as GameObject;
+                _tower = GameObject.FindGameObjectWithTag("YellowTower"); 
                     break;
             }
 
