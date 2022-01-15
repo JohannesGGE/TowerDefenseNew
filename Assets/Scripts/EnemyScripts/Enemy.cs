@@ -93,34 +93,44 @@ public class Enemy : MonoBehaviour
             Kill();
         }
     }
+
     /// <summary>
     /// Reduziert die Geschwindigkeit um den mitgegebenen Wert, in Prozent
     /// </summary>
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
-    public void TakeSlow (float _pct)
+    public void TakeSlow (float _pct, float duration)
     {
-        speed = startSpeed * (1f - _pct);
+        StartCoroutine(SlowDmg(_pct, duration));
+        Debug.Log("Geschwindigkeit : " + speed + "StartSpeed: " + startSpeed);
     }
 
-    /// <summary>
-    /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
-    /// </summary>
-    /// <param name ="other"> ankommender Stachel </param>
-    public void OnTriggerEnter(Collider other)
+    private IEnumerator SlowDmg(float _pct, float duration)
     {
-        if (other.gameObject.tag == "Fire" && !_onFire)
+        speed = speed * (1f - _pct);
+        if (speed <= startSpeed /2)
         {
-            StartCoroutine(TakeFire(2, 3, 5));
+            speed = startSpeed /2;
+        }
+        yield return new WaitForSeconds(duration);
+
+        speed = startSpeed;
+    }
+
+    public void TakeFire(float amount, float count, float duration)
+    {
+        if(!_onFire)
+        {
+            _onFire = true;
+            StartCoroutine(FireDmg(amount, count, duration));
         }
     }
-
     /// <summary>
     /// Reduziert das Leben um den mitgegebenen Wert, ueber mehrere Ticks
     /// </summary>
     /// <param name ="amount"> zugefuegter Schaden </param>
     /// <param name ="count"> Anzahl der Ticks </param>
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
-    public IEnumerator TakeFire(float amount, float count, float duration)
+    public IEnumerator FireDmg(float amount, float count, float duration)
     {
     
          int currentCount = 0;
@@ -132,7 +142,9 @@ public class Enemy : MonoBehaviour
                 TakeDamage(amount);
                 yield return new WaitForSeconds(duration);
                 currentCount++;
+                Debug.Log("Brennt " + currentCount + "Mal");
             }
+            _onFire = false;
         }
     }
     /// <summary>
