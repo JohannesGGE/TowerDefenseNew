@@ -66,7 +66,6 @@ public class WaveSpawner : MonoBehaviour
     {
        /// Array mit lebenden Voegeln anlegen
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-        Debug.Log(enemies.Length);
 
         if (!_gameManager.Paused)
         { 
