@@ -97,7 +97,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
-        private float _speed = 20f;
+        private float _speed = 800f;
 
         /// <summary>
         /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused
@@ -107,7 +107,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_pauseEndSpeed</c> defines movement speed of projectile when pause ends
         /// </summary>
-        private float _pauseEndSpeed = 5f;
+        private float _pauseEndSpeed = 800f;
 
         /// <summary>
         /// Variable <c>_turnSpeed</c> defines turning speed of projectile
