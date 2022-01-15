@@ -9,8 +9,6 @@ using TMPro;
 
 public class LevelMenu : MonoBehaviour
 {
-    public GameObject TowerPrefab;
-
     private GameManager _gameManager;
 
     private TextMeshProUGUI _live;
@@ -84,20 +82,6 @@ public class LevelMenu : MonoBehaviour
         } else {
             _gameManager.PauseGame();
         }
-    }
-
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlaceTower();
-        }
-    }
-    private void PlaceTower()
-    {
-        Debug.Log("Placing a tower");
-        Instantiate(TowerPrefab, transform.position, Quaternion.identity);
     }
 
     
