@@ -62,9 +62,9 @@ public class SoundManager : MonoBehaviour
         Win.clip = (AudioClip) Resources.Load<AudioClip>("Sounds/Win");
         
         // TODO Background Music Loopen
-        Win.loop = true;
-        Win.volume = 0.1f;
-        Win.Play();
+        // Win.loop = true;
+        // Win.volume = 0.1f;
+        // Win.Play();
     }
 
     public void PlayBuy() {
