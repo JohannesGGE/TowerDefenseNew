@@ -4,7 +4,7 @@ using Backbone;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-public class DragNeu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
     //tempor�re Variable, um die Gr��eneigenschaften eines Objektes anzusprechen
     private RectTransform _rectTransform;
@@ -49,7 +49,4 @@ public class DragNeu : MonoBehaviour, IPointerDownHandler, IBeginDragHandler, IE
         Debug.Log("OnEndDrag");
     }
 
-    public void OnPointerDown(PointerEventData eventData) {
-        throw new System.NotImplementedException();
-    }
 }

@@ -11,6 +11,10 @@ TagManager:
   - Money
   - Life
   - SoundManager
+  - GreenTower
+  - RedTower
+  - YellowTower
+  - BasicTower
   layers:
   - Default
   - TransparentFX

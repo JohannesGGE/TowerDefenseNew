@@ -9,8 +9,6 @@ using TMPro;
 
 public class LevelMenu : MonoBehaviour
 {
-    public GameObject TowerPrefab;
-
     private GameManager _gameManager;
 
     private TextMeshProUGUI _live;
@@ -27,7 +25,7 @@ public class LevelMenu : MonoBehaviour
         // Zugriff über: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
 
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
-        _damage = 50;
+        //_damage = 50;
         //Life ändern
         _live.text = _damage.ToString();
 
@@ -61,7 +59,6 @@ public class LevelMenu : MonoBehaviour
         // TODO DISPLAY COINS AND LIVES
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
-
         // _gameManager.Coins;  Zugriff für LevelManager ermöglichen
         // _gameManager.Lives;
     }
@@ -85,20 +82,6 @@ public class LevelMenu : MonoBehaviour
         } else {
             _gameManager.PauseGame();
         }
-    }
-
-
-    private void OnMouseOver()
-    {
-        if (Input.GetMouseButtonDown(0))
-        {
-            PlaceTower();
-        }
-    }
-    private void PlaceTower()
-    {
-        Debug.Log("Placing a tower");
-        Instantiate(TowerPrefab, transform.position, Quaternion.identity);
     }
 
     
