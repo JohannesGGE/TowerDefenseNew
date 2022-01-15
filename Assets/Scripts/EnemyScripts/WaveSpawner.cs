@@ -7,6 +7,8 @@ public class WaveSpawner : MonoBehaviour
 {
     private GameManager _gameManager;
 
+    public Transform ordnerVoegel;
+
     public WaveSpawner()
     {
         _gameManager = GameManager.GetInstance();
@@ -121,14 +123,14 @@ public class WaveSpawner : MonoBehaviour
     {
         if(birdLevel == BirdLevel.Small)
         {
-        Instantiate(smallPrefab, spawnPoint.position, spawnPoint.rotation);
+        Instantiate(smallPrefab, spawnPoint.position, spawnPoint.rotation, ordnerVoegel);
         }
             else if(birdLevel == BirdLevel.Medium)
             {
-            Instantiate(mediumPrefab, spawnPoint.position, spawnPoint.rotation);
+            Instantiate(mediumPrefab, spawnPoint.position, spawnPoint.rotation, ordnerVoegel);
             }
                  else
-                 Instantiate(bigPrefab, spawnPoint.position, spawnPoint.rotation);
+                 Instantiate(bigPrefab, spawnPoint.position, spawnPoint.rotation, ordnerVoegel);
 
     }
 }
