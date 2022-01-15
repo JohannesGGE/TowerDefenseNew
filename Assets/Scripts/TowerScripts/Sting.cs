@@ -210,11 +210,11 @@ namespace Backbone
               {
                   target.GetComponent<Enemy>().TakeDamage(_damage);
 
-                  if (_effect=="fire" && !target.GetComponent<Enemy>().OnFire)
-                  {target.GetComponent<Enemy>().TakeFire(_damage, 3, 5);}
+                  if (_effect=="fire")
+                  {target.GetComponent<Enemy>().TakeFire(_damage, 3, 1);}
 
                   if (_effect=="ice")
-                  {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting);}
+                  {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting, _iceDurationSting);}
               }
               
               Destroy(effectInstance, 2f);

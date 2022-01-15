@@ -303,7 +303,7 @@ namespace Backbone
         ///</summary>
         void Shoot()
         {
-          Debug.Log("shots fired"); //debug
+          ///Debug.Log("shots fired"); //debug
           GameObject stingGO = (GameObject)Instantiate (StingPrefab, FirePoint.position, FirePoint.rotation);
           Sting sting = stingGO.GetComponent<Sting>();
           if (sting != null)

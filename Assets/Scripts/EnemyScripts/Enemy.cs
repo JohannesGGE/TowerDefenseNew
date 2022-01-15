@@ -97,30 +97,31 @@ public class Enemy : MonoBehaviour
     /// Reduziert die Geschwindigkeit um den mitgegebenen Wert, in Prozent
     /// </summary>
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
-    public void TakeSlow (float _pct)
+    public void TakeSlow (float _pct, float duration)
     {
 
-        speed = speed * (1f - _pct);
-
-        if (speed <= startSpeed/2)
-        {
-            speed = startSpeed / 2;
-        }
-       /// Debug.Log("Geschwindigkeit : " + speed + "StartSpeed :" + startSpeed);
+        StartCoroutine(SlowDmg(_pct, duration));
+        Debug.Log("Geschwindigkeit : " + speed + "StartSpeed :" + startSpeed);
 
     }
 
-    /// <summary>
-    /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
-    /// </summary>
-    /// <param name ="other"> ankommender Stachel </param>
-    public void OnCollisionEnter2D(Collision2D collision)
-    {
-        Debug.Log("EISSTACHEL TRIFFT");
 
-        if (collision.gameObject.tag == "Fire" && !_onFire)
+    public IEnumerator SlowDmg (float _pct, float duration)
+    {
+        speed = speed * (1f - _pct);
+        if (speed <= startSpeed / 2)
         {
-            StartCoroutine(TakeFire(2, 3, 5));
+            speed = startSpeed / 2;
+        }
+        yield return new WaitForSeconds(duration);
+        speed = startSpeed;
+    }
+    public void TakeFire(float amount, float count, float duration)
+    {
+        if (!_onFire)
+        {
+            _onFire = true;
+            StartCoroutine(FireDmg(amount, count, duration));
         }
     }
 
@@ -130,7 +131,7 @@ public class Enemy : MonoBehaviour
     /// <param name ="amount"> zugefuegter Schaden </param>
     /// <param name ="count"> Anzahl der Ticks </param>
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
-    public IEnumerator TakeFire(float amount, float count, float duration)
+    public IEnumerator FireDmg(float amount, float count, float duration)
     {
     
          int currentCount = 0;
@@ -142,7 +143,9 @@ public class Enemy : MonoBehaviour
                 TakeDamage(amount);
                 yield return new WaitForSeconds(duration);
                 currentCount++;
+                Debug.Log("Das war der Hit Nummer" + currentCount);
             }
+            _onFire = false;
         }
     }
     /// <summary>

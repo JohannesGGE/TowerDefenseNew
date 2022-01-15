@@ -26,7 +26,7 @@ namespace Backbone
           FireRate = 1f;
           FireCountdown = 0f;
           IceDelay=0.2f;
-          IceDuration=0.1f;
+          IceDuration=5f;
           TowerEffect = "ice";
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
