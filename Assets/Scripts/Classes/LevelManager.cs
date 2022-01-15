@@ -60,7 +60,7 @@ namespace Classes {
             Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
             Level level1 = new Level(new []{wave1, wave2}, true);
             
-            wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
+            wave1 = new Wave(new[] {Small}, 1f);
             wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
             Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
             Level level2 = new Level(new []{wave1, wave2, wave3}, false);

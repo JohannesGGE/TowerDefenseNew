@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
-    public float startSpeed = 5f;
+    public float startSpeed = 2f;
 
     /// <summary>
     /// Variable <c> dist </c> enthaelt zurueckgelegte Strecke des Vogels
@@ -68,7 +68,7 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        speed = startSpeed;
+        startSpeed = speed;
     }
 
     void Update()
@@ -99,16 +99,26 @@ public class Enemy : MonoBehaviour
     /// <param name ="_pct"> abzuziehende Geschwindigkeit </param>
     public void TakeSlow (float _pct)
     {
-        speed = startSpeed * (1f - _pct);
+
+        speed = speed * (1f - _pct);
+
+        if (speed <= startSpeed/2)
+        {
+            speed = startSpeed / 2;
+        }
+       /// Debug.Log("Geschwindigkeit : " + speed + "StartSpeed :" + startSpeed);
+
     }
 
     /// <summary>
     /// prueft ob eingehender Stachel vom Feuerturm kommt und ob der Vogel bereits brennt
     /// </summary>
     /// <param name ="other"> ankommender Stachel </param>
-    public void OnTriggerEnter(Collider other)
+    public void OnCollisionEnter2D(Collision2D collision)
     {
-        if (other.gameObject.tag == "Fire" && !_onFire)
+        Debug.Log("EISSTACHEL TRIFFT");
+
+        if (collision.gameObject.tag == "Fire" && !_onFire)
         {
             StartCoroutine(TakeFire(2, 3, 5));
         }
