@@ -43,12 +43,17 @@ public class EnemyMovement : MonoBehaviour
         {
             Vector3 dir = _target.position - transform.position;
             transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
-            if(_target.position.y < transform.position.y)
+
+            if(_target.position.x < transform.position.x)
             {
                 mySpriteRenderer.flipX = false;
             }
+            if (_target.position.x > transform.position.x)
+            {
+                mySpriteRenderer.flipX = true;
+            }
 
-        if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
+            if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
 		{
 			GetNextWaypoint();
 		}
