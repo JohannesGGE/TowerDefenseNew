@@ -20,11 +20,12 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
+          Debug.Log("Upgrade success"); //DEBUG
           FirePoint=gameObject.GetComponent<IceTower1>().FirePoint;
           PartToRotate=gameObject.GetComponent<IceTower1>().FirePoint;
           StingPrefab=gameObject.GetComponent<IceTower1>().StingPrefab;
           TowerDamage = 0;
-          Range = 5f;
+          Range = 300f;
           FireRate = 1f;
           FireCountdown = 0f;
           IceDuration=3f;
