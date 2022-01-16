@@ -201,6 +201,17 @@ namespace Backbone
         void HitTarget()
         {
               Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
+
+              //TODO: trying too adjust the color of impact effect according to Sting color
+              /*
+              var settings = GetComponent<ParticleSystem>().main;
+
+              settings.startColor = new ParticleSystem.MinMaxGradient (Color.green, Color.green);
+              if (_effect=="fire")
+              {settings.startColor = new ParticleSystem.MinMaxGradient (Color.red, Color.red);}
+              if (_effect=="ice")
+              {settings.startColor = new ParticleSystem.MinMaxGradient (Color.blue, Color.blue);}
+              */
               GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
 
               //Calling effect methods in Enemy Script
