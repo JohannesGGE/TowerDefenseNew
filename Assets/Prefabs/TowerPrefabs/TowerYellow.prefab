@@ -43,10 +43,10 @@ GameObject:
   - component: {fileID: 8686296281774333032}
   - component: {fileID: 8686296281774333033}
   - component: {fileID: 5279899885839187185}
-  - component: {fileID: 430542514951090883}
+  - component: {fileID: -4432606875362802000}
   m_Layer: 5
-  m_Name: TowerRed
-  m_TagString: RedTower
+  m_Name: TowerYellow
+  m_TagString: YellowTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -100,7 +100,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 0768147deaa44fc4e974d3cde6f1efbb, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5b37dd69cd8865a46a4287e7a2417379, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -136,7 +136,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &430542514951090883
+--- !u!114 &-4432606875362802000
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -145,9 +145,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 8686296281774333028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4104fff23054d4eaa97dbd762afa2b37, type: 3}
+  m_Script: {fileID: 11500000, guid: 1ccc8c365c6c946618afd7e4069a1ee5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   FirePoint: {fileID: 1309004051382126461}
   PartToRotate: {fileID: 1309004051382126461}
-  StingPrefab: {fileID: 34390882750466582, guid: 60a94c17100e34582ae164d2fd110d9f, type: 3}
+  StingPrefab: {fileID: 34390882750466582, guid: b355680acb5f5456997505a2439f317a, type: 3}
