@@ -106,14 +106,17 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator SlowDmg(float _pct, float duration)
     {
-        speed = speed * (1f - _pct);
-        if (speed <= startSpeed /2)
+        if (!_gameManager.Paused)
         {
-            speed = startSpeed /2;
-        }
-        yield return new WaitForSeconds(duration);
+            speed = speed * (1f - _pct);
+            if (speed <= startSpeed / 2)
+            {
+                speed = startSpeed / 2;
+            }
+            yield return new WaitForSeconds(duration);
 
-        speed = startSpeed;
+            speed = startSpeed;
+        }
     }
 
     public void TakeFire(float amount, float count, float duration)
