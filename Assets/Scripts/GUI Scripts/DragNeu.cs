@@ -6,12 +6,12 @@ using UnityEngine.EventSystems;
 
 public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    //tempor�re Variable, um die Gr��eneigenschaften eines Objektes anzusprechen
+    //temporaere Variable, um die Groesseneigenschaften eines Objektes anzusprechen
     private RectTransform _rectTransform;
-
 
     public GameObject Tower;
     public Transform FolderToBuild;
+   
     private GameObject towerDrag;
 
     /// <summary>
@@ -23,14 +23,21 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         Vector3 mousePosition = Input.mousePosition;
         towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
         
-        _rectTransform = towerDrag.GetComponent<RectTransform>();    
-        
+        _rectTransform = towerDrag.GetComponent<RectTransform>();
+
+        ///funktioniert eigentlich, platziertes Objekt hat dann aber trotzdem kein aktiviertes Skript
+        //towerDrag.GetComponent<FireTower1>().enabled = false;
+        //towerDrag.GetComponent<BasicTower1>().enabled = false;
+        //towerDrag.GetComponent<IceTower1>().enabled = false;
+        //Debug.Log("Script: " + towerDrag.GetComponent<FireTower1>().enabled);
+
+
         Debug.Log("OnBeginDrag");
 
     }
 
     /// <summary>
-    /// Methode die ausgef�hrt wird, wenn der Drag eines Objektes stattfindet
+    /// Methode die ausgefuehrt wird, wenn der Drag eines Objektes stattfindet
     /// </summary>
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnDrag(PointerEventData eventData)
@@ -40,12 +47,19 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     }
 
     /// <summary>
-    /// Methode die ausgef�hrt wird, wenn der Drag eines Objektes endet
+    /// Methode die ausgefuehrt wird, wenn der Drag eines Objektes endet
     /// </summary>
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        Destroy(towerDrag);
+        ///funktioniert eigentlich, platziertes Objekt hat dann aber trotzdem kein aktiviertes Skript
+        //towerDrag.GetComponent<FireTower1>().enabled = true;
+        //towerDrag.GetComponent<BasicTower1>().enabled = true;
+        //towerDrag.GetComponent<IceTower1>().enabled = true;
+        //Debug.Log("Script: " + towerDrag.GetComponent<FireTower1>().enabled);
+
+
+        Destroy(towerDrag);   
         Debug.Log("OnEndDrag");
     }
 

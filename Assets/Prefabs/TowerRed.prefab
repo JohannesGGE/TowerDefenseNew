@@ -150,4 +150,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   FirePoint: {fileID: 1309004051382126461}
   PartToRotate: {fileID: 1309004051382126461}
-  StingPrefab: {fileID: 4323615149171478461, guid: 4493249065fda994996e6c2021bc4193, type: 3}
+  StingPrefab: {fileID: 34390882750466582, guid: 60a94c17100e34582ae164d2fd110d9f, type: 3}
