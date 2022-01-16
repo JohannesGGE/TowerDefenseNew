@@ -22,7 +22,7 @@ namespace Backbone
         void Start()
         {
           TowerDamage = 0;
-          Range = 5f;
+          Range = 300f;
           FireRate = 1f;
           FireCountdown = 0f;
           IceDelay=0.2f;
