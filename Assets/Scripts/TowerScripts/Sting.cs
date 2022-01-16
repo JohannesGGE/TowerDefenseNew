@@ -167,7 +167,7 @@ namespace Backbone
                   //rotate the Sting towards the target
                   Vector3 dir = target.position - transform.position;
                   dirBackup=dir;
-                  Vector3 rotatedVectorDir = Quaternion.Euler(0,0,-90)*dir;
+                  Vector3 rotatedVectorDir = Quaternion.Euler(0,0,0)*dir;
                   Quaternion lookRotation = Quaternion.LookRotation(forward: Vector3.forward, upwards: rotatedVectorDir);
                   Quaternion rotation = Quaternion.Lerp(gameObject.transform.rotation, lookRotation, Time.deltaTime * _turnSpeed);
                   gameObject.transform.rotation = rotation;
