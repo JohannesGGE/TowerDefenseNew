@@ -8,7 +8,7 @@ namespace Backbone
     public class Tower : MonoBehaviour
     {
         /// <summary>
-        /// Variable <c>_gameManager</c> for instatiating the GameManager class
+        /// Variable <c>_gameManager</c> for instantiating the GameManager class
         /// </summary>
         private GameManager _gameManager;
 

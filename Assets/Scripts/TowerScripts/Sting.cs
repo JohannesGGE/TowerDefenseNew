@@ -218,7 +218,8 @@ namespace Backbone
 
               if (target.GetComponent<Enemy>() != null)
               {
-                  target.GetComponent<Enemy>().TakeDamage(_damage);
+                  if (_effect!="ice")
+                  {target.GetComponent<Enemy>().TakeDamage(_damage);}
 
                   if (_effect=="fire")
                   {target.GetComponent<Enemy>().TakeFire(_damage, 3, 1);}
