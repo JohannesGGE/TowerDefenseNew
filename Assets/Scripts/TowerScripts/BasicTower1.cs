@@ -7,6 +7,8 @@ namespace Backbone
 {
     public class BasicTower1 : Tower
     {
+
+
         /// <summary>
         /// Variable <c>_gameManager</c> for instatianting the GameManager class
         /// </summary>
@@ -21,6 +23,8 @@ namespace Backbone
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
+          Stage = "BasicStageOne";
+          gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
           TowerDamage = 5;
           Range = 300f;
           FireRate = 1f;
@@ -29,10 +33,15 @@ namespace Backbone
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
-        protected override void Upgrade()
+        public override void Upgrade()
         {
-          gameObject.AddComponent<BasicTower2>();
-          DestroyScriptInstance();
+            Debug.Log("Skript2 hinzugefügt");
+            
+            gameObject.AddComponent<BasicTower2>();
+            DestroyScriptInstance();
+
         }
+
+
     }
 }

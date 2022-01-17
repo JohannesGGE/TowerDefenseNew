@@ -21,7 +21,9 @@ namespace Backbone
         void Start()
         {
           Debug.Log("Upgrade success"); //DEBUG
-          FirePoint=gameObject.GetComponent<IceTower2>().FirePoint;
+          Stage = "IceStageThree";
+          gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
+          FirePoint =gameObject.GetComponent<IceTower2>().FirePoint;
           PartToRotate=gameObject.GetComponent<IceTower2>().FirePoint;
           StingPrefab=gameObject.GetComponent<IceTower2>().StingPrefab;
           TowerDamage = 0;

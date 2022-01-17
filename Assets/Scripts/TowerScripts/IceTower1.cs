@@ -21,6 +21,8 @@ namespace Backbone
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
+          Stage = "IceStageOne";
+          gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
           TowerDamage = 0;
           Range = 300f;
           FireRate = 1f;
@@ -32,7 +34,7 @@ namespace Backbone
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
-        protected override void Upgrade()
+        public override void Upgrade()
         {
           gameObject.AddComponent<IceTower2>();
           DestroyScriptInstance();
