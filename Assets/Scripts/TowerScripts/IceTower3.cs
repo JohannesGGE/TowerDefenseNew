@@ -8,7 +8,7 @@ namespace Backbone
     public class IceTower3 : Tower
     {
         /// <summary>
-        /// Variable <c>_gameManager</c> for instatiating the GameManager class
+        /// Variable <c>_gameManager</c> for instatianting the GameManager class
         /// </summary>
         private GameManager _gameManager;
 
