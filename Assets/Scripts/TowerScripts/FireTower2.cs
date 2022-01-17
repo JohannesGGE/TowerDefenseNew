@@ -21,7 +21,9 @@ namespace Backbone
         void Start()
         {
           Debug.Log("Upgrade success"); //DEBUG
-          FirePoint=gameObject.GetComponent<FireTower1>().FirePoint;
+          Stage = "FireStageTwo";
+          gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;            
+          FirePoint =gameObject.GetComponent<FireTower1>().FirePoint;
           PartToRotate=gameObject.GetComponent<FireTower1>().FirePoint;
           StingPrefab=gameObject.GetComponent<FireTower1>().StingPrefab;
           TowerDamage = 5;
@@ -33,7 +35,7 @@ namespace Backbone
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
-        protected override void Upgrade()
+        public override void Upgrade()
         {
           gameObject.AddComponent<FireTower3>();
           DestroyScriptInstance();

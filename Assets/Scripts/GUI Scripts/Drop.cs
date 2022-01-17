@@ -10,6 +10,7 @@ public class Drop : MonoBehaviour, IDropHandler
     private GameObject _tower;
  
     private Transform FolderToBuild;
+   
 
     private bool isTower = false;
 
@@ -20,8 +21,13 @@ public class Drop : MonoBehaviour, IDropHandler
     /// </summary>
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnDrop(PointerEventData eventData) {
-        FolderToBuild = GameObject.FindGameObjectsWithTag("PlacedTowerObject")[0].transform;
+        //FolderToBuild = GameObject.FindGameObjectsWithTag("PlacedTowerObject")[0].transform;
+
+        //Tower werden im Slot platziert und können so angesprochen werden
+        FolderToBuild = gameObject.transform.GetChild(0);
         
+       
+
         Debug.Log("OnDrop");
         
         if(CompareTag("TowerSlot") && !isTower) {
@@ -53,7 +59,7 @@ public class Drop : MonoBehaviour, IDropHandler
             //Kaktus wird platziert
             GameObject newT = Instantiate(_tower, GetComponent<RectTransform>().anchoredPosition, Quaternion.identity, FolderToBuild);
             newT.transform.position = GetComponent<RectTransform>().transform.position;
-
+            
             isTower = true;
         }
     }

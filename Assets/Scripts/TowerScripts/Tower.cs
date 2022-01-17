@@ -159,13 +159,14 @@ namespace Backbone
         //Not via the drag and drop functionality of the Unity GUI
         //I can not figure out, if and how that would be possible
 
-
+        public string Stage;
 
         /// <summary>
         /// Called before the first Frame, invokes the <c>UpdateTarget()</c> function
         /// </summary>
         void Start()
         {
+          //Stage = "BasicStageOne";
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
@@ -265,6 +266,7 @@ namespace Backbone
           //Upgrade
           if(Input.GetKeyDown(KeyCode.U))
           {
+            Debug.Log("führe jetzt upgrade aus!");
             Upgrade();
           }
 
@@ -338,10 +340,33 @@ namespace Backbone
         ///<summary>
         ///Function <c>Upgrade()</c>: Upgrade functionality, defined within the subclasses. Virtual keyword enables override
         ///</summary>
-        protected virtual void Upgrade()
+        public virtual void Upgrade()
         {
+            Debug.Log("leere Methode");
           return;
         }
+
+        /*
+        public void Chosen()
+        {
+            //TODO
+            //Radius anzeigen hier einfügen
+
+            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgewählt wurde
+            gameObject.transform.GetChild(1).gameObject.SetActive(true);
+            Debug.Log("Turm ausgewählt");
+        }
+        */
+
+        public void UpgradeTower()
+        {
+            ///Upgrade wird ausgeführt und Upgrade Button verschwindet wieder.
+            Debug.Log("Upgrade durchgefüüüüüüührt." + Stage);
+
+
+            gameObject.transform.GetChild(1).gameObject.SetActive(false);
+        }
+
 
         ///<summary>
         ///Function <c>DestroyScriptInstance()</c>Helper for <c> Upgrade()</c> method
