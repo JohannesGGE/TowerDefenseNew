@@ -35,9 +35,8 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
 
-        if (!_gameManager.Paused)
-        {
-            Vector3 dir = _target.position - transform.position;
+      
+        Vector3 dir = _target.position - transform.position;
         transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
 
         if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
@@ -47,7 +46,7 @@ public class EnemyMovement : MonoBehaviour
 
 		///_enemy.speed = _enemy.startSpeed;
 	
-        }
+        
     }
 
 

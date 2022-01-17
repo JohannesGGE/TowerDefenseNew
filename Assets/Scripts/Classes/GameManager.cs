@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Classes {
     
     /// <summary>
@@ -77,6 +79,7 @@ namespace Classes {
         /// Startet das Spiel/Setzt das Spiel fort
         /// </summary>
         public void StartGame() {
+            Time.timeScale = 1;
             _paused = false;
         }
 
@@ -84,9 +87,14 @@ namespace Classes {
         /// Pausiert das Spiel
         /// </summary>
         public void PauseGame() {
+            Time.timeScale = 0;
             _paused = true;
         }
 
+        public void PushGame()
+        {
+            Time.timeScale = 2;
+        }
         /// <summary>
         /// Reduziert die Leben um mitgegebene Wert
         /// </summary>

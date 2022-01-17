@@ -262,6 +262,16 @@ namespace Backbone
               }
           }
 
+
+          // Doppelte Geschwindigkeit
+            if(Input.GetKeyDown(KeyCode.D))
+            {
+                _gameManager.PushGame();
+            }
+            if(Input.GetKeyDown(KeyCode.A))
+            {
+                _gameManager.StartGame();
+            }
           //Upgrade
           if(Input.GetKeyDown(KeyCode.U))
           {
@@ -272,8 +282,7 @@ namespace Backbone
           if (target == null)
             return;
           //while game is paused target tracking, <c>Shoot()</c> and <c>fireCountdown</c> are inactive
-          if(!_gameManager.Paused)
-          {
+          
               //Rotate the firepoint to the Position of the target
               //3D Vector with the direction on Tower -> Target
               Vector3 dir = target.position - transform.position;
@@ -294,7 +303,7 @@ namespace Backbone
               }
 
               _fireCountdown -= Time.deltaTime;
-          }
+          
         }
 
         //TODO include IceTower abilities here and in Sting script
