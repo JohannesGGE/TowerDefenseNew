@@ -37,13 +37,16 @@ public class Drop : MonoBehaviour, IDropHandler
             // Ueberpruefung welche Farbe der gedraggte Kaktus hat
             switch (eventData.pointerDrag.name) {
                 case "Red":
-                _tower = GameObject.FindGameObjectWithTag("RedTower");
+                    _tower = Resources.Load("TowerPrefabs/TowerRed") as GameObject;
+                    //_tower = GameObject.FindGameObjectWithTag("RedTower");
                     break;
                 case "Green":
-                _tower = GameObject.FindGameObjectWithTag("GreenTower");
+                    _tower = Resources.Load("TowerPrefabs/TowerGreen") as GameObject;
+                    //_tower = GameObject.FindGameObjectWithTag("GreenTower");
                     break;
                 case "Yellow":
-                _tower = GameObject.FindGameObjectWithTag("YellowTower"); 
+                    _tower = Resources.Load("TowerPrefabs/TowerYellow") as GameObject;
+                    //_tower = GameObject.FindGameObjectWithTag("YellowTower"); 
                     break;
             }
 
