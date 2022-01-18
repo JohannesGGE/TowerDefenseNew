@@ -10,7 +10,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_gameManager</c> for instantiating the GameManager class
         /// </summary>
-        private GameManager _gameManager;
+        protected GameManager _gameManager;
 
         /// <summary>
         /// Constructor <c>Tower</c> constructs a Tower Instance refering to the GameManager Instance
@@ -28,7 +28,7 @@ namespace Backbone
         [Header("Hit Effects")]
 
         /// <summary>
-        /// Variable <c>_towerDamage</c> is initialised in <c>Tower</c>, but defined by the subclasses
+        /// Variable <c>_towerDamage</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
         private int _towerDamage = 0;
 
@@ -42,7 +42,7 @@ namespace Backbone
         }
 
         /// <summary>
-        /// Variable <c>_towerEffect</c> is initialised in <c>Tower</c>, but defined by the subclasses
+        /// Variable <c>_towerEffect</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
         private string _towerEffect = "none";
 
@@ -56,7 +56,7 @@ namespace Backbone
         }
 
         /// <summary>
-        /// Variable <c>_iceDuration</c> is initialised in <c>Tower</c>, but defined by the subclasses <c>IceTower</c>
+        /// Variable <c>_iceDuration</c> is declared in <c>Tower</c>, but defined by the subclasses <c>IceTower</c>
         /// </summary>
         private float _iceDuration = 0;
 
@@ -70,7 +70,7 @@ namespace Backbone
         }
 
         /// <summary>
-        /// Variable <c>_iceDuration</c> is initialised in <c>Tower</c>, but defined by the subclasses <c>IceTower</c>
+        /// Variable <c>_iceDuration</c> is declared in <c>Tower</c>, but defined by the subclasses <c>IceTower</c>
         /// </summary>
         private float _iceDelay = 0;
 
@@ -87,7 +87,7 @@ namespace Backbone
 
         [Header("Attributes")]
         /// <summary>
-        /// Variable <c>_range</c> is initialised in <c>Tower</c>, but defined by the subclasses
+        /// Variable <c>_range</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
         private float _range = 5f;
 
@@ -101,7 +101,7 @@ namespace Backbone
         }
 
         /// <summary>
-        /// Variable <c>_fireRate</c> is initialised in <c>Tower</c>, but defined by the subclasses
+        /// Variable <c>_fireRate</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
         private float _fireRate = 1f;
 
@@ -115,7 +115,7 @@ namespace Backbone
         }
 
         /// <summary>
-        /// Variable <c>_fireCountdown</c> is initialised in <c>Tower</c>, but defined by the subclasses
+        /// Variable <c>_fireCountdown</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
         private float _fireCountdown = 0f;
 
@@ -127,6 +127,49 @@ namespace Backbone
           get {return _fireCountdown;}
           protected set {_fireCountdown = value;}
         }
+
+        /// <summary>
+        /// Variable <c>_stage</c> is declared in <c>Tower</c>, but defined by the subclasses
+        /// </summary>
+        private string _stage;
+
+        /// <summary>
+        /// Getters and Setters <c>Stage</c> for <c>_stage</c>
+        /// </summary>
+        public string Stage
+        {
+          get {return _stage;}
+          protected set {_stage = value;}
+        }
+
+        /// <summary>
+        /// Variable <c>_upgradeCost</c> is declared in <c>Tower</c>, but defined by the subclasses
+        /// </summary>
+        private int _upgradeCost;
+
+        /// <summary>
+        /// Getters and Setters <c>UpgradeCost</c> for <c>_upgradeCost</c>
+        /// </summary>
+        public int UpgradeCost
+        {
+          get {return _upgradeCost;}
+          protected set {_upgradeCost = value;}
+        }
+
+        /// <summary>
+        /// Variable <c>_price</c> is declared in <c>Tower</c>, but defined by the subclasses
+        /// </summary>
+        private int _price;
+
+        /// <summary>
+        /// Getters and Setters <c>UpgradeCost</c> for <c>_price</c>
+        /// </summary>
+        public int Price
+        {
+          get {return _price;}
+          protected set {_price = value;}
+        }
+
 
         [Header("Unity Setup - Do not change!")]
         /// <summary>
@@ -159,14 +202,12 @@ namespace Backbone
         //Not via the drag and drop functionality of the Unity GUI
         //I can not figure out, if and how that would be possible
 
-        public string Stage;
 
         /// <summary>
         /// Called before the first Frame, invokes the <c>UpdateTarget()</c> function
         /// </summary>
         void Start()
         {
-          //Stage = "BasicStageOne";
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
 
@@ -175,14 +216,7 @@ namespace Backbone
         ///</summary>
         void UpdateTarget()
         {
-          //while game is paused Enemy search is inactive. This should be unnecessary for game logic
-          //since the targets do not move during pause anyways, but it might save some processing power.
-          // if(!_gameManager.Paused)
-          // {
               GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
-              //legacy code, for possible later usage
-              //float shortestDistance = Mathf.Infinity;
-              //GameObject nearestEnemy = null;
 
               //Enemy selection based on distance of the enemy to the goal rather than the distance to the tower.
               float longestWay = 0;
@@ -206,30 +240,6 @@ namespace Backbone
                     target = null;
                   }
               }
-
-
-
-              // Legacy: Enemy selection based on Distance to Tower
-              /*
-              foreach (GameObject enemy in enemies)
-              {
-                float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-                if (distanceToEnemy < shortestDistance)
-                {
-                  shortestDistance = distanceToEnemy;
-                  nearestEnemy = enemy;
-                }
-              }
-              if (nearestEnemy != null && shortestDistance <= _range)
-              {
-                target = nearestEnemy.transform;
-              }
-              else
-              {
-                target=null;
-              }
-              */
-          // }
         }
 
 
@@ -242,34 +252,6 @@ namespace Backbone
         ///</summary>
         void Update()
         {
-          // // DEBUG start/pause function
-          // if(Input.GetKeyDown(KeyCode.Space))
-          // {
-          //     if(!_gameManager.Paused)
-          //     {
-          //       _gameManager.PauseGame();
-          //       if(_gameManager.Paused)
-          //       {
-          //         Debug.Log("Pause");
-          //       }
-          //     }
-          //     else
-          //     {
-          //       _gameManager.StartGame();
-          //       if(!_gameManager.Paused)
-          //       {
-          //         Debug.Log("Start");
-          //       }
-          //     }
-          // }
-          //
-          // //Upgrade
-          // if(Input.GetKeyDown(KeyCode.U))
-          // {
-          //   Debug.Log("f�hre jetzt upgrade aus!");
-          //   Upgrade();
-          // }
-
           //silence this method, while there is no enemy in Range
           if (target == null)
             return;
@@ -305,7 +287,7 @@ namespace Backbone
         ///</summary>
         void Shoot()
         {
-          Debug.Log("shots fired"); //debug
+          //Debug.Log("shots fired"); //debug
           GameObject stingGO = (GameObject)Instantiate (StingPrefab, FirePoint.position, FirePoint.rotation);
           Sting sting = stingGO.GetComponent<Sting>();
           if (sting != null)
@@ -342,31 +324,9 @@ namespace Backbone
         ///</summary>
         public virtual void Upgrade()
         {
-            Debug.Log("leere Methode");
+          Debug.Log("empty method");
           return;
         }
-
-        /*
-        public void Chosen()
-        {
-            //TODO
-            //Radius anzeigen hier einf�gen
-
-            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgew�hlt wurde
-            gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            Debug.Log("Turm ausgew�hlt");
-        }
-        */
-
-        public void UpgradeTower()
-        {
-            ///Upgrade wird ausgef�hrt und Upgrade Button verschwindet wieder.
-            Debug.Log("Upgrade durchgef�������hrt." + Stage);
-
-
-            gameObject.transform.GetChild(1).gameObject.SetActive(false);
-        }
-
 
         ///<summary>
         ///Function <c>DestroyScriptInstance()</c>Helper for <c> Upgrade()</c> method

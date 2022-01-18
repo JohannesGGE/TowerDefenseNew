@@ -8,45 +8,74 @@ namespace Backbone
 
     public class TowerOverlay : Tower
     {
+        /// <summary>
+        /// Variable <c>_actualStage</c> is declared in <c>TowerOverlay</c>, but defined by the subclasses
+        /// </summary>
+        private string _actualStage;
 
-        public string ActualStage;
-
-        private GameManager _gameManager;
-
-        public TowerOverlay()
+        /// <summary>
+        /// Getters and Setters <c>ActualStage</c> for <c>_actualStage</c>
+        /// </summary>
+        public string ActualStage
         {
-            _gameManager = GameManager.GetInstance();
+          get {return _actualStage;}
+          set {_actualStage = value;}
         }
 
-        // Start is called before the first frame update
-        void Start()
-        {
+        /// <summary>
+        /// Variable <c>_actualCost</c> is declared in <c>TowerOverlay</c>, but defined by the subclasses
+        /// </summary>
+        private int _actualCost;
 
+        /// <summary>
+        /// Getters and Setters <c>ActualCost</c> for <c>_actualCost</c>
+        /// </summary>
+        public int ActualCost
+        {
+          get {return _actualCost;}
+          set {_actualCost = value;}
         }
 
-        // Update is called once per frame
-        void Update()
-        {
+        /// <summary>
+        /// Variable <c>_actualRange</c> is declared in <c>TowerOverlay</c>, but defined by the subclasses
+        /// </summary>
+        private float _actualRange;
 
+        /// <summary>
+        /// Getters and Setters <c>ActualRange</c> for <c>_actualRange</c>
+        /// </summary>
+        public float ActualRange
+        {
+          get {return _actualRange;}
+          set {_actualRange = value;}
         }
+
         public void Chosen()
         {
             //TODO
-            //Radius anzeigen hier einfügen
+            //Radius anzeigen hier einfï¿½gen
 
-            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgewählt wurde
+
+            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgewï¿½hlt wurde
             //TODO
             //if Upgrade possible/enough Money -> gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            
+
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            Debug.Log("Turm ausgewählt");
+            Debug.Log("Tower selected");
+        }
+
+        ///<summary>
+        ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
+        ///</summary>
+        void OnDrawGizmosSelected()
+        {
+          Gizmos.color = Color.red;
+          Gizmos.DrawWireSphere(transform.position, ActualRange);
         }
 
 
         public void StageUpgrade()
         {
-            //gameObject.GetComponent<BasicTower1>().Stage
-
 
             Debug.Log("Stage des Turms: " + ActualStage);
 
@@ -54,33 +83,65 @@ namespace Backbone
             {
                 case "BasicStageOne":
                     ///if money = enough
-                    Debug.Log("actuel coins: " +_gameManager.Coins);
-                    if (_gameManager.Coins >= 10)
-                    { gameObject.GetComponent<BasicTower1>().Upgrade();
-                        _gameManager.ReduceCoins(10);
+                    Debug.Log("actual coins: " +_gameManager.Coins);
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<BasicTower1>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
                     }
                     else
-                    { Debug.Log("nicht genug geld"); }
+                    {Debug.Log("not enough gold");}
                     break;
                     ///
                 case "IceStageOne":
-                    gameObject.GetComponent<IceTower1>().Upgrade();
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<IceTower1>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
+                    }
+                    else
+                    {Debug.Log("not enough gold");}
                     break;
                 case "FireStageOne":
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<FireTower1>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
+                    }
+                    else
+                    {Debug.Log("not enough gold");}
                     gameObject.GetComponent<FireTower1>().Upgrade();
                     break;
                 case "BasicStageTwo":
-                    gameObject.GetComponent<BasicTower2>().Upgrade();
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<BasicTower2>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
+                    }
+                    else
+                    {Debug.Log("not enough gold");}
                     break;
                 case "IceStageTwo":
-                    gameObject.GetComponent<IceTower2>().Upgrade();
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<IceTower2>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
+                    }
+                    else
+                    {Debug.Log("not enough gold");}
                     break;
                 case "FireStageTwo":
-                    gameObject.GetComponent<FireTower2>().Upgrade();
+                    if (_gameManager.Coins >= ActualCost)
+                    {
+                      gameObject.GetComponent<FireTower2>().Upgrade();
+                      _gameManager.ReduceCoins(ActualCost);
+                    }
+                    else
+                    {Debug.Log("not enough gold");}
                     break;
                 default:
                     gameObject.transform.GetChild(1).gameObject.SetActive(false);
-                    Debug.Log("KeinUpgradeMöglich");
+                    Debug.Log("Upgrade not possible");
                     return;
             }
 

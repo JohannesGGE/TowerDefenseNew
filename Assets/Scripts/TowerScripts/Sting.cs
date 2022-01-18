@@ -100,16 +100,6 @@ namespace Backbone
         private float _speed = 800f;
 
         /// <summary>
-        /// Variable <c>_pauseSpeed</c> defines movement speed of projectile while paused
-        /// </summary>
-        private float _pauseSpeed = 0f;
-
-        /// <summary>
-        /// Variable <c>_pauseEndSpeed</c> defines movement speed of projectile when pause ends
-        /// </summary>
-        private float _pauseEndSpeed = 800f;
-
-        /// <summary>
         /// Variable <c>_turnSpeed</c> defines turning speed of projectile
         /// </summary>
         private float _turnSpeed = 100f;
@@ -144,12 +134,6 @@ namespace Backbone
           target = _target;
         }
 
-        //not in use right now
-        void Start()
-        {
-          //VFX = GetComponent<VisualEffect>();
-        }
-
         // Update is called once per frame
         ///<summary>
         ///Function <c>Update()</c> calculates the direction of the Sting
@@ -157,11 +141,6 @@ namespace Backbone
         ///</summary>
         void Update()
         {
-          // //VFX.playRate = timeScale;
-          // if(!_gameManager.Paused)
-          // {
-              _speed = _pauseEndSpeed;
-              //timeScale = 1.0f;
               if (target != null)
               {
                   //rotate the Sting towards the target
@@ -186,13 +165,6 @@ namespace Backbone
                   transform.Translate(dirBackup.normalized * distanceThisFrame, Space.World);
                   Destroy(gameObject, 4f);
               }
-            //
-            // }
-            // else
-            // {
-            //   _speed = _pauseSpeed;
-            //   //timeScale = 0f;
-            // }
         }
 
         ///<summary>

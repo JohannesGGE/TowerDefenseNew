@@ -7,24 +7,18 @@ namespace Backbone
 {
     public class FireTower1 : Tower
     {
-        /// <summary>
-        /// Variable <c>_gameManager</c> for instatianting the GameManager class
-        /// </summary>
-        private GameManager _gameManager;
-
-        public FireTower1()
-        {
-            _gameManager = GameManager.GetInstance();
-        }
-
         // Start is called before the first frame update
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
+          Price = 20;
+          UpgradeCost = 10;
+          gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Stage = "FireStageOne";
           gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
           TowerDamage = 3;
           Range = 300f;
+          gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
           FireRate = 1f;
           FireCountdown = 0f;
           TowerEffect = "fire";
