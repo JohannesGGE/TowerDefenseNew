@@ -177,8 +177,8 @@ namespace Backbone
         {
           //while game is paused Enemy search is inactive. This should be unnecessary for game logic
           //since the targets do not move during pause anyways, but it might save some processing power.
-          if(!_gameManager.Paused)
-          {
+          // if(!_gameManager.Paused)
+          // {
               GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
               //legacy code, for possible later usage
               //float shortestDistance = Mathf.Infinity;
@@ -229,7 +229,7 @@ namespace Backbone
                 target=null;
               }
               */
-          }
+          // }
         }
 
 
@@ -242,33 +242,33 @@ namespace Backbone
         ///</summary>
         void Update()
         {
-          // DEBUG start/pause function
-          if(Input.GetKeyDown(KeyCode.Space))
-          {
-              if(!_gameManager.Paused)
-              {
-                _gameManager.PauseGame();
-                if(_gameManager.Paused)
-                {
-                  Debug.Log("Pause");
-                }
-              }
-              else
-              {
-                _gameManager.StartGame();
-                if(!_gameManager.Paused)
-                {
-                  Debug.Log("Start");
-                }
-              }
-          }
-
-          //Upgrade
-          if(Input.GetKeyDown(KeyCode.U))
-          {
-            Debug.Log("führe jetzt upgrade aus!");
-            Upgrade();
-          }
+          // // DEBUG start/pause function
+          // if(Input.GetKeyDown(KeyCode.Space))
+          // {
+          //     if(!_gameManager.Paused)
+          //     {
+          //       _gameManager.PauseGame();
+          //       if(_gameManager.Paused)
+          //       {
+          //         Debug.Log("Pause");
+          //       }
+          //     }
+          //     else
+          //     {
+          //       _gameManager.StartGame();
+          //       if(!_gameManager.Paused)
+          //       {
+          //         Debug.Log("Start");
+          //       }
+          //     }
+          // }
+          //
+          // //Upgrade
+          // if(Input.GetKeyDown(KeyCode.U))
+          // {
+          //   Debug.Log("fï¿½hre jetzt upgrade aus!");
+          //   Upgrade();
+          // }
 
           //silence this method, while there is no enemy in Range
           if (target == null)
@@ -350,18 +350,18 @@ namespace Backbone
         public void Chosen()
         {
             //TODO
-            //Radius anzeigen hier einfügen
+            //Radius anzeigen hier einfï¿½gen
 
-            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgewählt wurde
+            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgewï¿½hlt wurde
             gameObject.transform.GetChild(1).gameObject.SetActive(true);
-            Debug.Log("Turm ausgewählt");
+            Debug.Log("Turm ausgewï¿½hlt");
         }
         */
 
         public void UpgradeTower()
         {
-            ///Upgrade wird ausgeführt und Upgrade Button verschwindet wieder.
-            Debug.Log("Upgrade durchgefüüüüüüührt." + Stage);
+            ///Upgrade wird ausgefï¿½hrt und Upgrade Button verschwindet wieder.
+            Debug.Log("Upgrade durchgefï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½hrt." + Stage);
 
 
             gameObject.transform.GetChild(1).gameObject.SetActive(false);

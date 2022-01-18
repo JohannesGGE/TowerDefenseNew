@@ -67,7 +67,7 @@ public class WaveSpawner : MonoBehaviour
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
         /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
-        if (_countdown <= 0f && _gameManager.AllEnemySpawned == false)
+        if (!_gameManager.Paused && _countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
             StartCoroutine(SpawnWave());
             _countdown = timeBetweenWaves;
@@ -76,7 +76,7 @@ public class WaveSpawner : MonoBehaviour
         }
 
         /// wenn letzter Vogel gespawnt ist, beginnt der Timer
-        if (_canSpawn == true)
+        if (!_gameManager.Paused && _canSpawn == true)
         {
             _countdown -= Time.deltaTime;
         }

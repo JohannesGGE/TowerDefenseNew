@@ -5,10 +5,14 @@ using Classes;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
+using UnityEngine.UI;
 
 
 public class LevelMenu : MonoBehaviour
 {
+    public Sprite[] playPauseButtonSprites; // 0: play , 1: Pause
+    public Sprite[] doubleButtonSprites; // 0: inactive, 1: active 
+    
     private GameManager _gameManager;
 
     private TextMeshProUGUI _live;
@@ -16,17 +20,17 @@ public class LevelMenu : MonoBehaviour
     private int _damage;
 
     /// <summary>
-    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgeführt wird
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefï¿½hrt wird
     /// </summary>
     private void Start() {
         _gameManager = GameManager.GetInstance();
 
         // TODO DISPLAY COINS AND LIVES ausprobieren wie man darauf zugreift!
-        // Zugriff über: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
+        // Zugriff ï¿½ber: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
 
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
         //_damage = 50;
-        //Life ändern
+        //Life ï¿½ndern
         _live.text = _damage.ToString();
 
         _money = GameObject.FindWithTag("Money").GetComponent<TextMeshProUGUI>();
@@ -34,12 +38,24 @@ public class LevelMenu : MonoBehaviour
         Debug.Log("Money: " + _money.text);
         Debug.Log("Lives: " + _live.text);
 
+        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
+        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
 
+        if(_gameManager.Paused) {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+        } else {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+        }
 
+        if(_gameManager.DoubleSpeed) {
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
+        } else {
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+        }
     }
 
     /// <summary>
-    /// Methode die jedes Frame aufgerufen wird, während das Skript läuft
+    /// Methode die jedes Frame aufgerufen wird, wï¿½hrend das Skript lï¿½uft
     /// </summary>
     public void Update()
     {
@@ -59,12 +75,12 @@ public class LevelMenu : MonoBehaviour
         // TODO DISPLAY COINS AND LIVES
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
-        // _gameManager.Coins;  Zugriff für LevelManager ermöglichen
+        // _gameManager.Coins;  Zugriff fï¿½r LevelManager ermï¿½glichen
         // _gameManager.Lives;
     }
 
     /// <summary>
-    /// Methode <c> BackToMain </c> ermöglicht den Wechsel aus der Spielszene zurück in die Hauptmenü Szene
+    /// Methode <c> BackToMain </c> ermï¿½glicht den Wechsel aus der Spielszene zurï¿½ck in die Hauptmenï¿½ Szene
     /// </summary>
     public void BackToMain()
     {
@@ -72,15 +88,45 @@ public class LevelMenu : MonoBehaviour
         SceneManager.LoadScene(1);
     }
 
-    // TODO implement function call
     /// <summary>
     /// Pausiert oder setzt das Spiel fort
     /// </summary>
-    public void PauseButtonClick() {
-        if(_gameManager.Paused) {
+    public void Pause_PlayButtonClick() {
+        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
+        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
+
+        if(_gameManager.DoubleSpeed) {
             _gameManager.StartGame();
-        } else {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+        } else if(!_gameManager.Paused) {
             _gameManager.PauseGame();
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+        } else if(_gameManager.Paused) {
+            _gameManager.StartGame();
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+        }
+    }
+    
+    /// <summary>
+    /// Verdoppelt die Geschwindigkeit im Spiel
+    /// </summary>
+    public void DoubleButtonClick() {
+        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
+        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
+        
+        if(_gameManager.DoubleSpeed) {
+            _gameManager.StartGame();
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+        } else if(_gameManager.Paused) {
+            _gameManager.DoubleGame();
+            // playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
+        } else if(!_gameManager.Paused) {
+            _gameManager.DoubleGame();
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
         }
     }
 
