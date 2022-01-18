@@ -15,6 +15,8 @@ TagManager:
   - RedTower
   - YellowTower
   - BasicTower
+  - PlayPauseButton
+  - FastForwardButton
   layers:
   - Default
   - TransparentFX

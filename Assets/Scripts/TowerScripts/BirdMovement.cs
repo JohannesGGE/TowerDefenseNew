@@ -36,15 +36,15 @@ namespace Backbone
         // Update is called once per frame
         void Update()
         {
-          if (!_gameManager.Paused)
-          {
+          // if (!_gameManager.Paused)
+          // {
               rb.velocity = Vector3.right*3f;
-
-          }
-          else
-          {
-              rb.velocity = Vector3.right*0f;
-          }
+          //
+          // }
+          // else
+          // {
+          //     rb.velocity = Vector3.right*0f;
+          // }
           ///DEBUG tool
           if(Input.GetKeyDown(KeyCode.D))
           {

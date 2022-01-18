@@ -157,9 +157,9 @@ namespace Backbone
         ///</summary>
         void Update()
         {
-          //VFX.playRate = timeScale;
-          if(!_gameManager.Paused)
-          {
+          // //VFX.playRate = timeScale;
+          // if(!_gameManager.Paused)
+          // {
               _speed = _pauseEndSpeed;
               //timeScale = 1.0f;
               if (target != null)
@@ -186,13 +186,13 @@ namespace Backbone
                   transform.Translate(dirBackup.normalized * distanceThisFrame, Space.World);
                   Destroy(gameObject, 4f);
               }
-
-            }
-            else
-            {
-              _speed = _pauseSpeed;
-              //timeScale = 0f;
-            }
+            //
+            // }
+            // else
+            // {
+            //   _speed = _pauseSpeed;
+            //   //timeScale = 0f;
+            // }
         }
 
         ///<summary>
