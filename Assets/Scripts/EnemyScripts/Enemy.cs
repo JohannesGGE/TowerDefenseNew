@@ -106,8 +106,6 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator SlowDmg(float _pct, float duration)
     {
-        if (!_gameManager.Paused)
-        {
             speed = speed * (1f - _pct);
             if (speed <= startSpeed / 2)
             {
@@ -116,7 +114,6 @@ public class Enemy : MonoBehaviour
             yield return new WaitForSeconds(duration);
 
             speed = startSpeed;
-        }
     }
 
     public void TakeFire(float amount, float count, float duration)
@@ -135,11 +132,8 @@ public class Enemy : MonoBehaviour
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
     public IEnumerator FireDmg(float amount, float count, float duration)
     {
-    
          int currentCount = 0;
 
-        if (!_gameManager.Paused)
-        {
             while (currentCount < count)
             {
                 TakeDamage(amount);
@@ -148,7 +142,6 @@ public class Enemy : MonoBehaviour
                 Debug.Log("Brennt " + currentCount + "Mal");
             }
             _onFire = false;
-        }
     }
     /// <summary>
     /// Toetet den Vogel und fuegt Coins beim Spieler hinzu

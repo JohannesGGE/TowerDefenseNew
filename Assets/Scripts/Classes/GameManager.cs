@@ -1,3 +1,5 @@
+using UnityEngine;
+
 namespace Classes {
     
     /// <summary>
@@ -14,6 +16,11 @@ namespace Classes {
         /// Variable <c>_paused</c> enthaelt, ob das Spiel pausiert ist
         /// </summary>
         private bool _paused;
+
+        /// <summary>
+        /// Variable <c>_doubleSpeed</c> enthaelt, ob das Spiel mit doppelter Geschwindigkeit laeuft
+        /// </summary>
+        private bool _doubleSpeed;
 
         /// <summary>
         /// Variable <c>_allEnemySpawned</c> enthaelt, ob in der letzen Welle der letze Vogel gespawnt wurde
@@ -77,14 +84,25 @@ namespace Classes {
         /// Startet das Spiel/Setzt das Spiel fort
         /// </summary>
         public void StartGame() {
+            Time.timeScale = 1;
             _paused = false;
+            _doubleSpeed = false;
         }
 
         /// <summary>
         /// Pausiert das Spiel
         /// </summary>
         public void PauseGame() {
+            Time.timeScale = 0;
             _paused = true;
+        }
+
+        /// <summary>
+        /// Verdoppelt die Spielgeschwindigkeit
+        /// </summary>
+        public void DoubleGame() {
+            Time.timeScale = 2;
+            _doubleSpeed = true;
         }
 
         /// <summary>
@@ -115,6 +133,11 @@ namespace Classes {
         /// enthaelt, ob das Spiel pausiert ist
         /// </summary>
         public bool Paused => _paused;
+
+        /// <summary>
+        /// enthaelt, ob das Spiel mit doppelter Geschwindigkeit laeuft
+        /// </summary>
+        public bool DoubleSpeed => _doubleSpeed;
 
         /// <summary>
         /// enthaelt, ob in der letzen Welle der letze Vogel gespawnt wurde
