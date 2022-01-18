@@ -103,6 +103,7 @@ namespace Classes {
         public void DoubleGame() {
             Time.timeScale = 2;
             _doubleSpeed = true;
+            _paused = false;
         }
 
         /// <summary>
