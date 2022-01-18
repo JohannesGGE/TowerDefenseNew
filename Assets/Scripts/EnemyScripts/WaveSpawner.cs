@@ -56,7 +56,6 @@ public class WaveSpawner : MonoBehaviour
     void Start ()
     {
       waves = _gameManager.Level.Waves;
-      _gameManager.StartGame();
     }
 
     /// <summary>
@@ -67,8 +66,6 @@ public class WaveSpawner : MonoBehaviour
        /// Array mit lebenden Voegeln anlegen
         GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
 
-        if (!_gameManager.Paused)
-        { 
         /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
         if (_countdown <= 0f && _gameManager.AllEnemySpawned == false)
         {
@@ -96,7 +93,6 @@ public class WaveSpawner : MonoBehaviour
                 _gameManager.LastEnemyKilled = true;
             }
         }
-       }
     }
     /// <summary>
     /// Spawnt die Welle

@@ -26,8 +26,6 @@ public class EnemyMovement : MonoBehaviour
 
         _target = Waypoints.points[0];
 
-        _gameManager.StartGame();
-
         mySpriteRenderer = GetComponent<SpriteRenderer>();
 
     }
@@ -38,9 +36,6 @@ public class EnemyMovement : MonoBehaviour
     /// 
     void Update()
     {
-
-        if (!_gameManager.Paused)
-        {
             Vector3 dir = _target.position - transform.position;
             transform.Translate(dir.normalized * _enemy.speed * Time.deltaTime, Space.World);
 
@@ -53,12 +48,11 @@ public class EnemyMovement : MonoBehaviour
                 mySpriteRenderer.flipX = true;
             }
 
-            if (Vector3.Distance(transform.position, _target.position) <= 0.4f)
+            if (Vector3.Distance(transform.position, _target.position) <= 2f)
 		{
 			GetNextWaypoint();
 		}
 	
-        }
     }
 
 
