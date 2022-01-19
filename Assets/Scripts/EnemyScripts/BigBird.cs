@@ -7,9 +7,9 @@ namespace Backbone {
         
 
         void Start() {
-            _health = 100;
-            _worth = 20;
-            _birdDamage = 10;
+            _health = GameValues.BigBirdHealth;
+            _worth = GameValues.BigBirdWorth;
+            _birdDamage = GameValues.BigBirdDamage;
             
         }
     }

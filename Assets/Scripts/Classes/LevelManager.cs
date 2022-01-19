@@ -55,35 +55,16 @@ namespace Classes {
         /// Configuriert die Level und fuellt <c>_levels</c>
         /// </summary>
         private void SetLevelConfig() {
-            //Evt. bessere Implementierung möglich 
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Level level1 = new Level(new []{wave1, wave2}, true);
-            
-            wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            Level level2 = new Level(new []{wave1, wave2, wave3}, false);
-            
-            Level level3 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level4 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level5 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level6 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level7 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level8 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level9 = new Level(new []{wave1, wave2, wave3}, false);
-            Level level10 = new Level(new []{wave1, wave2, wave3}, false);
-
-            _levels.Add(level1);
-            _levels.Add(level2);
-            _levels.Add(level3);
-            _levels.Add(level4);
-            _levels.Add(level5);
-            _levels.Add(level6);
-            _levels.Add(level7);
-            _levels.Add(level8);
-            _levels.Add(level9);
-            _levels.Add(level10);
+            _levels.Add(GameValues.GetLevel1());
+            _levels.Add(GameValues.GetLevel2());
+            _levels.Add(GameValues.GetLevel3());
+            _levels.Add(GameValues.GetLevel4());
+            _levels.Add(GameValues.GetLevel5());
+            _levels.Add(GameValues.GetLevel6());
+            _levels.Add(GameValues.GetLevel7());
+            _levels.Add(GameValues.GetLevel8());
+            _levels.Add(GameValues.GetLevel9());
+            _levels.Add(GameValues.GetLevel10());
         }
 
         /// <summary>

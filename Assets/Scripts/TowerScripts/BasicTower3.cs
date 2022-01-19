@@ -10,18 +10,18 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
-          UpgradeCost = 10;
+          UpgradeCost = GameValues.UpgradeCostBasicTower3;
           gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Stage = "BasicStageThree";
           gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
           FirePoint =gameObject.GetComponent<BasicTower2>().FirePoint;
           PartToRotate=gameObject.GetComponent<BasicTower2>().FirePoint;
           StingPrefab=gameObject.GetComponent<BasicTower2>().StingPrefab;
-          TowerDamage = 10;
-          Range = 300f;
+          TowerDamage = GameValues.DamageBasicTower3;
+          Range = GameValues.RangeBasicTower3;
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
-          FireRate = 1f;
-          FireCountdown = 0f;
+          FireRate = GameValues.FireRateBasicTower3;
+          FireCountdown = GameValues.FireCountdownBasicTower3;
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }

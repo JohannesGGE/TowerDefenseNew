@@ -97,12 +97,12 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_speed</c> defines movement speed of projectile
         /// </summary>
-        private float _speed = 800f;
+        private float _speed = GameValues.StingSpeed;
 
         /// <summary>
         /// Variable <c>_turnSpeed</c> defines turning speed of projectile
         /// </summary>
-        private float _turnSpeed = 100f;
+        private float _turnSpeed = GameValues.StingTurnSpeed;
 
         [Header("Unity Setup - Do not change!")]
 

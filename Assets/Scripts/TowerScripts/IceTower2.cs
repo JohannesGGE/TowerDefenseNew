@@ -10,7 +10,7 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
-          UpgradeCost = 10;
+          UpgradeCost = GameValues.UpgradeCostIceTower2;
           gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Debug.Log("Upgrade success"); //DEBUG
           Stage = "IceStageTwo";
@@ -18,13 +18,13 @@ namespace Backbone
           FirePoint =gameObject.GetComponent<IceTower1>().FirePoint;
           PartToRotate=gameObject.GetComponent<IceTower1>().FirePoint;
           StingPrefab=gameObject.GetComponent<IceTower1>().StingPrefab;
-          TowerDamage = 0;
-          Range = 300f;
+          TowerDamage = GameValues.DamageIceTower2;
+          Range = GameValues.RangeIceTower2;
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
-          FireRate = 1f;
-          FireCountdown = 0f;
-          IceDuration=3f;
-          IceDelay=0.15f;
+          FireRate = GameValues.FireRateIceTower2;
+          FireCountdown = GameValues.FireCountdownIceTower2;
+          IceDelay=GameValues.IceDelayIceTower2;
+          IceDuration=GameValues.IceDurationIceTower2;
           TowerEffect = "ice";
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);

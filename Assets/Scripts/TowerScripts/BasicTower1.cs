@@ -11,16 +11,16 @@ namespace Backbone
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
-          Price = 20;
-          UpgradeCost = 10;
+          Price = GameValues.PriceBasicTower;
+          UpgradeCost = GameValues.UpgradeCostBasicTower1;
           gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Stage = "BasicStageOne";
           gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
-          TowerDamage = 5;
-          Range = 300f;
+          TowerDamage = GameValues.DamageBasicTower1;
+          Range = GameValues.RangeBasicTower1;
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
-          FireRate = 1f;
-          FireCountdown = 0f;
+          FireRate = GameValues.FireRateBasicTower1;
+          FireCountdown = GameValues.FireCountdownBasicTower1;
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
