@@ -81,12 +81,6 @@ public class LevelMenu : MonoBehaviour
             WinOverlay();
         }
 
-
-        // TODO DISPLAY COINS AND LIVES
-        _live.text = _gameManager.Lives.ToString();
-        _money.text = _gameManager.Coins.ToString();
-        // _gameManager.Coins;  Zugriff f�r LevelManager erm�glichen
-        // _gameManager.Lives;
     }
 
     /// <summary>

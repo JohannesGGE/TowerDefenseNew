@@ -18,8 +18,8 @@ namespace Backbone
         /// </summary>
         public string ActualStage
         {
-          get {return _actualStage;}
-          set {_actualStage = value;}
+            get { return _actualStage; }
+            set { _actualStage = value; }
         }
 
         /// <summary>
@@ -32,8 +32,8 @@ namespace Backbone
         /// </summary>
         public int ActualCost
         {
-          get {return _actualCost;}
-          set {_actualCost = value;}
+            get { return _actualCost; }
+            set { _actualCost = value; }
         }
 
         /// <summary>
@@ -46,8 +46,8 @@ namespace Backbone
         /// </summary>
         public float ActualRange
         {
-          get {return _actualRange;}
-          set {_actualRange = value;}
+            get { return _actualRange; }
+            set { _actualRange = value; }
         }
 
 
@@ -62,22 +62,24 @@ namespace Backbone
             //if Upgrade possible/enough Money -> gameObject.transform.GetChild(1).gameObject.SetActive(true);
 
 
-        ///<summary>
-        ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
-        ///</summary>
-        void OnDrawGizmosSelected()
-        {
-          Gizmos.color = Color.red;
-          Gizmos.DrawWireSphere(transform.position, ActualRange);
-
-            chosen = true;
-            if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" || 
-                ActualStage == "IceStageOne"|| ActualStage == "IceStageTwo" || 
-                ActualStage == "FireStageOne" || ActualStage == "FireStageTwo" )
+            ///<summary>
+            ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
+            ///</summary>
+            void OnDrawGizmosSelected()
             {
-                gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
-            
+                Gizmos.color = Color.red;
+                Gizmos.DrawWireSphere(transform.position, ActualRange);
+            }
+                
+            chosen = true;
+            if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
+                ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
+                ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
+            { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
+
             Debug.Log("Tower selected");
+            
+
         }
 
 
@@ -92,73 +94,73 @@ namespace Backbone
                 case "BasicStageOne":
                     ///if money = enough
 
-                    Debug.Log("actual coins: " +_gameManager.Coins);
+                    Debug.Log("actual coins: " + _gameManager.Coins);
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<BasicTower1>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-					  gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
+                        gameObject.GetComponent<BasicTower1>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     break;
-                    ///
+                ///
                 case "IceStageOne":
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<IceTower1>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-  					  gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
+                        gameObject.GetComponent<IceTower1>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     break;
                 case "FireStageOne":
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<FireTower1>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-  					  gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage2").gameObject.SetActive(true); 
+                        gameObject.GetComponent<FireTower1>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage1").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     gameObject.GetComponent<FireTower1>().Upgrade();
                     break;
                 case "BasicStageTwo":
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<BasicTower2>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-					  gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
+                        gameObject.GetComponent<BasicTower2>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     break;
                 case "IceStageTwo":
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<IceTower2>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-					  gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
+                        gameObject.GetComponent<IceTower2>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     break;
                 case "FireStageTwo":
                     if (_gameManager.Coins >= ActualCost)
                     {
-                      gameObject.GetComponent<FireTower2>().Upgrade();
-                      _gameManager.ReduceCoins(ActualCost);
-					  gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
-                      gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
+                        gameObject.GetComponent<FireTower2>().Upgrade();
+                        _gameManager.ReduceCoins(ActualCost);
+                        gameObject.transform.Find("TowerStage2").gameObject.SetActive(false);
+                        gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    {Debug.Log("not enough gold");}
+                    { Debug.Log("not enough gold"); }
                     break;
 
                 default:
@@ -168,5 +170,6 @@ namespace Backbone
             gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
 
         }
+
     }
 }
