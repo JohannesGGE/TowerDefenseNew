@@ -89,7 +89,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_range</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
-        private float _range = 5f;
+        private float _range;
 
         /// <summary>
         /// Getters and Setters <c>Range</c> for <c>_range</c>
@@ -103,7 +103,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_fireRate</c> is declared in <c>Tower</c>, but defined by the subclasses
         /// </summary>
-        private float _fireRate = 1f;
+        private float _fireRate;
 
         /// <summary>
         /// Getters and Setters <c>FireRate</c> for <c>_fireRate</c>
@@ -180,7 +180,7 @@ namespace Backbone
         /// <summary>
         /// Variable <c>_turnSpeed</c> is defined in <c>Tower</c>
         /// </summary>
-        private float _turnSpeed = 10f;
+        private float _turnSpeed = GameValues.TowerTurnSpeed;
 
 
 
@@ -256,8 +256,8 @@ namespace Backbone
           if (target == null)
             return;
           //while game is paused target tracking, <c>Shoot()</c> and <c>fireCountdown</c> are inactive
-          if(!_gameManager.Paused)
-          {
+          // if(!_gameManager.Paused)
+          // {
               //Rotate the firepoint to the Position of the target
               //3D Vector with the direction on Tower -> Target
               Vector3 dir = target.position - transform.position;
@@ -278,7 +278,7 @@ namespace Backbone
               }
 
               _fireCountdown -= Time.deltaTime;
-          }
+          // }
         }
 
         //TODO include IceTower abilities here and in Sting script

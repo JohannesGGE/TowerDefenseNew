@@ -21,7 +21,7 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
-    public float startSpeed = 5f;
+    public float startSpeed = GameValues.EnemyInitialSpeed;
 
     /// <summary>
     /// Variable <c> dist </c> enthaelt zurueckgelegte Strecke des Vogels
@@ -106,9 +106,9 @@ public class Enemy : MonoBehaviour
     private IEnumerator SlowDmg(float _pct, float duration)
     {
             speed = speed * (1f - _pct);
-            if (speed <= startSpeed / 2)
+            if (speed <= startSpeed / GameValues.MaxSlownessDivider)
             {
-                speed = startSpeed / 2;
+                speed = startSpeed / GameValues.SlownessDividerPerHit;
             }
             yield return new WaitForSeconds(duration);
 

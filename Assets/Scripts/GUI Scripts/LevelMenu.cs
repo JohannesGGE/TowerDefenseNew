@@ -72,11 +72,8 @@ public class LevelMenu : MonoBehaviour
         }
 
 
-        // TODO DISPLAY COINS AND LIVES
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
-        // _gameManager.Coins;  Zugriff f�r LevelManager erm�glichen
-        // _gameManager.Lives;
     }
 
     /// <summary>
@@ -136,15 +133,15 @@ public class LevelMenu : MonoBehaviour
     /// im Level
     /// </summary>
     private void CalculateAndSaveStars() {
-        if(_gameManager.Level.Stars <= 0) {
+        if(_gameManager.Level.Stars <= GameValues.LivesToGet1Star) {
             _gameManager.Level.Stars = 1;
         }
         
-        if(_gameManager.Lives > 50 && _gameManager.Level.Stars <= 1) {
+        if(_gameManager.Lives > GameValues.LivesToGet2Star && _gameManager.Level.Stars <= 1) {
             _gameManager.Level.Stars = 2;
         }
 
-        if(_gameManager.Lives > 95 && _gameManager.Level.Stars <= 2) {
+        if(_gameManager.Lives >= GameValues.LivesToGet3Star && _gameManager.Level.Stars <= 2) {
             _gameManager.Level.Stars = 3;
         }
     }

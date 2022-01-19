@@ -37,9 +37,9 @@ public class WaveSpawner : MonoBehaviour
     /// <summary>
     /// Variable <c> timeBetweenWaves </c> enthaelt die Zeit zwischen den Wellen
     /// </summary>
-    public float timeBetweenWaves = 5f;
+    public float timeBetweenWaves = GameValues.TimeBetweenWaves;
     
-    private float _countdown = 2f;
+    private float _countdown = GameValues.CountdownBeforeFirstBird;
     
     private int _waveIndex = 0;
 

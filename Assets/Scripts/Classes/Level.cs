@@ -24,6 +24,7 @@ namespace Classes {
         /// Konstruktor, setzt die Uebergebenen Wellen und setzt Sterne 0
         /// </summary>
         /// <param name="waves">zu setzende Wellen</param>
+        /// <param name="unlocked">ist das Level entsperrt</param>
         public Level(Wave[] waves, bool unlocked) {
             _waves = waves;
             _unlocked = unlocked;

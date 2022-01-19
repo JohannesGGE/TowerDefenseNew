@@ -11,18 +11,18 @@ namespace Backbone
         //outdated: new keyword if hiding the Base Class Method is needed
         void Start()
         {
-          Price = 20;
-          UpgradeCost = 10;
+          Price = GameValues.PriceIceTower;
+          UpgradeCost = GameValues.UpgradeCostIceTower1;
           gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Stage = "IceStageOne";
           gameObject.GetComponent<TowerOverlay>().ActualStage = Stage;
-          TowerDamage = 0;
-          Range = 300f;
+          TowerDamage = GameValues.DamageIceTower1;
+          Range = GameValues.RangeIceTower1;
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
-          FireRate = 1f;
-          FireCountdown = 0f;
-          IceDelay=0.2f;
-          IceDuration=2f;
+          FireRate = GameValues.FireRateIceTower1;
+          FireCountdown = GameValues.FireCountdownIceTower1;
+          IceDelay=GameValues.IceDelayIceTower1;
+          IceDuration=GameValues.IceDurationIceTower1;
           TowerEffect = "ice";
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);

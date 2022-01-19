@@ -10,7 +10,7 @@ namespace Backbone
         // Start is called before the first frame update
         void Start()
         {
-          UpgradeCost = 10;
+          UpgradeCost = GameValues.UpgradeCostFireTower3;
           gameObject.GetComponent<TowerOverlay>().ActualCost = UpgradeCost;
           Debug.Log("Upgrade success"); //DEBUG
           Stage = "FireStageThree";
@@ -18,11 +18,11 @@ namespace Backbone
           FirePoint =gameObject.GetComponent<FireTower2>().FirePoint;
           PartToRotate=gameObject.GetComponent<FireTower2>().FirePoint;
           StingPrefab=gameObject.GetComponent<FireTower2>().StingPrefab;
-          TowerDamage = 7;
-          Range = 300f;
+          TowerDamage = GameValues.DamageFireTower3;
+          Range = GameValues.RangeFireTower3;
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
-          FireRate = 1f;
-          FireCountdown = 0f;
+          FireRate = GameValues.FireRateFireTower3;
+          FireCountdown = GameValues.FireCountdownFireTower3;
           TowerEffect = "fire";
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
