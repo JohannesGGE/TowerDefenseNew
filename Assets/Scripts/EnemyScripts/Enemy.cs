@@ -148,8 +148,7 @@ public class Enemy : MonoBehaviour
     void Kill()
     {
         Destroy(gameObject);
-        soundManager.PlayDeath();
-
+        //soundManager.PlayDeath();
         _gameManager.AddCoins(_worth);
     }
 

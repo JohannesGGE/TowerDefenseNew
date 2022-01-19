@@ -50,36 +50,29 @@ namespace Backbone
             set { _actualRange = value; }
         }
 
+        ///<summary>
+        ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
+        ///</summary>
+        void OnDrawGizmosSelected()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, ActualRange);
+        }
 
         public void Chosen()
         {
             //TODO
             //Radius anzeigen hier einf�gen
+            OnDrawGizmosSelected();
 
 
-            ///Upgrade Button wird aktiv gesetzt, wenn Turm ausgew�hlt wurde
-            //TODO
-            //if Upgrade possible/enough Money -> gameObject.transform.GetChild(1).gameObject.SetActive(true);
-
-
-            ///<summary>
-            ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
-            ///</summary>
-            void OnDrawGizmosSelected()
-            {
-                Gizmos.color = Color.red;
-                Gizmos.DrawWireSphere(transform.position, ActualRange);
-            }
-                
-            chosen = true;
+            ///if Stage could be upgraded -> set UpdateButton true
             if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
                 ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
                 ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
             { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
 
             Debug.Log("Tower selected");
-            
-
         }
 
 
