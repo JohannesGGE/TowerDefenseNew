@@ -24,14 +24,6 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
         
         _rectTransform = towerDrag.GetComponent<RectTransform>();
-
-        ///funktioniert eigentlich, platziertes Objekt hat dann aber trotzdem kein aktiviertes Skript
-        //towerDrag.GetComponent<FireTower1>().enabled = false;
-        //towerDrag.GetComponent<BasicTower1>().enabled = false;
-        //towerDrag.GetComponent<IceTower1>().enabled = false;
-        //Debug.Log("Script: " + towerDrag.GetComponent<FireTower1>().enabled);
-
-
         Debug.Log("OnBeginDrag");
 
     }
@@ -52,15 +44,7 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        ///funktioniert eigentlich, platziertes Objekt hat dann aber trotzdem kein aktiviertes Skript
-        //towerDrag.GetComponent<FireTower1>().enabled = true;
-        //towerDrag.GetComponent<BasicTower1>().enabled = true;
-        //towerDrag.GetComponent<IceTower1>().enabled = true;
-        //Debug.Log("Script: " + towerDrag.GetComponent<FireTower1>().enabled);
-
-
         Destroy(towerDrag);   
         Debug.Log("OnEndDrag");
     }
-
 }

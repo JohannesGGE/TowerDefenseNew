@@ -31,7 +31,6 @@ namespace Backbone
 
             gameObject.AddComponent<BasicTower2>();
             DestroyScriptInstance();
-
         }
 
 
