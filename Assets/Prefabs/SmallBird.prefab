@@ -72,6 +72,10 @@ PrefabInstance:
       value: SmallBird
       objectReference: {fileID: 0}
     - target: {fileID: 3350673536608434073, guid: f17f21325addd2144a8cbe65626e62d9, type: 3}
+      propertyPath: m_Layer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3350673536608434073, guid: f17f21325addd2144a8cbe65626e62d9, type: 3}
       propertyPath: m_TagString
       value: Bird
       objectReference: {fileID: 0}

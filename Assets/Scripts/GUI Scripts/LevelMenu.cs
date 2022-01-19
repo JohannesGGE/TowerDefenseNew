@@ -18,6 +18,7 @@ public class LevelMenu : MonoBehaviour
     private TextMeshProUGUI _live;
     private TextMeshProUGUI _money;
     private int _damage;
+    private bool _stopUpdate = false;
 
     /// <summary>
     /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgef�hrt wird
@@ -51,7 +52,7 @@ public class LevelMenu : MonoBehaviour
             fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
         } else {
             fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
-        }
+        }       
     }
 
     /// <summary>
@@ -59,21 +60,33 @@ public class LevelMenu : MonoBehaviour
     /// </summary>
     public void Update()
     {
-        if(_gameManager.Lives <= 0) {
+
+        // TODO DISPLAY COINS AND LIVES
+        _live.text = _gameManager.Lives.ToString();
+        _money.text = _gameManager.Coins.ToString();
+        // _gameManager.Coins;  Zugriff f�r LevelManager erm�glichen
+        // _gameManager.Lives;
+
+        //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
+        if (_gameManager.Lives <= 0) {
             _gameManager.PauseGame();
-            // TODO GAME OVER!!!
+            DefeatOverlay();
         }
         
         if(_gameManager.LastEnemyKilled) {
+            //TODO Count 1 second? damit die letzten Pixel verschwunden sind? 
             _gameManager.PauseGame();
-            // TODO WIN !!!!
             CalculateAndSaveStars();
             UnlockNextLevel();
+            WinOverlay();
         }
 
 
+        // TODO DISPLAY COINS AND LIVES
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
+        // _gameManager.Coins;  Zugriff f�r LevelManager erm�glichen
+        // _gameManager.Lives;
     }
 
     /// <summary>
@@ -83,6 +96,56 @@ public class LevelMenu : MonoBehaviour
     {
         _gameManager.PauseGame();
         SceneManager.LoadScene(1);
+    }
+    /// <summary>
+    /// Defeat Overlay wird aktiviert, wenn Leben auf 0 fallen
+    /// </summary>
+    private void DefeatOverlay()
+    {
+        GameObject DefeatMenu = gameObject.transform.Find("DefeatMenu").gameObject; //->funktioniert mit Fehlermeldung im Log
+        //   DefeatMenu.SetActive(true);
+
+        //GameObject DefeatMenu = GameObject.Find("DefeatMenu").gameObject;
+        DefeatMenu.SetActive(true);
+        
+
+    }
+
+    /// <summary>
+    /// Win Overlay wird aufgerufen, wenn kein Vogel mehr kommt und Leben über 0 sind
+    /// </summary>
+    private void WinOverlay()
+    {
+       // Sprite Sterne = gameObject.transform.Find("Stars").GetComponent<SpriteRenderer>().sprite;
+        GameObject WinMenu = gameObject.transform.Find("WinMenu").gameObject;
+        
+
+        //string StarImage = "Stars/" + _gameManager.Level.Stars.ToString();
+        //Button Stars = gameObject.transform.Find("Stars").GetComponent<Button>();
+        //Stars.image = Resources.Load(StarImage) as Image;
+
+        //Sterne = Resources.Load(StarImage) as Sprite;
+        WinMenu.SetActive(true);
+        
+    }
+
+
+
+
+
+
+
+
+    /// <summary>
+    /// Methode <c> ReloadLevel </c> macht das was sie sagt, sie lädt das Level erneut
+    /// </summary>
+    public void ReloadLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+    public void LoadNextLevel()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
     /// <summary>

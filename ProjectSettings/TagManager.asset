@@ -17,6 +17,8 @@ TagManager:
   - BasicTower
   - PlayPauseButton
   - FastForwardButton
+  - DefeatMenu
+  - WinMenu
   layers:
   - Default
   - TransparentFX
