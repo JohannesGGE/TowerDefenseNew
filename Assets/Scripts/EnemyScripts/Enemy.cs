@@ -62,13 +62,12 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private bool _onFire;
 
-    public bool OnFire {
-        get => _onFire;
-    }
+    protected SoundManager soundManager;
 
     void Start()
     {
         speed = startSpeed;
+        soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
     }
 
     void Update()
@@ -149,7 +148,7 @@ public class Enemy : MonoBehaviour
     void Kill()
     {
         Destroy(gameObject);
-
+        soundManager.PlayDeath();
 
         _gameManager.AddCoins(_worth);
     }
