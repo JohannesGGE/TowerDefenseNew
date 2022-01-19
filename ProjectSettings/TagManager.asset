@@ -19,6 +19,8 @@ TagManager:
   - FastForwardButton
   - DefeatMenu
   - WinMenu
+  - AudioReglerBackground
+  - AudioReglerSounds
   layers:
   - Default
   - TransparentFX
