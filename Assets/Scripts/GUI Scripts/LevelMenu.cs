@@ -17,8 +17,6 @@ public class LevelMenu : MonoBehaviour
 
     private TextMeshProUGUI _live;
     private TextMeshProUGUI _money;
-    private int _damage;
-    private bool _stopUpdate = false;
 
     /// <summary>
     /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgef�hrt wird
@@ -26,18 +24,10 @@ public class LevelMenu : MonoBehaviour
     private void Start() {
         _gameManager = GameManager.GetInstance();
 
-        // TODO DISPLAY COINS AND LIVES ausprobieren wie man darauf zugreift!
-        // Zugriff �ber: GameObject.FindWithTag("Life" bzw "Money").GetComponent<TextMeshProUGUI>().text
-
+        //TextObjekt für Live und Money wird Wert(String) zugewiesen
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
-        //_damage = 50;
-        //Life �ndern
-        _live.text = _damage.ToString();
-
         _money = GameObject.FindWithTag("Money").GetComponent<TextMeshProUGUI>();
 
-        Debug.Log("Money: " + _money.text);
-        Debug.Log("Lives: " + _live.text);
 
         Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
         Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
@@ -60,12 +50,9 @@ public class LevelMenu : MonoBehaviour
     /// </summary>
     public void Update()
     {
-
-        // TODO DISPLAY COINS AND LIVES
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
-        // _gameManager.Coins;  Zugriff f�r LevelManager erm�glichen
-        // _gameManager.Lives;
+  
 
         //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
         if (_gameManager.Lives <= 0) {
@@ -74,8 +61,7 @@ public class LevelMenu : MonoBehaviour
         }
         
         if(_gameManager.LastEnemyKilled) {
-            //TODO Count 1 second? damit die letzten Pixel verschwunden sind? 
-            _gameManager.PauseGame();
+            //_gameManager.PauseGame();     //kann man eventuell rauslassen, da eh alle Vögel durch sind. Dann freezed das Spiel auch nicht
             CalculateAndSaveStars();
             UnlockNextLevel();
             WinOverlay();
@@ -91,18 +77,15 @@ public class LevelMenu : MonoBehaviour
         _gameManager.PauseGame();
         SceneManager.LoadScene(1);
     }
+
+
     /// <summary>
     /// Defeat Overlay wird aktiviert, wenn Leben auf 0 fallen
     /// </summary>
     private void DefeatOverlay()
     {
         GameObject DefeatMenu = gameObject.transform.Find("DefeatMenu").gameObject; //->funktioniert mit Fehlermeldung im Log
-        //   DefeatMenu.SetActive(true);
-
-        //GameObject DefeatMenu = GameObject.Find("DefeatMenu").gameObject;
         DefeatMenu.SetActive(true);
-        
-
     }
 
     /// <summary>
@@ -110,17 +93,11 @@ public class LevelMenu : MonoBehaviour
     /// </summary>
     private void WinOverlay()
     {
-       // Sprite Sterne = gameObject.transform.Find("Stars").GetComponent<SpriteRenderer>().sprite;
+        //string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
+        //Stars.image = Resources.Load(StarRoot) as Image;
+        
         GameObject WinMenu = gameObject.transform.Find("WinMenu").gameObject;
-        
-
-        //string StarImage = "Stars/" + _gameManager.Level.Stars.ToString();
-        //Button Stars = gameObject.transform.Find("Stars").GetComponent<Button>();
-        //Stars.image = Resources.Load(StarImage) as Image;
-
-        //Sterne = Resources.Load(StarImage) as Sprite;
         WinMenu.SetActive(true);
-        
     }
 
 
