@@ -47,6 +47,7 @@ namespace Classes {
         /// </summary>
         private Level _level;
 
+
         /// <summary>
         /// Erstellt das <c>GameManager</c> Objekt falls null
         /// </summary>
@@ -173,5 +174,7 @@ namespace Classes {
             get => _level;
             set => _level = value;
         }
+
+
     }
 }

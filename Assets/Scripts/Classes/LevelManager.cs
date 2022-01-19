@@ -3,21 +3,22 @@ using UnityEngine;
 using static Classes.BirdLevel;
 
 namespace Classes {
-    
     /// <summary>
     /// Klasse <c>LevelManager</c> ist Singleton und dient der Datenverwaltung im Menue
     /// </summary>
     public class LevelManager {
-        
         /// <summary>
         /// Variable <c>_instance</c> ist das Objekt der Klasse <c>LevelManager</c>
         /// </summary>
         private static LevelManager _instance;
-        
+
         /// <summary>
         /// Variable <c>_filename</c> enthealt den Namen der Datei fuer LevelStatusSpeicherung
         /// </summary>
-        [SerializeField] private string _filename;
+        [SerializeField] private string _filenameLevel;
+
+
+        [SerializeField] private string _filenameSettings;
 
         /// <summary>
         /// Variable <c>_entries</c> enthealt die gelesenen oder zuschreibenen LevelStatusInformationen
@@ -28,6 +29,11 @@ namespace Classes {
         /// Variable <c>_levels</c> enhaelt die alle Level-Informationen
         /// </summary>
         private List<Level> _levels;
+
+        private float _soundVolume;
+        private float _backgroundVolume;
+
+        private List<Settings> _settings;
 
         /// <summary>
         /// Erstellt das <c>LevelManager</c> Objekt falls null
@@ -46,8 +52,14 @@ namespace Classes {
         /// </summary>
         private LevelManager() {
             _levels = new List<Level>();
-            _entries = new List<LevelEntry> ();
-            _filename = "towerdefense.json";
+            _entries = new List<LevelEntry>();
+            _settings = new List<Settings>();
+            _filenameLevel = "towerdefense.json";
+            _filenameSettings = "towerdefenseSettings.json";
+
+            _backgroundVolume = 0.1f;
+            _soundVolume = 0.2f;
+
             SetLevelConfig();
         }
 
@@ -71,8 +83,8 @@ namespace Classes {
         /// Lead die LevelStatusInformationen aus externer Datei falls vorhanden
         /// </summary>
         public void LoadLevelStatus() {
-            _entries = FileHandler.ReadListFromJSON<LevelEntry> (_filename);
-            
+            _entries = FileHandler.ReadListFromJSON<LevelEntry>(_filenameLevel);
+
             if(_entries.Count == _levels.Count) {
                 for(int i = 0; i < _levels.Count; i++) {
                     _levels[i].Unlocked = _entries[i].unlocked;
@@ -89,12 +101,39 @@ namespace Classes {
             foreach(Level level in _levels) {
                 _entries.Add(new LevelEntry(level.Unlocked, level.Stars));
             }
-            FileHandler.SaveToJSON<LevelEntry> (_entries, _filename);
+
+            FileHandler.SaveToJSON<LevelEntry>(_entries, _filenameLevel);
         }
-        
+
+        public void LoadSettings() {
+            _settings = FileHandler.ReadListFromJSON<Settings>(_filenameSettings);
+            if(_settings.Count == 1) {
+                _backgroundVolume = _settings[0].volumeBackground;
+                _soundVolume = _settings[0].volumeSounds;
+            }
+            
+        }
+
+        public void SaveSettings() {
+            _settings.Clear();
+            _settings.Add(new Settings(_backgroundVolume, _soundVolume));
+            FileHandler.SaveToJSON<Settings>(_settings, _filenameSettings);
+        }
+
         /// <summary>
         /// enhaelt die alle Level-Informationen
         /// </summary>
         public List<Level> Levels => _levels;
+
+
+        public float SoundVolume {
+            get => _soundVolume;
+            set => _soundVolume = value;
+        }
+
+        public float BackgroundVolume {
+            get => _backgroundVolume;
+            set => _backgroundVolume = value;
+        }
     }
 }

@@ -1,9 +1,14 @@
 using System;
+using Classes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
-public class SoundManager : MonoBehaviour
-{
+public class SoundManager : MonoBehaviour {
+
+    private LevelManager _levelManager;
+    
+    private AudioSource BackgroundHauptmenue;
+    private AudioSource BackgroundGame;
     
     private AudioSource BuySound;
     private AudioSource click1;
@@ -25,6 +30,12 @@ public class SoundManager : MonoBehaviour
 
 
     private void Start() {
+        
+        _levelManager = LevelManager.GetInstance();
+
+        BackgroundHauptmenue = gameObject.AddComponent<AudioSource>();
+        BackgroundGame = gameObject.AddComponent<AudioSource>();
+        
         BuySound = gameObject.AddComponent<AudioSource>();
         click1 = gameObject.AddComponent<AudioSource>();
         click2 = gameObject.AddComponent<AudioSource>();
@@ -42,6 +53,11 @@ public class SoundManager : MonoBehaviour
         TowerBuild = gameObject.AddComponent<AudioSource>();
         WaveSpawn = gameObject.AddComponent<AudioSource>();
         Win = gameObject.AddComponent<AudioSource>();
+        
+        
+        
+        BackgroundHauptmenue.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/CountingStars");
+        BackgroundGame.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/Wings");
         
         BuySound.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/BuySound");
         click1.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/click1");
@@ -61,12 +77,53 @@ public class SoundManager : MonoBehaviour
         WaveSpawn.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/WaveSpawn");
         Win.clip = (AudioClip) Resources.Load<AudioClip>("Sounds/Win");
         
-        // TODO Background Music Loopen
-        // Win.loop = true;
-        // Win.volume = 0.1f;
-        // Win.Play();
+        SetVolumeBackground(_levelManager.BackgroundVolume);
+        SetVolumeSounds(_levelManager.SoundVolume);
     }
 
+    public void SetVolumeBackground(float value) {
+        _levelManager.BackgroundVolume = value;
+
+        BackgroundGame.volume = value;
+        BackgroundHauptmenue.volume = value;
+    }
+    
+    public void SetVolumeSounds(float value) {
+        _levelManager.SoundVolume = value;
+        
+        BuySound.volume = value;
+        click1.volume = value;
+        click2.volume = value;
+        click3.volume = value;
+        DeathSound1.volume = value;
+        DeathSound2.volume = value;
+        Defeat.volume = value;
+        fire_long.volume = value;
+        fire_short.volume = value;
+        HitSound1.volume = value;
+        HitSound2.volume = value;
+        HitSound3.volume = value;
+        ice_long.volume = value;
+        ice_short.volume = value;
+        TowerBuild.volume = value;
+        WaveSpawn.volume = value;
+        Win.volume = value;
+    }
+
+    public void StartHauptmenueBackground() {
+        BackgroundHauptmenue.loop = true;
+        if(!BackgroundHauptmenue.isPlaying) {
+            BackgroundHauptmenue.Play();
+        }
+    }
+
+    public void StartGameBackground() {
+        BackgroundGame.loop = true;
+        if(!BackgroundGame.isPlaying) {
+            BackgroundGame.Play();
+        }
+    }
+    
     public void PlayBuy() {
         BuySound.Play();
     }
