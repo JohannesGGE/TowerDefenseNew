@@ -64,6 +64,11 @@ public class Enemy : MonoBehaviour
     /// </summary>
     private bool _onFire;
 
+    /// <summary>
+    /// Variable <c>_activeSlowHits </c> enthält wie viele active Slow Hits existieren
+    /// </summary>
+    private int _activeSlowHits = 0;
+    
     protected SoundManager soundManager;
 
     protected SpriteRenderer sprite;
@@ -109,17 +114,22 @@ public class Enemy : MonoBehaviour
         Debug.Log("Geschwindigkeit : " + speed + "StartSpeed: " + startSpeed);
     }
 
-    private IEnumerator SlowDmg(float _pct, float duration)
-    {
-            speed = speed * (1f - _pct);
-            if (speed <= startSpeed / GameValues.MaxSlownessDivider)
-            {
-                speed = startSpeed / GameValues.SlownessDividerPerHit;
-            }
-            sprite.color = new Color(0,35,255,255);
-            yield return new WaitForSeconds(duration);
+    private IEnumerator SlowDmg(float _pct, float duration) {
+        _activeSlowHits++;
+        
+        speed = speed * (1f - _pct);
+        if (speed <= startSpeed / GameValues.MaxSlownessDivider)
+        {
+            speed = startSpeed / GameValues.SlownessDividerPerHit;
+        }
+        sprite.color = new Color(0,35,255,255);
+        yield return new WaitForSeconds(duration);
+        
+        _activeSlowHits--;
+        if(_activeSlowHits == 0) {
             sprite.color = new Color(255, 255, 255, 255);
             speed = startSpeed;
+        }
     }
 
     public void TakeFire(float amount, float count, float duration)
