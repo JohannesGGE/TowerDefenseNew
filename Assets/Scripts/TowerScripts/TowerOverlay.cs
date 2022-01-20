@@ -63,7 +63,15 @@ namespace Backbone
         {
             //TODO
             //Radius anzeigen hier einf�gen
-            OnDrawGizmosSelected();
+            //OnDrawGizmosSelected(); //calling this method throws an error and makes upgrades inpossible
+            //another try
+            if(ActualStage =="BasicStageOne")
+            {
+              gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
+              Debug.Log("Range should appear");
+            }
+
+
 
 
             ///if Stage could be upgraded -> set UpdateButton true
