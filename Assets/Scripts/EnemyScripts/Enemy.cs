@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using Classes;
+
 
 public class Enemy : MonoBehaviour
 {
@@ -64,10 +66,14 @@ public class Enemy : MonoBehaviour
 
     protected SoundManager soundManager;
 
-    void Start()
+    protected SpriteRenderer sprite;
+
+
+    protected void Start()
     {
         speed = startSpeed;
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
     void Update()
@@ -110,8 +116,9 @@ public class Enemy : MonoBehaviour
             {
                 speed = startSpeed / GameValues.SlownessDividerPerHit;
             }
+            sprite.color = new Color(0,35,255,255);
             yield return new WaitForSeconds(duration);
-
+            sprite.color = new Color(255, 255, 255, 255);
             speed = startSpeed;
     }
 
@@ -148,7 +155,7 @@ public class Enemy : MonoBehaviour
     void Kill()
     {
         Destroy(gameObject);
-        //soundManager.PlayDeath();
+        soundManager.PlayDeath();
         _gameManager.AddCoins(_worth);
     }
 
@@ -160,7 +167,7 @@ public class Enemy : MonoBehaviour
         _gameManager.ReduceLives(_birdDamage);
 
         Destroy(gameObject);
-
+        soundManager.PlayDeath();
         Debug.Log(_gameManager.Lives);
     }
 }
