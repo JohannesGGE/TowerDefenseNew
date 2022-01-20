@@ -15,6 +15,11 @@ namespace Backbone
         private GameManager _gameManager;
 
         /// <summary>
+        /// Variable <c>soundManager</c> for instantiating the soundmanager class
+        /// </summary>
+        protected SoundManager soundManager;
+
+        /// <summary>
         /// Constructor <c>Sting</c> constructs a Sting Instance refering to the GameManager Instance
         /// </summary>
         public Sting()
@@ -134,6 +139,10 @@ namespace Backbone
           target = _target;
         }
 
+        void Start()
+        {
+          soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
+        }
         // Update is called once per frame
         ///<summary>
         ///Function <c>Update()</c> calculates the direction of the Sting
@@ -173,6 +182,9 @@ namespace Backbone
         void HitTarget()
         {
               Debug.Log("Hit: "+_damage+" damage dealt and "+_effect+" effect");
+
+              //soundManager.SetVolumeSounds(.1f);
+              //soundManager.PlayHit();
 
               //TODO: trying too adjust the color of impact effect according to Sting color
               /*

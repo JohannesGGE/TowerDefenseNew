@@ -21,6 +21,7 @@ namespace Backbone
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
           FireRate = GameValues.FireRateBasicTower1;
           FireCountdown = GameValues.FireCountdownBasicTower1;
+          soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }

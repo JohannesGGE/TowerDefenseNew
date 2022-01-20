@@ -26,6 +26,7 @@ namespace Backbone
           IceDelay=GameValues.IceDelayIceTower2;
           IceDuration=GameValues.IceDurationIceTower2;
           TowerEffect = "ice";
+          soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
