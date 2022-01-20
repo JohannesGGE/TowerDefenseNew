@@ -66,7 +66,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 1951c8ce2c698d3419c1ad46f553f35d, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5457384e77a55ab48b370a725da80e7f, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -218,7 +218,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 51a9167af54249f43b7a85e31a486800, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 01b7e14841c25224688d93482acc011c, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -294,7 +294,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 5ce955aca10b9284b8c79f2a7d3f1350, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 5ad1508560b034546b6fa245ca2b513e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -349,7 +349,7 @@ GameObject:
   - component: {fileID: 1822171771222773388}
   - component: {fileID: 2692416851288291239}
   m_Layer: 5
-  m_Name: TowerYellow
+  m_Name: TowerBlue
   m_TagString: YellowTower
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

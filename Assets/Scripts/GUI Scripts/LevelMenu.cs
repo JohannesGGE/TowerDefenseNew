@@ -12,7 +12,11 @@ public class LevelMenu : MonoBehaviour
 {
     public Sprite[] playPauseButtonSprites; // 0: play , 1: Pause
     public Sprite[] doubleButtonSprites; // 0: inactive, 1: active 
-    
+
+    public Sprite OneStar;
+    public Sprite TwoStar;
+    public Sprite ThreeStar;
+
     private GameManager _gameManager;
 
     private TextMeshProUGUI _live;
@@ -52,7 +56,6 @@ public class LevelMenu : MonoBehaviour
                 WinOverlay();
             }
 
-
         }
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
@@ -84,9 +87,53 @@ public class LevelMenu : MonoBehaviour
     {
         //string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
         //Stars.image = Resources.Load(StarRoot) as Image;
+
+        //Debug.Log("Object im WinOverlay" +gameObject.name); -> Canvas
         
         GameObject WinMenu = gameObject.transform.Find("WinMenu").gameObject;
+
+        ///Sterne setzen
+        
+        switch (_gameManager.Level.Stars)
+        {
+            case 1:
+                WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = OneStar;
+                break;
+            case 2:
+                WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = TwoStar;
+                break;
+            case 3:
+                WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = ThreeStar;
+                break;
+            default:
+                return;
+        }
+
+        /*
+        Debug.Log("Sternobject? sprite.texture.name " +WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite.texture.name); //works!!!!
+        Debug.Log("Sternobject? sprite.name" + WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite.name); //works!!!!
+        Debug.Log("Sternobject? maintexture.name " + WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().mainTexture.name); //works!!!!
+        
+        Texture Stars;
+        Image Staaaars;
+        Sprite TheStars;
+
+        Debug.Log("Reached Stars: " + _gameManager.Level.Stars.ToString()); //works!
+        string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
+        Stars = Resources.Load(StarRoot) as Texture;  // -> works with Texture ! Doesnt work with sprite or image
+        Staaaars = Resources.Load(StarRoot) as Image;
+        TheStars = Resources.Load("Stars/2") as Sprite;
+        Debug.Log("Stars resource loaded: " + Stars.name);
+        Debug.Log("Staaaars resource loaded: " + Staaaars.name);
+
+
+        WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = TheStars;
+        */
+
+
+        //Overlay aktiv setzen
         WinMenu.SetActive(true);
+            
     }
 
 
