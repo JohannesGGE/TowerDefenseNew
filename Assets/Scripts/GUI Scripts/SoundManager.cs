@@ -144,7 +144,7 @@ public class SoundManager : MonoBehaviour {
     }
 
     public void PlayDeath() {
-        int rand = Random.Range(0,1);
+        int rand = Random.Range(0,2);
         switch(rand) {
             case 0:
                 DeathSound1.Play();
