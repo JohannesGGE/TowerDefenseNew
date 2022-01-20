@@ -28,21 +28,7 @@ public class LevelMenu : MonoBehaviour
         _live = GameObject.FindWithTag("Life").GetComponent<TextMeshProUGUI>();
         _money = GameObject.FindWithTag("Money").GetComponent<TextMeshProUGUI>();
 
-
-        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
-        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
-
-        if(_gameManager.Paused) {
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
-        } else {
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
-        }
-
-        if(_gameManager.DoubleSpeed) {
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
-        } else {
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
-        }       
+        RefreshPlayPauseButtons();
     }
 
     /// <summary>
@@ -50,23 +36,26 @@ public class LevelMenu : MonoBehaviour
     /// </summary>
     public void Update()
     {
+        if(!_gameManager.Paused) {
+            //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
+            if (_gameManager.Lives <= 0) {
+                _gameManager.PauseGame();
+                RefreshPlayPauseButtons();
+                DefeatOverlay();
+            }
+
+            if(_gameManager.LastEnemyKilled) {
+                _gameManager.PauseGame();     //kann man eventuell rauslassen, da eh alle Vögel durch sind. Dann freezed das Spiel auch nicht
+                RefreshPlayPauseButtons();
+                CalculateAndSaveStars();
+                UnlockNextLevel();
+                WinOverlay();
+            }
+
+
+        }
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
-  
-
-        //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
-        if (_gameManager.Lives <= 0) {
-            _gameManager.PauseGame();
-            DefeatOverlay();
-        }
-        
-        if(_gameManager.LastEnemyKilled) {
-            //_gameManager.PauseGame();     //kann man eventuell rauslassen, da eh alle Vögel durch sind. Dann freezed das Spiel auch nicht
-            CalculateAndSaveStars();
-            UnlockNextLevel();
-            WinOverlay();
-        }
-
     }
 
     /// <summary>
@@ -123,42 +112,32 @@ public class LevelMenu : MonoBehaviour
     /// Pausiert oder setzt das Spiel fort
     /// </summary>
     public void Pause_PlayButtonClick() {
-        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
-        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
 
         if(_gameManager.DoubleSpeed) {
             _gameManager.StartGame();
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
         } else if(!_gameManager.Paused) {
             _gameManager.PauseGame();
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
         } else if(_gameManager.Paused) {
             _gameManager.StartGame();
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
         }
+        
+        RefreshPlayPauseButtons();
     }
     
     /// <summary>
     /// Verdoppelt die Geschwindigkeit im Spiel
     /// </summary>
     public void DoubleButtonClick() {
-        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
-        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
         
         if(_gameManager.DoubleSpeed) {
             _gameManager.StartGame();
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
         } else if(_gameManager.Paused) {
             _gameManager.DoubleGame();
-            // playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
         } else if(!_gameManager.Paused) {
             _gameManager.DoubleGame();
-            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
-            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
         }
+        
+        RefreshPlayPauseButtons();
     }
 
     
@@ -192,6 +171,26 @@ public class LevelMenu : MonoBehaviour
                     break;
                 }
             }
+        }
+    }
+
+    private void RefreshPlayPauseButtons() {
+        try {
+            Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
+            Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
+        
+            if(_gameManager.DoubleSpeed) {
+                playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+                fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
+            } else if(_gameManager.Paused) {
+                playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+                fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+            } else if(!_gameManager.Paused) {
+                playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+                fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+            }
+        } catch(Exception e) {
+
         }
     }
 }
