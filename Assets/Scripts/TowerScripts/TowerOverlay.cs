@@ -63,20 +63,10 @@ namespace Backbone
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, ActualRange);
         }
+        
 
         public void Chosen()
         {
-            //TODO
-            //Radius anzeigen hier einf�gen
-            //OnDrawGizmosSelected(); //calling this method throws an error and makes upgrades inpossible
-            //another try
-            /*
-            if(ActualStage =="BasicStageOne")
-            {
-              gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
-              Debug.Log("Range should appear");
-            }
-            */
             if (!_selected)
             {
               if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
@@ -89,26 +79,22 @@ namespace Backbone
             {
               gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
             }
-            ///if Stage could be upgraded -> set UpdateButton true
-
         }
 
         public void ShowRange()
         {
-
-          if (!_selected)
-          {
-            gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
-            Debug.Log("Range should appear");
-            _selected = true;
-          }
-          else
-          {
-            gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
-            Debug.Log("Range should disappear");
-            _selected = false;
-          }
-
+            if (!_selected)
+            {
+                gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
+                Debug.Log("Range should appear");
+                _selected = true;
+            }
+            else
+            {
+                gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
+                Debug.Log("Range should disappear");
+                _selected = false;
+            }
         }
 
 

@@ -40,7 +40,7 @@ public class Drop : MonoBehaviour, IDropHandler
                     _tower = Resources.Load("TowerPrefabs/TowerGreen") as GameObject;
                     break;
                 case "Yellow":
-                    _tower = Resources.Load("TowerPrefabs/TowerYellow") as GameObject;
+                    _tower = Resources.Load("TowerPrefabs/TowerBlue") as GameObject;
                     break;
             }
 
