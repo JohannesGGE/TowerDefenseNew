@@ -50,6 +50,11 @@ namespace Backbone
             set { _actualRange = value; }
         }
 
+        /// <summary>
+        /// Variable <c>_selected</c> checks if the Tower was clicked on
+        /// </summary>
+        private bool _selected = false;
+
         ///<summary>
         ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
         ///</summary>
@@ -65,22 +70,45 @@ namespace Backbone
             //Radius anzeigen hier einf�gen
             //OnDrawGizmosSelected(); //calling this method throws an error and makes upgrades inpossible
             //another try
+            /*
             if(ActualStage =="BasicStageOne")
             {
               gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
               Debug.Log("Range should appear");
             }
-
-
-
-
+            */
+            if (!_selected)
+            {
+              if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
+                  ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
+                  ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
+              { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
+              Debug.Log("Tower selected");
+            }
+            else
+            {
+              gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
+            }
             ///if Stage could be upgraded -> set UpdateButton true
-            if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
-                ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
-                ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
-            { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
 
-            Debug.Log("Tower selected");
+        }
+
+        public void ShowRange()
+        {
+
+          if (!_selected)
+          {
+            gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
+            Debug.Log("Range should appear");
+            _selected = true;
+          }
+          else
+          {
+            gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
+            Debug.Log("Range should disappear");
+            _selected = false;
+          }
+
         }
 
 

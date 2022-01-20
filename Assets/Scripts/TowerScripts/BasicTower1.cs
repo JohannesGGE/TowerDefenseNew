@@ -21,8 +21,6 @@ namespace Backbone
           gameObject.GetComponent<TowerOverlay>().ActualRange = Range;
           FireRate = GameValues.FireRateBasicTower1;
           FireCountdown = GameValues.FireCountdownBasicTower1;
-          //TODO display Range
-          gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
