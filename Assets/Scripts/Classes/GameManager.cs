@@ -96,6 +96,7 @@ namespace Classes {
         public void PauseGame() {
             Time.timeScale = 0;
             _paused = true;
+            _doubleSpeed = false;
         }
 
         /// <summary>
