@@ -13,6 +13,11 @@ namespace Backbone
         protected GameManager _gameManager;
 
         /// <summary>
+        /// Variable <c>soundManager</c> for instantiating the soundmanager class
+        /// </summary>
+        protected SoundManager soundManager;
+
+        /// <summary>
         /// Constructor <c>Tower</c> constructs a Tower Instance refering to the GameManager Instance
         /// </summary>
         public Tower()
@@ -289,6 +294,8 @@ namespace Backbone
         ///</summary>
         void Shoot()
         {
+          soundManager.SetVolumeSounds(.1f);
+          soundManager.PlayFireLong();
           //Debug.Log("shots fired"); //debug
           GameObject stingGO = (GameObject)Instantiate (StingPrefab, FirePoint.position, FirePoint.rotation);
           Sting sting = stingGO.GetComponent<Sting>();

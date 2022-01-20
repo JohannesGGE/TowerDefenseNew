@@ -24,6 +24,7 @@ namespace Backbone
           FireRate = GameValues.FireRateFireTower3;
           FireCountdown = GameValues.FireCountdownFireTower3;
           TowerEffect = "fire";
+          soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
 
           InvokeRepeating("UpdateTarget", 0f, 0.5f);
         }
