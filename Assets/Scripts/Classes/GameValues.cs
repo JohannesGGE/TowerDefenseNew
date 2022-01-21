@@ -5,7 +5,7 @@ namespace Classes {
         
         // GameManager -------------------------------------------
         public const int LivesInitial = 100;
-        public const int CoinsInitial = 0;
+        public const int CoinsInitial = 300;
         public const bool PausedInitial = true;
         
         
@@ -13,7 +13,7 @@ namespace Classes {
         
         // Enemy -------------------------------------------
         public const float EnemyInitialSpeed = 5f;
-        public const int ReducedSpeed = 2f;
+        public const int ReducedSpeed = 2;
 
         public const int SmallBirdHealth = 50;
         public const int SmallBirdWorth = 5;
