@@ -11,20 +11,30 @@ public class MainMenuScene : MonoBehaviour {
         _levelManager = LevelManager.GetInstance();
 
         _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-        _soundManager.StartHauptmenueBackground();
-
+        
         _soundManager.SetVolumeBackground(_levelManager.BackgroundVolume);
         _soundManager.SetVolumeSounds(_levelManager.SoundVolume);
+        
+        _soundManager.StartHauptmenueBackground();
     }
 
+    /// <summary>
+    /// Speichert, die Einstellungen beim schließen der Scene
+    /// </summary>
     private void OnDisable() {
         _levelManager.SaveSettings();
     }
-
+    
+    /// <summary>
+    /// Wird bei Aenderung des LautstaerkeSliders fuer Backgroundmusik aufgerufen
+    /// </summary>
     public void OnValueChangedBackground(float newValue) {
         _soundManager.SetVolumeBackground(newValue);
     }
 
+    /// <summary>
+    /// Wird bei Aenderung des LautstaerkeSliders fuer NormaleSOunds aufgerufen
+    /// </summary>
     public void OnValueChangedSound(float newValue) {
         _soundManager.SetVolumeSounds(newValue);
     }

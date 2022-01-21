@@ -3,6 +3,9 @@ using Classes;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
+/// <summary>
+/// Wird einem Empty Object zugewiesen und enthaelt alle Sounds
+/// </summary>
 public class SoundManager : MonoBehaviour {
 
     private LevelManager _levelManager;
@@ -80,6 +83,10 @@ public class SoundManager : MonoBehaviour {
         SetVolumeSounds(_levelManager.SoundVolume);
     }
 
+    /// <summary>
+    /// Setzt die Lautstaerke der Hindergrundmusik
+    /// </summary>
+    /// <param name="value">zwischen 0 und 1</param>
     public void SetVolumeBackground(float value) {
         _levelManager.BackgroundVolume = value;
 
@@ -87,6 +94,10 @@ public class SoundManager : MonoBehaviour {
         BackgroundHauptmenue.volume = value;
     }
     
+    /// <summary>
+    /// Setzt die Lautstaerke der normalen Sounds
+    /// </summary>
+    /// <param name="value">zwischen 0 und 1</param>
     public void SetVolumeSounds(float value) {
         _levelManager.SoundVolume = value;
         
@@ -109,17 +120,19 @@ public class SoundManager : MonoBehaviour {
         Win.volume = value;
     }
 
+    /// <summary>
+    /// Startet die Hintergrundmusik fuer Hauptmenue
+    /// </summary>
     public void StartHauptmenueBackground() {
-        // if(BackgroundHauptmenue == null) {
-        //     Start();
-        // }
-        Debug.Log("WantToPLay");
         BackgroundHauptmenue.loop = true;
         if(!BackgroundHauptmenue.isPlaying) {
             BackgroundHauptmenue.Play();
         }
     }
 
+    /// <summary>
+    /// Startet die Hintergrundmusik fuer Game
+    /// </summary>
     public void StartGameBackground() {
         BackgroundGame.loop = true;
         if(!BackgroundGame.isPlaying) {

@@ -13,11 +13,13 @@ namespace Classes {
         private static LevelManager _instance;
 
         /// <summary>
-        /// Variable <c>_filename</c> enthealt den Namen der Datei fuer LevelStatusSpeicherung
+        /// Variable <c>_filenameLevel</c> enthealt den Namen der Datei fuer LevelStatusSpeicherung
         /// </summary>
         [SerializeField] private string _filenameLevel;
 
-
+        /// <summary>
+        /// Variable <c>_filenameSettings</c> enthealt den Namen der Datei fuer SettingsSpeicherung
+        /// </summary>
         [SerializeField] private string _filenameSettings;
 
         /// <summary>
@@ -30,9 +32,19 @@ namespace Classes {
         /// </summary>
         private List<Level> _levels;
 
+        /// <summary>
+        /// Variable <c>_soundVolume</c> enhaelt die Lautstaerke der normalen Sounds (0-1)
+        /// </summary>
         private float _soundVolume;
+        
+        /// <summary>
+        /// Variable <c>_backgroundVolume</c> enhaelt enhaelt die Lautstaerke der Hintergrundmusik (0-1)
+        /// </summary>
         private float _backgroundVolume;
 
+        /// <summary>
+        /// Variable <c>_settings</c> enthealt die zuschreibenen SettingsInformationen
+        /// </summary>
         private List<Settings> _settings;
 
         /// <summary>
@@ -100,6 +112,9 @@ namespace Classes {
             FileHandler.SaveToJSON<LevelEntry>(_entries, _filenameLevel);
         }
 
+        /// <summary>
+        /// Lead die SettingsInformationen aus externer Datei falls vorhanden
+        /// </summary>
         public void LoadSettings() {
             _settings = FileHandler.ReadListFromJSON<Settings>(_filenameSettings);
             if(_settings.Count == 1) {
@@ -109,6 +124,9 @@ namespace Classes {
             
         }
 
+        /// <summary>
+        /// Speichert die SettingsInformationen in externer Datei
+        /// </summary>
         public void SaveSettings() {
             _settings.Clear();
             _settings.Add(new Settings(_backgroundVolume, _soundVolume));
@@ -120,12 +138,17 @@ namespace Classes {
         /// </summary>
         public List<Level> Levels => _levels;
 
-
+        /// <summary>
+        /// enhaelt die Lautstaerke der normalen Sounds (0-1)
+        /// </summary>
         public float SoundVolume {
             get => _soundVolume;
             set => _soundVolume = value;
         }
 
+        /// <summary>
+        /// Venhaelt enhaelt die Lautstaerke der Hintergrundmusik (0-1)
+        /// </summary>
         public float BackgroundVolume {
             get => _backgroundVolume;
             set => _backgroundVolume = value;

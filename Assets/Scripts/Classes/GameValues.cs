@@ -1,5 +1,9 @@
 using static Classes.BirdLevel;
 namespace Classes {
+    
+    /// <summary>
+    /// Abstracte Klasse, die alle wichtigen Werte enthaelt um Balancing zu maachen
+    /// </summary>
     public abstract class GameValues {
 
 
@@ -59,7 +63,7 @@ namespace Classes {
         public const float FireCountdownBasicTower2 = 0f;
 
         //Level 3
-        public const int UpgradeCostBasicTower3 = 200; //�berfl�ssig?
+        public const int UpgradeCostBasicTower3 = 200; //Ueberfluessig?
         public const int DamageBasicTower3 = 10;
         public const float RangeBasicTower3 = 350f;
         public const float FireRateBasicTower3 = 1f;
@@ -81,7 +85,7 @@ namespace Classes {
         public const float FireCountdownFireTower2 = 0f;
 
         //Level 3
-        public const int UpgradeCostFireTower3 = 250; //�berfl�ssig? da Stufe 3 nicht upgegraded werden kann?
+        public const int UpgradeCostFireTower3 = 250; //Ueberfluessig? da Stufe 3 nicht upgegraded werden kann?
         public const int DamageFireTower3 = 7;
         public const float RangeFireTower3 = 350f;
         public const float FireRateFireTower3 = 1f;
@@ -107,7 +111,7 @@ namespace Classes {
         public const float IceDurationIceTower2 = 3f;
 
         //Level 3
-        public const int UpgradeCostIceTower3 = 200; //�berfl�sssig?
+        public const int UpgradeCostIceTower3 = 200; //Ueberfluesssig?
         public const int DamageIceTower3 = 0;
         public const float RangeIceTower3 = 350f;
         public const float FireRateIceTower3 = 1f;
