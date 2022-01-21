@@ -28,9 +28,7 @@ public class SoundManager : MonoBehaviour {
     private AudioSource WaveSpawn;
     private AudioSource Win;
 
-
-    private void Start() {
-        
+    private void Awake() {
         _levelManager = LevelManager.GetInstance();
 
         BackgroundHauptmenue = gameObject.AddComponent<AudioSource>();
@@ -55,7 +53,6 @@ public class SoundManager : MonoBehaviour {
         Win = gameObject.AddComponent<AudioSource>();
         
         
-        
         BackgroundHauptmenue.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/CountingStars");
         BackgroundGame.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/Wings");
         
@@ -76,7 +73,9 @@ public class SoundManager : MonoBehaviour {
         TowerBuild.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/TowerBuild");
         WaveSpawn.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/WaveSpawn");
         Win.clip = (AudioClip) Resources.Load<AudioClip>("Sounds/Win");
-        
+    }
+
+    private void Start() {
         SetVolumeBackground(_levelManager.BackgroundVolume);
         SetVolumeSounds(_levelManager.SoundVolume);
     }
@@ -111,6 +110,10 @@ public class SoundManager : MonoBehaviour {
     }
 
     public void StartHauptmenueBackground() {
+        // if(BackgroundHauptmenue == null) {
+        //     Start();
+        // }
+        Debug.Log("WantToPLay");
         BackgroundHauptmenue.loop = true;
         if(!BackgroundHauptmenue.isPlaying) {
             BackgroundHauptmenue.Play();
