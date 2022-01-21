@@ -294,7 +294,6 @@ namespace Backbone
         ///</summary>
         void Shoot()
         {
-          soundManager.SetVolumeSounds(.1f);
           soundManager.PlayFireLong();
           //Debug.Log("shots fired"); //debug
           GameObject stingGO = (GameObject)Instantiate (StingPrefab, FirePoint.position, FirePoint.rotation);
