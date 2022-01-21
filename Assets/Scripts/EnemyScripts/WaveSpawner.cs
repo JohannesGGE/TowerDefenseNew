@@ -12,9 +12,10 @@ public class WaveSpawner : MonoBehaviour
     public WaveSpawner()
     {
         _gameManager = GameManager.GetInstance();
+        // TODO ENTFERNEN!!!!
         LevelManager levelManager = LevelManager.GetInstance();
         _gameManager.ResetGameManager();
-        _gameManager.Level = levelManager.Levels[1];
+        _gameManager.Level = levelManager.Levels[0];
     }
 
     /// <summary>

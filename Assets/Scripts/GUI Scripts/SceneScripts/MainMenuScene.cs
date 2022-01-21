@@ -9,8 +9,6 @@ public class MainMenuScene : MonoBehaviour {
 
     void Start() {
         _levelManager = LevelManager.GetInstance();
-        _levelManager.LoadLevelStatus();
-        _levelManager.LoadSettings();
 
         _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         _soundManager.StartHauptmenueBackground();
