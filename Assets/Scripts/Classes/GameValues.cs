@@ -59,7 +59,7 @@ namespace Classes {
         public const float FireCountdownBasicTower2 = 0f;
         
         //Level 3
-        public const int UpgradeCostBasicTower3 = 200; //überflüssig?
+        public const int UpgradeCostBasicTower3 = 200; //ï¿½berflï¿½ssig?
         public const int DamageBasicTower3 = 10;
         public const float RangeBasicTower3 = 300f;
         public const float FireRateBasicTower3 = 1f;
@@ -81,7 +81,7 @@ namespace Classes {
         public const float FireCountdownFireTower2 = 0f;
         
         //Level 3
-        public const int UpgradeCostFireTower3 = 250; //überflüssig? da Stufe 3 nicht upgegraded werden kann? 
+        public const int UpgradeCostFireTower3 = 250; //ï¿½berflï¿½ssig? da Stufe 3 nicht upgegraded werden kann? 
         public const int DamageFireTower3 = 7;
         public const float RangeFireTower3 = 300f;
         public const float FireRateFireTower3 = 1f;
@@ -107,7 +107,7 @@ namespace Classes {
         public const float IceDurationIceTower2 = 3f;
         
         //Level 3
-        public const int UpgradeCostIceTower3 = 200; //überflüsssig? 
+        public const int UpgradeCostIceTower3 = 200; //ï¿½berflï¿½sssig? 
         public const int DamageIceTower3 = 0;
         public const float RangeIceTower3 = 300f;
         public const float FireRateIceTower3 = 1f;
@@ -165,37 +165,5 @@ namespace Classes {
             Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
             return new Level(new []{wave1, wave2, wave3}, false);
         }
-        public static Level GetLevel6() {
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            return new Level(new []{wave1, wave2, wave3}, false);
-        }
-        public static Level GetLevel7() {
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            return new Level(new []{wave1, wave2, wave3}, false);
-        }
-        public static Level GetLevel8() {
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            return new Level(new []{wave1, wave2, wave3}, false);
-        }
-        public static Level GetLevel9() {
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            return new Level(new []{wave1, wave2, wave3}, false);
-        }
-        public static Level GetLevel10() {
-            Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
-            Wave wave2 = new Wave( new [] {Small, Medium, Small, Medium}, 1f);
-            Wave wave3 = new Wave( new [] {Small, Medium, Small, Medium, Small, Medium, Big, Big}, 2f);
-            return new Level(new []{wave1, wave2, wave3}, false);
-        }
-        
-        
     }
 }
