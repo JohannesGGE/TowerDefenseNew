@@ -63,7 +63,7 @@ namespace Backbone
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, ActualRange);
         }
-        
+
 
         public void Chosen()
         {
@@ -86,6 +86,9 @@ namespace Backbone
             if (!_selected)
             {
                 gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
+                gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _actualRange*2);
+                gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _actualRange*2);
+                gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().ForceUpdateRectTransforms();
                 Debug.Log("Range should appear");
                 _selected = true;
             }
@@ -142,7 +145,6 @@ namespace Backbone
                     }
                     else
                     { Debug.Log("not enough gold"); }
-                    gameObject.GetComponent<FireTower1>().Upgrade();
                     break;
                 case "BasicStageTwo":
                     if (_gameManager.Coins >= ActualCost)
@@ -179,10 +181,13 @@ namespace Backbone
                     break;
 
                 default:
-                    return;
+                    Debug.Log("this should never happen");
+                    break;
             }
 
             gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
+            gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
+            _selected = false;
 
         }
 
