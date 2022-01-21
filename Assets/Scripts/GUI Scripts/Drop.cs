@@ -4,8 +4,83 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 
 
-public class Drop : MonoBehaviour, IDropHandler
-{
+public class Drop : MonoBehaviour, IDropHandler, IPointerExitHandler, IPointerEnterHandler
+{   
+    [SerializeField] private GameObject _highlightGreen;
+    [SerializeField] private GameObject _highlightRed;
+
+    private bool _over;
+    private bool isGrass = true;
+   
+
+    void IPointerEnterHandler.OnPointerEnter(PointerEventData eventData){
+        _over = true;
+    }
+
+     void IPointerExitHandler.OnPointerExit(PointerEventData eventData){
+        _over = false;
+    }
+
+    private void OnPointOver(){
+        // Debug.Log("over");
+
+        if(isGrass){
+            this._highlightGreen.SetActive(true);
+        } else {
+            this._highlightRed.SetActive(true);
+        }
+    }
+
+    public void ResetHighlight(){
+        this._highlightGreen.SetActive(false);
+        this._highlightRed.SetActive(false);
+    }
+
+     void Update(){
+        if(_over){
+            this.OnPointOver();
+        } else {
+            this.ResetHighlight();
+        }
+    }
+
+
+
+
+    public void SetIsGrass(bool value){
+        this.isGrass = value;
+    }
+
+    public bool GetIsGrass(){
+        return this.isGrass;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    ////////////////////////////////////////////////////////////////////////
+
+
+
+
     private GameObject _tower;
  
     private Transform FolderToBuild;
@@ -25,7 +100,7 @@ public class Drop : MonoBehaviour, IDropHandler
 
         Debug.Log("OnDrop");
         
-        if(CompareTag("TowerSlot") && !isTower) {
+        if(CompareTag("TowerSlot") && !isTower && isGrass) {
             // TODO entscheiden, ob Genug Geld
             // mit eventData.pointerDrag.name kann man das Object bekommen, wo es hergezogen wurde
 
@@ -51,4 +126,9 @@ public class Drop : MonoBehaviour, IDropHandler
             isTower = true;
         }
     }
+
+
+
+
+   
 }
