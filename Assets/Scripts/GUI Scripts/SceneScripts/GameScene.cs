@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using Classes;
 using TMPro;
 using UnityEngine;
@@ -8,7 +6,6 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class GameScene : MonoBehaviour {
-    
     public Sprite[] playPauseButtonSprites; // 0: play , 1: Pause
     public Sprite[] doubleButtonSprites; // 0: inactive, 1: active 
 
@@ -21,13 +18,13 @@ public class GameScene : MonoBehaviour {
 
     private TextMeshProUGUI _live;
     private TextMeshProUGUI _money;
-    
+
     /// <summary>
-    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgef�hrt wird
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
     /// </summary>
     private void Start() {
         _gameManager = GameManager.GetInstance();
-        
+
         _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         _soundManager.StartGameBackground();
 
@@ -38,71 +35,135 @@ public class GameScene : MonoBehaviour {
         RefreshPlayPauseButtons();
     }
 
-/// <summary>
-    /// Methode die jedes Frame aufgerufen wird, w�hrend das Skript l�uft
+    /// <summary>
+    /// Methode die jedes Frame aufgerufen wird, waehrend das Skript laeuft
     /// </summary>
-    public void Update()
-    {
+    public void Update() {
         if(!_gameManager.Paused) {
             //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
-            if (_gameManager.Lives <= 0) {
+            if(_gameManager.Lives <= 0) {
                 _gameManager.PauseGame();
                 RefreshPlayPauseButtons();
                 DefeatOverlay();
             }
 
             if(_gameManager.LastEnemyKilled) {
-                _gameManager.PauseGame();     //kann man eventuell rauslassen, da eh alle Vögel durch sind. Dann freezed das Spiel auch nicht
+                _gameManager.PauseGame();
                 RefreshPlayPauseButtons();
                 CalculateAndSaveStars();
                 UnlockNextLevel();
                 WinOverlay();
             }
-
         }
+
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
 
         //Cheat für mehr geld
-        if (Input.GetKeyDown(KeyCode.M))
-        { _gameManager.AddCoins(1000); }
+        if(Input.GetKeyDown(KeyCode.M)) {
+            _gameManager.AddCoins(1000);
+        }
     }
 
     /// <summary>
-    /// Methode <c> BackToMain </c> erm�glicht den Wechsel aus der Spielszene zur�ck in die Hauptmen� Szene
+    /// Methode <c> BackToMain </c> ermoeglicht den Wechsel aus der Spielszene zurueck in die Hauptmenue Szene
     /// </summary>
-    public void BackToMain()
-    {
+    public void BackToMain() {
         _gameManager.PauseGame();
         SceneManager.LoadScene(1);
     }
 
 
     /// <summary>
+    /// Methode <c> ReloadLevel </c> macht das was sie sagt, sie lädt das Level erneut
+    /// </summary>
+    public void ReloadLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    /// <summary>
+    /// 
+    /// </summary>
+    public void LoadNextLevel() {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
+
+    /// <summary>
+    /// Pausiert oder setzt das Spiel fort
+    /// </summary>
+    public void Pause_PlayButtonClick() {
+        if(_gameManager.DoubleSpeed) {
+            _gameManager.StartGame();
+        } else if(!_gameManager.Paused) {
+            _gameManager.PauseGame();
+        } else if(_gameManager.Paused) {
+            _gameManager.StartGame();
+        }
+
+        RefreshPlayPauseButtons();
+    }
+
+    /// <summary>
+    /// Wird bei Aenderung des LautstaerkeSliders fuer Backgroundmusik aufgerufen
+    /// </summary>
+    public void OnValueChangedBackground(float newValue) {
+        _soundManager.SetVolumeBackground(newValue);
+    }
+
+    /// <summary>
+    /// Wird bei Aenderung des LautstaerkeSliders fuer NormaleSOunds aufgerufen
+    /// </summary>
+    public void OnValueChangedSound(float newValue) {
+        _soundManager.SetVolumeSounds(newValue);
+    }
+
+    /// <summary>
+    /// Verdoppelt die Geschwindigkeit im Spiel
+    /// </summary>
+    public void DoubleButtonClick() {
+        if(_gameManager.DoubleSpeed) {
+            _gameManager.StartGame();
+        } else if(_gameManager.Paused) {
+            _gameManager.DoubleGame();
+        } else if(!_gameManager.Paused) {
+            _gameManager.DoubleGame();
+        }
+
+        RefreshPlayPauseButtons();
+    }
+
+    /// <summary>
+    /// Pausiert das Spiel, wenn Options oder ExitButton gedrueckt wird
+    /// </summary>
+    public void Option_ExitButtonClick() {
+        _gameManager.PauseGame();
+        RefreshPlayPauseButtons();
+    }
+    
+        /// <summary>
     /// Defeat Overlay wird aktiviert, wenn Leben auf 0 fallen
     /// </summary>
-    private void DefeatOverlay()
-    {
-        GameObject DefeatMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("DefeatMenu").gameObject; //->funktioniert mit Fehlermeldung im Log
+    private void DefeatOverlay() {
+        GameObject DefeatMenu =
+            GameObject.FindWithTag("LevelCanvas").transform.Find("DefeatMenu")
+                .gameObject; //->funktioniert mit Fehlermeldung im Log
         DefeatMenu.SetActive(true);
     }
 
     /// <summary>
     /// Win Overlay wird aufgerufen, wenn kein Vogel mehr kommt und Leben über 0 sind
     /// </summary>
-    private void WinOverlay()
-    {
+    private void WinOverlay() {
         //string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
         //Stars.image = Resources.Load(StarRoot) as Image;
 
         //Debug.Log("Object im WinOverlay" +gameObject.name); -> Canvas
-        
+
         GameObject WinMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("WinMenu").gameObject;
 
-        ///Sterne setzen
-        
-        switch (_gameManager.Level.Stars)
-        {
+        //Sterne setzen
+
+        switch(_gameManager.Level.Stars) {
             case 1:
                 WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = OneStar;
                 break;
@@ -140,77 +201,8 @@ public class GameScene : MonoBehaviour {
 
         //Overlay aktiv setzen
         WinMenu.SetActive(true);
-            
     }
 
-
-
-
-
-
-
-
-    /// <summary>
-    /// Methode <c> ReloadLevel </c> macht das was sie sagt, sie lädt das Level erneut
-    /// </summary>
-    public void ReloadLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-    public void LoadNextLevel()
-    {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    /// <summary>
-    /// Pausiert oder setzt das Spiel fort
-    /// </summary>
-    public void Pause_PlayButtonClick() {
-
-        if(_gameManager.DoubleSpeed) {
-            _gameManager.StartGame();
-        } else if(!_gameManager.Paused) {
-            _gameManager.PauseGame();
-        } else if(_gameManager.Paused) {
-            _gameManager.StartGame();
-        }
-        
-        RefreshPlayPauseButtons();
-    }
-    
-    public void OnValueChangedBackground(float newValue) {
-        _soundManager.SetVolumeBackground(newValue);
-    }
-
-    public void OnValueChangedSound(float newValue) {
-        _soundManager.SetVolumeSounds(newValue);
-    }
-    
-    /// <summary>
-    /// Verdoppelt die Geschwindigkeit im Spiel
-    /// </summary>
-    public void DoubleButtonClick() {
-        
-        if(_gameManager.DoubleSpeed) {
-            _gameManager.StartGame();
-        } else if(_gameManager.Paused) {
-            _gameManager.DoubleGame();
-        } else if(!_gameManager.Paused) {
-            _gameManager.DoubleGame();
-        }
-        
-        RefreshPlayPauseButtons();
-    }
-
-    /// <summary>
-    /// Pausiert das Spiel, wenn Options oder ExitButton gedrueckt wird
-    /// </summary>
-    public void Option_ExitButtonClick() {
-        _gameManager.PauseGame();
-        RefreshPlayPauseButtons();
-    }
-
-    
     /// <summary>
     /// Schaut wie viele Leben noch uebrig sind und speichert entsprechende Sterne, falls bis jetzt nur schlechter
     /// im Level
@@ -219,7 +211,7 @@ public class GameScene : MonoBehaviour {
         if(_gameManager.Level.Stars <= GameValues.LivesToGet1Star) {
             _gameManager.Level.Stars = 1;
         }
-        
+
         if(_gameManager.Lives > GameValues.LivesToGet2Star && _gameManager.Level.Stars <= 1) {
             _gameManager.Level.Stars = 2;
         }
@@ -236,7 +228,7 @@ public class GameScene : MonoBehaviour {
         LevelManager levelManager = LevelManager.GetInstance();
         for(int i = 0; i < levelManager.Levels.Count; i++) {
             if(_gameManager.Level == levelManager.Levels[i]) {
-                if((i+1) < levelManager.Levels.Count) {
+                if((i + 1) < levelManager.Levels.Count) {
                     levelManager.Levels[i + 1].Unlocked = true;
                     break;
                 }
@@ -244,23 +236,22 @@ public class GameScene : MonoBehaviour {
         }
     }
 
+    /// <summary>
+    /// Setzt die Bilder der Play/Pause/Double Buttons neu
+    /// </summary>
     private void RefreshPlayPauseButtons() {
-        try {
-            Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
-            Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
-        
-            if(_gameManager.DoubleSpeed) {
-                playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
-                fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
-            } else if(_gameManager.Paused) {
-                playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
-                fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
-            } else if(!_gameManager.Paused) {
-                playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
-                fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
-            }
-        } catch(Exception e) {
+        Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
+        Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
 
+        if(_gameManager.DoubleSpeed) {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active
+        } else if(_gameManager.Paused) {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
+        } else if(!_gameManager.Paused) {
+            playPauseButton.image.overrideSprite = playPauseButtonSprites[1]; // pauseImage
+            fastForwardButton.image.overrideSprite = doubleButtonSprites[0]; // inactive
         }
     }
 }
