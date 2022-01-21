@@ -9,9 +9,7 @@ using Classes;
 public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
-
-
-    public Transform FolderToBuild;
+    private Transform FolderToBuild;
 
     public GameObject Tower;
     public GameObject Circle;
@@ -37,6 +35,7 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnBeginDrag(PointerEventData eventData)
     {
+        FolderToBuild = gameObject.transform.Find("TowerImage");
         buildable = false;
 
         switch (eventData.pointerDrag.name)
