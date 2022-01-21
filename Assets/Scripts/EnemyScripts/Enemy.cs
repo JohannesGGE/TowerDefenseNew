@@ -68,11 +68,26 @@ public class Enemy : MonoBehaviour
     /// Variable <c>_activeSlowHits </c> enthält wie viele active Slow Hits existieren
     /// </summary>
     private int _activeSlowHits = 0;
-    
+
+    /// <summary>
+    /// Variable <c>soundManager </c> enthält soundManager
+    /// </summary>
     protected SoundManager soundManager;
 
+    /// <summary>
+    /// Variable <c> sprite </c> enthält Sprite
+    /// </summary>
     protected SpriteRenderer sprite;
 
+    /// <summary>
+    /// Variable <c> _currentCount </c> enthält Ticks der Feuerstachel
+    /// </summary>
+    protected int _currentCount;
+
+    /// <summary>
+    /// Variable <c> _fireDmg </c> enthält Damage der Feuerstachel
+    /// </summary>
+    protected float _fireDmg;
 
     protected void Start()
     {
@@ -134,10 +149,16 @@ public class Enemy : MonoBehaviour
 
     public void TakeFire(float amount, float count, float duration)
     {
-        if(!_onFire)
+        if(_onFire)
+        {
+            _currentCount = 0;
+            _fireDmg = amount;
+        }
+
+        else
         {
             _onFire = true;
-            StartCoroutine(FireDmg(amount, count, duration));
+            StartCoroutine(FireDmg(count, duration));
         }
     }
     /// <summary>
@@ -146,16 +167,16 @@ public class Enemy : MonoBehaviour
     /// <param name ="amount"> zugefuegter Schaden </param>
     /// <param name ="count"> Anzahl der Ticks </param>
     /// <param name ="duration"> Zeit zwischen den Ticks </param>
-    public IEnumerator FireDmg(float amount, float count, float duration)
+    public IEnumerator FireDmg(float count, float duration)
     {
-         int currentCount = 0;
+         _currentCount = 0;
 
-            while (currentCount < count)
+            while (_currentCount < count)
             {
-                TakeDamage(amount);
+                TakeDamage(_fireDmg);
                 yield return new WaitForSeconds(duration);
-                currentCount++;
-                Debug.Log("Brennt " + currentCount + "Mal");
+                _currentCount++;
+                Debug.Log("Brennt " + _currentCount + "Mal");
             }
             _onFire = false;
     }
