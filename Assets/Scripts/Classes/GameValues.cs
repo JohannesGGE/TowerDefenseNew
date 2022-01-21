@@ -13,8 +13,7 @@ namespace Classes {
         
         // Enemy -------------------------------------------
         public const float EnemyInitialSpeed = 5f;
-        public const int SlownessDividerPerHit = 2;
-        public const int MaxSlownessDivider = 4;
+        public const int ReducedSpeed = 2f;
 
         public const int SmallBirdHealth = 50;
         public const int SmallBirdWorth = 5;

@@ -131,11 +131,11 @@ public class Enemy : MonoBehaviour
 
     private IEnumerator SlowDmg(float _pct, float duration) {
         _activeSlowHits++;
-        
+         
         speed = speed * (1f - _pct);
-        if (speed <= startSpeed / GameValues.MaxSlownessDivider)
+        if (speed <= startSpeed / GameValues.ReducedSpeed)
         {
-            speed = startSpeed / GameValues.SlownessDividerPerHit;
+            speed = startSpeed / GameValues.ReducedSpeed;
         }
         sprite.color = new Color(0,35,255,255);
         yield return new WaitForSeconds(duration);
