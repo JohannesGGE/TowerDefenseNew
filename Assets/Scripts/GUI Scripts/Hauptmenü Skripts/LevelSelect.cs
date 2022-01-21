@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
-    //Buttons die im Levelauswahlmenü gedrückt werden können, um ein entsprechendes Level aufzurufen
+    //Buttons die im Levelauswahlmenï¿½ gedrï¿½ckt werden kï¿½nnen, um ein entsprechendes Level aufzurufen
     public Button[] LevelButtons;
 
-    //temporäres Objekt zum ansprechen eines Child-Objekts
+    //temporï¿½res Objekt zum ansprechen eines Child-Objekts
     private GameObject _child;
     
     //verschiedene Sprites, zur Darstellung der erreichten Sterne eines Levels
@@ -33,30 +33,21 @@ public class LevelSelect : MonoBehaviour
 
 
     /// <summary>
-    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgeführt wird
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefï¿½hrt wird
     /// </summary>
     private void Start()
     {
-        for (int i = 0; i < LevelButtons.Length; i++)
+        for (int i = 0; i < _levelManager.Levels.Count; i++)
         {
-
             _child = LevelButtons[i].transform.GetChild(1).gameObject; 
-
-
+            
             if (!_levelManager.Levels[i].Unlocked)
             { 
                 LevelButtons[i].interactable = false;
-                
                 _child.GetComponent<Image>().color = Color.grey;
-
-                //**Ausgabe zum testen
-                //Debug.Log("Kind: " + child.name);
-                //Debug.Log("gefundene Sterne: " + levelButtons[i].transform.GetChild(1).name + GameObject.Find("Stars").GetComponent<Image>().color);   
-                
             }
             else
             {
-
                 switch(_levelManager.Levels[i].Stars) {
                     case 0:
                         _child.gameObject.GetComponent<Image>().sprite = ZeroStar;
@@ -71,7 +62,6 @@ public class LevelSelect : MonoBehaviour
                         _child.gameObject.GetComponent<Image>().sprite = ThreeStar;
                         break;
                 }
-
             }
         }
     }
@@ -105,30 +95,15 @@ public class LevelSelect : MonoBehaviour
         _gameManager.PrepareLevel(_levelManager.Levels[4]);
     }
 
-    public void StartLevelSix() {
-        SceneManager.LoadScene("LevelSix");
-        _gameManager.PrepareLevel(_levelManager.Levels[5]);
-    }
+    public void StartLevelSix() { }
 
-    public void StartLevelSeven() {
-        SceneManager.LoadScene("LevelSeven");
-        _gameManager.PrepareLevel(_levelManager.Levels[6]);
-    }
+    public void StartLevelSeven() { }
 
-    public void StartLevelEight() {
-        SceneManager.LoadScene("LevelEight");
-        _gameManager.PrepareLevel(_levelManager.Levels[7]);
-    }
+    public void StartLevelEight() { }
 
-    public void StartLevelNine() {
-        SceneManager.LoadScene("LevelNine");
-        _gameManager.PrepareLevel(_levelManager.Levels[8]);
-    }
+    public void StartLevelNine() { }
 
-    public void StartLevelTen() {
-        SceneManager.LoadScene("LevelTen");
-        _gameManager.PrepareLevel(_levelManager.Levels[9]);
-    }
+    public void StartLevelTen() { }
 
 }
 
