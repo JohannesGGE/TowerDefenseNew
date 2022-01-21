@@ -83,7 +83,7 @@ public class GameScene : MonoBehaviour {
     /// </summary>
     private void DefeatOverlay()
     {
-        GameObject DefeatMenu = gameObject.transform.Find("DefeatMenu").gameObject; //->funktioniert mit Fehlermeldung im Log
+        GameObject DefeatMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("DefeatMenu").gameObject; //->funktioniert mit Fehlermeldung im Log
         DefeatMenu.SetActive(true);
     }
 
@@ -97,7 +97,7 @@ public class GameScene : MonoBehaviour {
 
         //Debug.Log("Object im WinOverlay" +gameObject.name); -> Canvas
         
-        GameObject WinMenu = gameObject.transform.Find("WinMenu").gameObject;
+        GameObject WinMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("WinMenu").gameObject;
 
         ///Sterne setzen
         
