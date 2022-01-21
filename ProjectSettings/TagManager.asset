@@ -21,6 +21,7 @@ TagManager:
   - WinMenu
   - AudioReglerBackground
   - AudioReglerSounds
+  - LevelCanvas
   layers:
   - Default
   - TransparentFX
