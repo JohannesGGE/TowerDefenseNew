@@ -202,6 +202,14 @@ public class GameScene : MonoBehaviour {
         RefreshPlayPauseButtons();
     }
 
+    /// <summary>
+    /// Pausiert das Spiel, wenn Options oder ExitButton gedrueckt wird
+    /// </summary>
+    public void Option_ExitButtonClick() {
+        _gameManager.PauseGame();
+        RefreshPlayPauseButtons();
+    }
+
     
     /// <summary>
     /// Schaut wie viele Leben noch uebrig sind und speichert entsprechende Sterne, falls bis jetzt nur schlechter
