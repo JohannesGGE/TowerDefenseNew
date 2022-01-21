@@ -1,16 +1,16 @@
 using static Classes.BirdLevel;
 namespace Classes {
     public abstract class GameValues {
-        
-        
+
+
         // GameManager -------------------------------------------
         public const int LivesInitial = 100;
         public const int CoinsInitial = 500;
         public const bool PausedInitial = true;
-        
-        
-        
-        
+
+
+
+
         // Enemy -------------------------------------------
         public const float EnemyInitialSpeed = 5f;
         public const int ReducedSpeed = 2;
@@ -30,11 +30,11 @@ namespace Classes {
 
         public const float TimeBetweenWaves = 5f;
         public const float CountdownBeforeFirstBird = 2f;
-        
-        
-        
-        
-        
+
+
+
+
+
         // Tower -------------------------------------------
 
         public const float TowerTurnSpeed = 10f;
@@ -47,56 +47,56 @@ namespace Classes {
         //Level 1
         public const int UpgradeCostBasicTower1 = 125;
         public const int DamageBasicTower1 = 5;
-        public const float RangeBasicTower1 = 300f;
+        public const float RangeBasicTower1 = 250f;
         public const float FireRateBasicTower1 = 1f;
         public const float FireCountdownBasicTower1 = 0f;
-        
+
         //Level 2
         public const int UpgradeCostBasicTower2 = 150;
         public const int DamageBasicTower2 = 7;
         public const float RangeBasicTower2 = 300f;
         public const float FireRateBasicTower2 = 1f;
         public const float FireCountdownBasicTower2 = 0f;
-        
+
         //Level 3
         public const int UpgradeCostBasicTower3 = 200; //�berfl�ssig?
         public const int DamageBasicTower3 = 10;
-        public const float RangeBasicTower3 = 300f;
+        public const float RangeBasicTower3 = 350f;
         public const float FireRateBasicTower3 = 1f;
         public const float FireCountdownBasicTower3 = 0f;
-        
+
         // Fire ----
         //Level 1
         public const int UpgradeCostFireTower1 = 175;
         public const int DamageFireTower1 = 3;
-        public const float RangeFireTower1 = 300f;
+        public const float RangeFireTower1 = 250f;
         public const float FireRateFireTower1 = 1f;
         public const float FireCountdownFireTower1 = 0f;
-        
+
         //Level 2
         public const int UpgradeCostFireTower2 = 200;
         public const int DamageFireTower2 = 5;
         public const float RangeFireTower2 = 300f;
         public const float FireRateFireTower2 = 1f;
         public const float FireCountdownFireTower2 = 0f;
-        
+
         //Level 3
-        public const int UpgradeCostFireTower3 = 250; //�berfl�ssig? da Stufe 3 nicht upgegraded werden kann? 
+        public const int UpgradeCostFireTower3 = 250; //�berfl�ssig? da Stufe 3 nicht upgegraded werden kann?
         public const int DamageFireTower3 = 7;
-        public const float RangeFireTower3 = 300f;
+        public const float RangeFireTower3 = 350f;
         public const float FireRateFireTower3 = 1f;
         public const float FireCountdownFireTower3 = 0f;
-        
+
         // Ice ----
         //Level 1
         public const int UpgradeCostIceTower1 = 140;
         public const int DamageIceTower1 = 0;
-        public const float RangeIceTower1 = 300f;
+        public const float RangeIceTower1 = 250f;
         public const float FireRateIceTower1 = 1f;
         public const float FireCountdownIceTower1 = 0f;
         public const float IceDelayIceTower1 = 0.2f;
         public const float IceDurationIceTower1 = 2f;
-        
+
         //Level 2
         public const int UpgradeCostIceTower2 = 175;
         public const int DamageIceTower2 = 0;
@@ -105,36 +105,36 @@ namespace Classes {
         public const float FireCountdownIceTower2 = 0f;
         public const float IceDelayIceTower2 = 0.15f;
         public const float IceDurationIceTower2 = 3f;
-        
+
         //Level 3
-        public const int UpgradeCostIceTower3 = 200; //�berfl�sssig? 
+        public const int UpgradeCostIceTower3 = 200; //�berfl�sssig?
         public const int DamageIceTower3 = 0;
-        public const float RangeIceTower3 = 300f;
+        public const float RangeIceTower3 = 350f;
         public const float FireRateIceTower3 = 1f;
         public const float FireCountdownIceTower3 = 0f;
         public const float IceDelayIceTower3 = 0.2f;
         public const float IceDurationIceTower3 = 5f;
 
-        
-        
-        
-        
+
+
+
+
         // Sting ---------------------------------------
-        
+
         public const float StingSpeed = 800f;
         public const float StingTurnSpeed = 100f;
-        
-        
-        
-        
+
+
+
+
         // LevelMenu -------------------------------------------
         public const int LivesToGet1Star = 0;
         public const int LivesToGet2Star = 51;
         public const int LivesToGet3Star = 96;
 
 
-        
-        
+
+
         // Level (Wellen mit Enemys) -------------------------------------------
         public static Level GetLevel1() {
             Wave wave1 = new Wave(new[] {Small, Small, Small, Small}, 1f);
