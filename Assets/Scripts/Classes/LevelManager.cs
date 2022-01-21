@@ -72,11 +72,6 @@ namespace Classes {
             _levels.Add(GameValues.GetLevel3());
             _levels.Add(GameValues.GetLevel4());
             _levels.Add(GameValues.GetLevel5());
-            _levels.Add(GameValues.GetLevel6());
-            _levels.Add(GameValues.GetLevel7());
-            _levels.Add(GameValues.GetLevel8());
-            _levels.Add(GameValues.GetLevel9());
-            _levels.Add(GameValues.GetLevel10());
         }
 
         /// <summary>

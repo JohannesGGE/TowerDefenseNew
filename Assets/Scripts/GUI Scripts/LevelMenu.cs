@@ -59,6 +59,10 @@ public class LevelMenu : MonoBehaviour
         }
         _live.text = _gameManager.Lives.ToString();
         _money.text = _gameManager.Coins.ToString();
+
+        //Cheat für mehr geld
+        if (Input.GetKeyDown(KeyCode.M))
+        { _gameManager.AddCoins(1000); }
     }
 
     /// <summary>
