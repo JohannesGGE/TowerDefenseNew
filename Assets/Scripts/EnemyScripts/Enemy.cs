@@ -149,10 +149,11 @@ public class Enemy : MonoBehaviour
 
     public void TakeFire(float amount, float count, float duration)
     {
+        _fireDmg = amount;
+
         if(_onFire)
         {
             _currentCount = 0;
-            _fireDmg = amount;
         }
 
         else
