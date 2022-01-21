@@ -85,6 +85,7 @@ public class GameScene : MonoBehaviour {
     /// 
     /// </summary>
     public void LoadNextLevel() {
+        // TODO Bei 5 aushoeren!
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

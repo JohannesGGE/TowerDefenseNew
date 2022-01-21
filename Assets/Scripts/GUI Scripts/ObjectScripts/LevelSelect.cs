@@ -7,10 +7,10 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
-    //Buttons die im Levelauswahlmen� gedr�ckt werden k�nnen, um ein entsprechendes Level aufzurufen
+    //Buttons die im Levelauswahlmenue gedrueckt werden koennen, um ein entsprechendes Level aufzurufen
     public Button[] LevelButtons;
 
-    //tempor�res Objekt zum ansprechen eines Child-Objekts
+    //temporaeres Objekt zum ansprechen eines Child-Objekts
     private GameObject _child;
     
     //verschiedene Sprites, zur Darstellung der erreichten Sterne eines Levels
@@ -33,7 +33,7 @@ public class LevelSelect : MonoBehaviour
 
 
     /// <summary>
-    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgef�hrt wird
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
     /// </summary>
     private void Start()
     {
