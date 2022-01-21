@@ -409,8 +409,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a9f6677a9466793d82c9144e301c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 8686296281774333028, guid: 254545c708b734d43a36f0b691780d2b, type: 3}
   FolderToBuild: {fileID: 0}
+  Tower: {fileID: 8686296281774333028, guid: 254545c708b734d43a36f0b691780d2b, type: 3}
+  Circle: {fileID: 8686296281774333028, guid: 773282c62df624f4aa4d8d2aed33deef, type: 3}
 --- !u!1 &584956329662406336
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ GameObject:
   - component: {fileID: 584956329662406339}
   - component: {fileID: 584956329662406343}
   m_Layer: 5
-  m_Name: Yellow
+  m_Name: Blue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -548,8 +549,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a9f6677a9466793d82c9144e301c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 8686296281774333028, guid: ff06c7be8b09f6442a540bf034f953d2, type: 3}
   FolderToBuild: {fileID: 0}
+  Tower: {fileID: 8686296281774333028, guid: ff06c7be8b09f6442a540bf034f953d2, type: 3}
+  Circle: {fileID: 8686296281774333028, guid: 773282c62df624f4aa4d8d2aed33deef, type: 3}
 --- !u!1 &584956330233148132
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,8 +689,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 157a9f6677a9466793d82c9144e301c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Tower: {fileID: 8686296281774333028, guid: 558e9c94c1b204349b25b3c11db4bc5f, type: 3}
   FolderToBuild: {fileID: 0}
+  Tower: {fileID: 8686296281774333028, guid: 558e9c94c1b204349b25b3c11db4bc5f, type: 3}
+  Circle: {fileID: 8686296281774333028, guid: 773282c62df624f4aa4d8d2aed33deef, type: 3}
 --- !u!1 &584956330475882581
 GameObject:
   m_ObjectHideFlags: 0

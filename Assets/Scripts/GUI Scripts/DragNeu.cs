@@ -4,15 +4,32 @@ using Backbone;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
+using Classes;
+
 public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
-    //temporaere Variable, um die Groesseneigenschaften eines Objektes anzusprechen
-    private RectTransform _rectTransform;
+
+
+
+    public Transform FolderToBuild;
 
     public GameObject Tower;
-    public Transform FolderToBuild;
-   
+    public GameObject Circle;
+
+    //temporaere Variable, um die Groesseneigenschaften eines Objektes anzusprechen
+    private RectTransform _rectTransform;
+    private RectTransform _rectTransform2;
+
     private GameObject towerDrag;
+    private GameObject circleDrag;
+
+    GameManager _gameManager;
+    private bool buildable;
+
+    public void Start()
+    {
+        _gameManager = GameManager.GetInstance();
+    }
 
     /// <summary>
     /// Methode die ausgef�hrt wird, wenn der Drag eines Objektes beginnt
@@ -20,12 +37,45 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        Vector3 mousePosition = Input.mousePosition;
-        towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
-        
-        _rectTransform = towerDrag.GetComponent<RectTransform>();
-        Debug.Log("OnBeginDrag");
+        buildable = false;
 
+        switch (eventData.pointerDrag.name)
+        {
+            case "Green":
+                if (_gameManager.Coins >= GameValues.PriceBasicTower)
+                { buildable = true; }
+                else
+                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
+                { Debug.Log("zu wenig money"); }
+                break;
+            case "Red":
+                if (_gameManager.Coins >= GameValues.PriceFireTower)
+                { buildable = true; }
+                else
+                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
+                { Debug.Log("zu wenig money"); }
+                break;
+            case "Blue":
+                if (_gameManager.Coins >= GameValues.PriceIceTower)
+                { buildable = true; }
+                else
+                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
+                { Debug.Log("zu wenig money"); }
+                break;
+            default:
+                break;
+        }
+
+        if (buildable)
+        {
+            Vector3 mousePosition = Input.mousePosition;
+            circleDrag = Instantiate(Circle, mousePosition, Quaternion.identity, FolderToBuild);
+            towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
+            _rectTransform2 = circleDrag.GetComponent<RectTransform>();
+            _rectTransform = towerDrag.GetComponent<RectTransform>();
+
+            Debug.Log("OnBeginDrag");
+        }
     }
 
     /// <summary>
@@ -34,8 +84,12 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnDrag(PointerEventData eventData)
     {
-        Debug.Log("OnDrag");
-        _rectTransform.anchoredPosition += eventData.delta;
+        if (eventData != null)
+        {
+            _rectTransform2.anchoredPosition += eventData.delta;
+            _rectTransform.anchoredPosition += eventData.delta;
+            Debug.Log("OnDrag");
+        }
     }
 
     /// <summary>
@@ -44,7 +98,11 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        Destroy(towerDrag);   
-        Debug.Log("OnEndDrag");
+        if (eventData != null)
+        {
+            Destroy(towerDrag);
+            Destroy(circleDrag);
+            Debug.Log("OnEndDrag");
+        }
     }
 }
