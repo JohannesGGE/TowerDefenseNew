@@ -9,6 +9,8 @@ using Classes;
 public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
 
+    public bool isDragged = false;
+
     private Transform FolderToBuild;
 
     public GameObject Tower;
@@ -74,6 +76,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
             _rectTransform = towerDrag.GetComponent<RectTransform>();
 
             Debug.Log("OnBeginDrag");
+
+            this.isDragged = true;
         }
     }
 
@@ -103,9 +107,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
             Destroy(circleDrag);
             Debug.Log("OnEndDrag");
 
-
-            /////////////////////////
             GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);
+            this.isDragged = false;
         }
     }
 }

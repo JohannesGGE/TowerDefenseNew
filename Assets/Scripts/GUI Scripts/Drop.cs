@@ -38,48 +38,18 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerExitHandler, IPointerEn
     }
 
      void Update(){
-        if(_over){
+        if(_over && (GameObject.Find("Green").GetComponent<DragNeu>().isDragged
+        || GameObject.Find("Red").GetComponent<DragNeu>().isDragged
+        || GameObject.Find("Blue").GetComponent<DragNeu>().isDragged)){
             this.OnPointOver();
         } else {
             this.ResetHighlight();
         }
     }
 
-
-
-
     public void SetIsGrass(bool value){
         this.isGrass = value;
     }
-
-    public bool GetIsGrass(){
-        return this.isGrass;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    ////////////////////////////////////////////////////////////////////////
-
-
 
 
     private GameObject _tower;
@@ -144,7 +114,6 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerExitHandler, IPointerEn
                         //{ Debug.Log("zu wenig money"); }
                         break;
                 }
-
                 //Kaktus wird platziert
                 GameObject newT = Instantiate(_tower, GetComponent<RectTransform>().anchoredPosition, Quaternion.identity, FolderToBuild);
                 newT.transform.position = GetComponent<RectTransform>().transform.position;
@@ -153,9 +122,4 @@ public class Drop : MonoBehaviour, IDropHandler, IPointerExitHandler, IPointerEn
             }
         }
     }
-
-
-
-
-
 }
