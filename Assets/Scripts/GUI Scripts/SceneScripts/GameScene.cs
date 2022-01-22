@@ -63,6 +63,24 @@ public class GameScene : MonoBehaviour {
         if(Input.GetKeyDown(KeyCode.M)) {
             _gameManager.AddCoins(1000);
         }
+
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+        {
+            _gameManager.StartGame();
+            RefreshPlayPauseButtons();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Alpha2))
+        {
+            _gameManager.DoubleGame();
+            RefreshPlayPauseButtons();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _gameManager.PauseGame();
+            RefreshPlayPauseButtons();
+        }
     }
 
     /// <summary>
