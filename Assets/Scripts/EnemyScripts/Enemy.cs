@@ -91,11 +91,14 @@ public class Enemy : MonoBehaviour
     /// </summary>
     protected float _fireDmg;
 
+    protected ParticleSystem particleSystem;
+
     protected void Start()
     {
         speed = startSpeed;
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         sprite = GetComponent<SpriteRenderer>();
+        particleSystem = GetComponent<ParticleSystem>();
     }
 
     void Update()
@@ -172,14 +175,16 @@ public class Enemy : MonoBehaviour
     public IEnumerator FireDmg(float count, float duration)
     {
          _currentCount = 0;
+         particleSystem.Play();
 
-            while (_currentCount < count)
+        while (_currentCount < count)
             {
                 TakeDamage(_fireDmg);
                 yield return new WaitForSeconds(duration);
                 _currentCount++;
             }
             _onFire = false;
+            particleSystem.Stop();
     }
     /// <summary>
     /// Toetet den Vogel und fuegt Coins beim Spieler hinzu
