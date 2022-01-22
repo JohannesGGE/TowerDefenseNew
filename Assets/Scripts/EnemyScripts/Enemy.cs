@@ -18,11 +18,13 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c>speed </c> enthaelt die Geschwindigkeit des Vogels
     /// </summary>
+    [HideInInspector]
     public float speed;
 
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
+    [HideInInspector]
     public float startSpeed = GameValues.EnemyInitialSpeed;
 
     /// <summary>
@@ -126,7 +128,6 @@ public class Enemy : MonoBehaviour
     public void TakeSlow (float _pct, float duration)
     {
         StartCoroutine(SlowDmg(_pct, duration));
-        Debug.Log("Geschwindigkeit : " + speed + "StartSpeed: " + startSpeed);
     }
 
     private IEnumerator SlowDmg(float _pct, float duration) {
@@ -177,7 +178,6 @@ public class Enemy : MonoBehaviour
                 TakeDamage(_fireDmg);
                 yield return new WaitForSeconds(duration);
                 _currentCount++;
-                Debug.Log("Brennt " + _currentCount + "Mal");
             }
             _onFire = false;
     }
@@ -196,9 +196,7 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         _gameManager.ReduceLives(_birdDamage);
-
         Destroy(gameObject);
         soundManager.PlayDeath();
-        Debug.Log(_gameManager.Lives);
     }
 }

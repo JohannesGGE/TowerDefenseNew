@@ -73923,7 +73923,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 409, y: 476}
+  m_AnchoredPosition: {x: 562.5, y: 476}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1803803578
@@ -74090,8 +74090,6 @@ MonoBehaviour:
   mediumPrefab: {fileID: 8697055965843131306, guid: 55df35b0a6e324546ac0e47307c8f3e6, type: 3}
   bigPrefab: {fileID: 479595756811267957, guid: 83c2eb7b2a4392d43969ef7a95d96986, type: 3}
   spawnPoint: {fileID: 162637336}
-  timeBetweenWaves: 5
-  enemyTag: Bird
 --- !u!4 &1805122401
 Transform:
   m_ObjectHideFlags: 0
@@ -75951,7 +75949,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 551, y: 476}
+  m_AnchoredPosition: {x: 408.8, y: 476}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1827043382
