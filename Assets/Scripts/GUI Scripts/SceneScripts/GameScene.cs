@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Classes;
 using TMPro;
 using UnityEngine;
@@ -84,82 +85,6 @@ public class GameScene : MonoBehaviour {
     }
 
     /// <summary>
-    /// Methode <c> BackToMain </c> ermoeglicht den Wechsel aus der Spielszene zurueck in die Hauptmenue Szene
-    /// </summary>
-    public void BackToMain() {
-        _gameManager.PauseGame();
-        SceneManager.LoadScene(1);
-    }
-
-
-    /// <summary>
-    /// Methode <c> ReloadLevel </c> macht das was sie sagt, sie lädt das Level erneut
-    /// </summary>
-    public void ReloadLevel() {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-    }
-
-    /// <summary>
-    /// 
-    /// </summary>
-    public void LoadNextLevel() {
-        // TODO Bei 5 aushoeren!
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-    }
-
-    /// <summary>
-    /// Pausiert oder setzt das Spiel fort
-    /// </summary>
-    public void Pause_PlayButtonClick() {
-        if(_gameManager.DoubleSpeed) {
-            _gameManager.StartGame();
-        } else if(!_gameManager.Paused) {
-            _gameManager.PauseGame();
-        } else if(_gameManager.Paused) {
-            _gameManager.StartGame();
-        }
-
-        RefreshPlayPauseButtons();
-    }
-
-    /// <summary>
-    /// Wird bei Aenderung des LautstaerkeSliders fuer Backgroundmusik aufgerufen
-    /// </summary>
-    public void OnValueChangedBackground(float newValue) {
-        _soundManager.SetVolumeBackground(newValue);
-    }
-
-    /// <summary>
-    /// Wird bei Aenderung des LautstaerkeSliders fuer NormaleSOunds aufgerufen
-    /// </summary>
-    public void OnValueChangedSound(float newValue) {
-        _soundManager.SetVolumeSounds(newValue);
-    }
-
-    /// <summary>
-    /// Verdoppelt die Geschwindigkeit im Spiel
-    /// </summary>
-    public void DoubleButtonClick() {
-        if(_gameManager.DoubleSpeed) {
-            _gameManager.StartGame();
-        } else if(_gameManager.Paused) {
-            _gameManager.DoubleGame();
-        } else if(!_gameManager.Paused) {
-            _gameManager.DoubleGame();
-        }
-
-        RefreshPlayPauseButtons();
-    }
-
-    /// <summary>
-    /// Pausiert das Spiel, wenn Options oder ExitButton gedrueckt wird
-    /// </summary>
-    public void Option_ExitButtonClick() {
-        _gameManager.PauseGame();
-        RefreshPlayPauseButtons();
-    }
-    
-        /// <summary>
     /// Defeat Overlay wird aktiviert, wenn Leben auf 0 fallen
     /// </summary>
     private void DefeatOverlay() {
@@ -173,10 +98,6 @@ public class GameScene : MonoBehaviour {
     /// Win Overlay wird aufgerufen, wenn kein Vogel mehr kommt und Leben über 0 sind
     /// </summary>
     private void WinOverlay() {
-        //string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
-        //Stars.image = Resources.Load(StarRoot) as Image;
-
-        //Debug.Log("Object im WinOverlay" +gameObject.name); -> Canvas
 
         GameObject WinMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("WinMenu").gameObject;
 
@@ -195,28 +116,6 @@ public class GameScene : MonoBehaviour {
             default:
                 return;
         }
-
-        /*
-        Debug.Log("Sternobject? sprite.texture.name " +WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite.texture.name); //works!!!!
-        Debug.Log("Sternobject? sprite.name" + WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite.name); //works!!!!
-        Debug.Log("Sternobject? maintexture.name " + WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().mainTexture.name); //works!!!!
-        
-        Texture Stars;
-        Image Staaaars;
-        Sprite TheStars;
-
-        Debug.Log("Reached Stars: " + _gameManager.Level.Stars.ToString()); //works!
-        string StarRoot = "Stars/" + _gameManager.Level.Stars.ToString();
-        Stars = Resources.Load(StarRoot) as Texture;  // -> works with Texture ! Doesnt work with sprite or image
-        Staaaars = Resources.Load(StarRoot) as Image;
-        TheStars = Resources.Load("Stars/2") as Sprite;
-        Debug.Log("Stars resource loaded: " + Stars.name);
-        Debug.Log("Staaaars resource loaded: " + Staaaars.name);
-
-
-        WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = TheStars;
-        */
-
 
         //Overlay aktiv setzen
         WinMenu.SetActive(true);
@@ -261,7 +160,7 @@ public class GameScene : MonoBehaviour {
     private void RefreshPlayPauseButtons() {
         Button playPauseButton = GameObject.FindGameObjectWithTag("PlayPauseButton").GetComponent<Button>();
         Button fastForwardButton = GameObject.FindGameObjectWithTag("FastForwardButton").GetComponent<Button>();
-
+        
         if(_gameManager.DoubleSpeed) {
             playPauseButton.image.overrideSprite = playPauseButtonSprites[0]; // playImage
             fastForwardButton.image.overrideSprite = doubleButtonSprites[1]; // active

@@ -71,28 +71,28 @@ public class LevelSelect : MonoBehaviour
     /// Methoden zum aufrufen verschiedener Level
     /// </summary>
     public void StartLevelOne() {
-        SceneManager.LoadScene("LevelOne");
         _gameManager.PrepareLevel(_levelManager.Levels[0]);
+        SceneManager.LoadScene("LevelOne");
     }
 
     public void StartLevelTwo() {
-        SceneManager.LoadScene("LevelTwo");
         _gameManager.PrepareLevel(_levelManager.Levels[1]);
+        SceneManager.LoadScene("LevelTwo");
     }
 
     public void StartLevelThree() {
-        SceneManager.LoadScene("LevelThree");
         _gameManager.PrepareLevel(_levelManager.Levels[2]);
+        SceneManager.LoadScene("LevelThree");
     }
 
     public void StartLevelFour() {
-        SceneManager.LoadScene("LevelFour");
         _gameManager.PrepareLevel(_levelManager.Levels[3]);
+        SceneManager.LoadScene("LevelFour");
     }
 
     public void StartLevelFive() {
-        SceneManager.LoadScene("LevelFive");
         _gameManager.PrepareLevel(_levelManager.Levels[4]);
+        SceneManager.LoadScene("LevelFive");
     }
 
     public void StartLevelSix() { }
