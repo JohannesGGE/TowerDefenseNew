@@ -73,12 +73,12 @@ namespace Classes {
         /// Resetet den <c>GameManager</c>
         /// </summary>
         public void ResetGameManager() {
-            _paused = GameValues.PausedInitial;
             _allEnemySpawned = false;
             _lastEnemyKilled = false;
             _lives = GameValues.LivesInitial;
             _coins = GameValues.CoinsInitial;
             _level = null;
+            _paused = GameValues.PausedInitial;
         }
         
         /// <summary>

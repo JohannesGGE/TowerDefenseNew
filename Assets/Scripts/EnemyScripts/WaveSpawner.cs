@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
@@ -12,10 +13,6 @@ public class WaveSpawner : MonoBehaviour
     public WaveSpawner()
     {
         _gameManager = GameManager.GetInstance();
-        // TODO ENTFERNEN!!!!
-        LevelManager levelManager = LevelManager.GetInstance();
-        _gameManager.ResetGameManager();
-        _gameManager.Level = levelManager.Levels[0];
     }
 
     /// <summary>
@@ -49,8 +46,6 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     private bool _canSpawn = true;
 
-    private string enemyTag = "Bird";
-
     /// <summary>
     /// Initialisiert die Waves ueber den GameManager
     /// </summary>
@@ -64,8 +59,9 @@ public class WaveSpawner : MonoBehaviour
     /// </summary>
     void Update ()
     {
-       /// Array mit lebenden Voegeln anlegen
-        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+        if(_gameManager.LastEnemyKilled) {
+            return;
+        }
 
         /// wenn countdown abgelaufen ist und noch nicht die letzte Welle gespawnt wurde
         if (!_gameManager.Paused && _countdown <= 0f && _gameManager.AllEnemySpawned == false)
@@ -80,19 +76,6 @@ public class WaveSpawner : MonoBehaviour
         if (!_gameManager.Paused && _canSpawn == true)
         {
             _countdown -= Time.deltaTime;
-        }
-
-        /// wenn letzte Welle gespawnt ist
-        if (_waveIndex == waves.Length && _canSpawn == true)
-        {
-
-            _gameManager.AllEnemySpawned = true;
-
-            /// wenn letzter Gegner getoetet ist 
-            if(enemies.Length == 0)
-            {
-                _gameManager.LastEnemyKilled = true;
-            }
         }
     }
     /// <summary>
@@ -111,6 +94,12 @@ public class WaveSpawner : MonoBehaviour
 
         _canSpawn = true;
         _waveIndex++;
+
+        /// wenn letzte Welle gespawnt ist
+        if (_waveIndex == waves.Length)
+        {
+            _gameManager.AllEnemySpawned = true;
+        }
     }
     /// <summary>
     /// Spawnt den Vogel
