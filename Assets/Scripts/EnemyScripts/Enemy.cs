@@ -14,6 +14,8 @@ public class Enemy : MonoBehaviour
         /// Initialisierung des GameManagers
         _gameManager = GameManager.GetInstance();
     }
+    
+    private string enemyTag = "Bird";
 
     /// <summary>
     /// Variable <c>speed </c> enthaelt die Geschwindigkeit des Vogels
@@ -191,8 +193,9 @@ public class Enemy : MonoBehaviour
     /// </summary>
     void Kill()
     {
-        Destroy(gameObject);
         _gameManager.AddCoins(_worth);
+        TrySetLastEnemyKilled();
+        Destroy(gameObject);
     }
 
     /// <summary>
@@ -201,7 +204,20 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         _gameManager.ReduceLives(_birdDamage);
+        TrySetLastEnemyKilled();
         Destroy(gameObject);
         soundManager.PlayDeath();
+    }
+    
+    private void TrySetLastEnemyKilled() {
+        /// Array mit lebenden Voegeln anlegen
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag(enemyTag);
+
+        if(_gameManager.AllEnemySpawned) {
+            /// wenn letzter Gegner getoetet ist 
+            if(enemies.Length == 1) {
+                _gameManager.LastEnemyKilled = true;
+            }
+        }
     }
 }
