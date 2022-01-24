@@ -6,6 +6,10 @@ namespace Classes {
     /// </summary>
     public abstract class GameValues {
 
+        // SoundManager -------------------------------------------
+
+        public const float BackgroundInitialVolume = 0.1f;
+        public const float SoundsInitialVolume = 0.4f;
 
         // GameManager -------------------------------------------
         public const int LivesInitial = 100;

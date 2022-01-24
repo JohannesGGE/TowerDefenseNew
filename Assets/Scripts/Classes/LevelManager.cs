@@ -69,8 +69,8 @@ namespace Classes {
             _filenameLevel = "towerdefense.json";
             _filenameSettings = "towerdefenseSettings.json";
 
-            _backgroundVolume = 0.1f;
-            _soundVolume = 0.2f;
+            _backgroundVolume = GameValues.BackgroundInitialVolume;
+            _soundVolume = GameValues.SoundsInitialVolume;
 
             SetLevelConfig();
         }
