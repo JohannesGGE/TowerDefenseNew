@@ -185,31 +185,33 @@ namespace Backbone
 
               //soundManager.SetVolumeSounds(.1f);
               //soundManager.PlayHit();
-
-              //TODO: trying too adjust the color of impact effect according to Sting color
-              /*
-              var settings = GetComponent<ParticleSystem>().main;
-
-              settings.startColor = new ParticleSystem.MinMaxGradient (Color.green, Color.green);
-              if (_effect=="fire")
-              {settings.startColor = new ParticleSystem.MinMaxGradient (Color.red, Color.red);}
-              if (_effect=="ice")
-              {settings.startColor = new ParticleSystem.MinMaxGradient (Color.blue, Color.blue);}
-              */
               GameObject effectInstance = (GameObject)Instantiate(impactEffect, transform.position, transform.rotation);
-
-              //Calling effect methods in Enemy Script
 
               if (target.GetComponent<Enemy>() != null)
               {
                   if (_effect!="ice")
-                  {target.GetComponent<Enemy>().TakeDamage(_damage);}
+                  {
+                    target.GetComponent<Enemy>().TakeDamage(_damage);
+                    ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+                    ParticleSystem.MainModule ma = ps.main;
+                    ma.startColor = Color.green;
+                  }
 
                   if (_effect=="fire")
-                  {target.GetComponent<Enemy>().TakeFire(_damage, 3, 1);}
+                  {
+                    target.GetComponent<Enemy>().TakeFire(_damage, 3, 1);
+                    ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+                    ParticleSystem.MainModule ma = ps.main;
+                    ma.startColor = Color.red;
+                  }
 
                   if (_effect=="ice")
-                  {target.GetComponent<Enemy>().TakeSlow(_iceDelaySting,_iceDurationSting);}
+                  {
+                    target.GetComponent<Enemy>().TakeSlow(_iceDelaySting,_iceDurationSting);
+                    ParticleSystem ps = effectInstance.GetComponent<ParticleSystem>();
+                    ParticleSystem.MainModule ma = ps.main;
+                    ma.startColor = Color.blue;
+                  }
               }
 
               Destroy(effectInstance, 2f);
