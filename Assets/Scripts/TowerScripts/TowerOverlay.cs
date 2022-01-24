@@ -50,9 +50,6 @@ namespace Backbone
             set { _actualRange = value; }
         }
 
-
-
-
         ///<summary>
         ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
         ///</summary>
@@ -61,7 +58,6 @@ namespace Backbone
             Gizmos.color = Color.red;
             Gizmos.DrawWireSphere(transform.position, ActualRange);
         }
-
 
         private bool _selected = false;
         /// <summary>
@@ -73,9 +69,30 @@ namespace Backbone
             protected set { _selected = value; }
         }
 
+        /// <summary>
+        /// Methode die jedes Frame aufgerufen wird, waehrend das Skript laeuft
+        /// </summary>
+        public void Update()
+        {
+            ///mit Rechtsklick irgendwohin klicken verschwindet das Tower Overlay wieder
+            if (Input.GetKeyDown(KeyCode.Mouse1))
+            {
+                TowerOverlay[] allTower = FindObjectsOfType<TowerOverlay>();
+                for (int i = 0; i < allTower.Length; i++)
+                {
+                    allTower[i].Selected = false;
+                    allTower[i].transform.Find("UpgradeButton").gameObject.SetActive(false);
+                    allTower[i].transform.Find("RangeCircle").gameObject.SetActive(false);
+                }
+            }
+        }
+
+        /// <summary>
+        /// Methode die ausgefuehrt wird, wenn ein Tower angeklickt wird
+        /// </summary>
         public void Chosen()
         {
-            //TODO Overlay nur auf ausgewähltem Kaktus anzeigen.         
+            ///TowerOverlay wird auf nicht ausgewählten Kakteen deaktiviert        
             TowerOverlay [] allTower = FindObjectsOfType<TowerOverlay>();
             for (int i = 0; i < allTower.Length; i++)
             { 
@@ -84,40 +101,39 @@ namespace Backbone
                 allTower[i].transform.Find("RangeCircle").gameObject.SetActive(false); 
             }
 
-            if (!Selected)
+            this.Selected = true;
+            
+            if (Selected)
             {
-              if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
-                  ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
-                  ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
-              { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
-              Debug.Log("Tower selected");
-            }
-            else
-            {
-              gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
+                if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
+                    ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
+                    ActualStage == "FireStageOne"  || ActualStage == "FireStageTwo")
+                { gameObject.transform.Find("UpgradeButton").gameObject.SetActive(true); }
+
+                ShowRange(Selected);
             }
         }
 
-        public void ShowRange()
+
+        /// <summary>
+        /// Methode, die die Range eines Towers anzeigt
+        /// </summary>
+        /// <param name="Selected"></param>
+        public void ShowRange(bool Selected)
         {
-            if (!Selected)
+            if (Selected)
             {
                 gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _actualRange*2);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _actualRange*2);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().ForceUpdateRectTransforms();
                 Debug.Log("Range should appear");
-                Selected = true;
-                
-            }
-            else
-            {
-                gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
-                Debug.Log("Range should disappear");
-                Selected = false;
             }
         }
 
+        /// <summary>
+        /// Methode, die ausgeführt wird, wenn nicht mehr genug Geld vorhanden ist
+        /// </summary>
         private IEnumerator NotEnoughMoney()
         {
             GameObject _popup;
@@ -129,15 +145,15 @@ namespace Backbone
             Destroy(_popup);
         }
 
-            public void StageUpgrade()
+        /// <summary>
+        /// Methode, die ausgefuehrt wird, wenn ein Tower upgegraded wird
+        /// </summary>
+        public void StageUpgrade()
         {
             switch (ActualStage)
             {
-                ///Basictower
+                ///Stage One
                 case "BasicStageOne":
-                    ///if money = enough
-
-                    Debug.Log("actual coins: " + _gameManager.Coins);
                     if (_gameManager.Coins >= ActualCost)
                     {
                         gameObject.GetComponent<BasicTower1>().Upgrade();
@@ -150,7 +166,6 @@ namespace Backbone
                         StartCoroutine(NotEnoughMoney());
                     }
                     break;
-                    ///
                 case "IceStageOne":
                     if (_gameManager.Coins >= ActualCost)
                     {
@@ -177,6 +192,7 @@ namespace Backbone
                         StartCoroutine(NotEnoughMoney());
                     }
                     break;
+                ///StageTwo
                 case "BasicStageTwo":
                     if (_gameManager.Coins >= ActualCost)
                     {
@@ -225,8 +241,6 @@ namespace Backbone
             gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
             gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
             Selected = false;
-
         }
-
     }
 }

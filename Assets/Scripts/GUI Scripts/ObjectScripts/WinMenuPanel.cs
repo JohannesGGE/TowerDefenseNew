@@ -35,7 +35,6 @@ public class WinMenuPanel : MonoBehaviour
     /// 
     /// </summary>
     public void LoadNextLevel() {
-        // TODO Bei 5 aushoeren!
         _gameManager.PrepareLevel(_levelManager.Levels[SceneManager.GetActiveScene().buildIndex - 1]);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }

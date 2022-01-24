@@ -7,6 +7,10 @@ public class MainMenuScene : MonoBehaviour {
     private SoundManager _soundManager;
     private LevelManager _levelManager;
 
+
+    /// <summary>
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
+    /// </summary>
     void Start() {
         _levelManager = LevelManager.GetInstance();
 
