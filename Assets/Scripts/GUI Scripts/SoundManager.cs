@@ -56,8 +56,8 @@ public class SoundManager : MonoBehaviour {
         Win = gameObject.AddComponent<AudioSource>();
         
         
-        BackgroundHauptmenue.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/CountingStars");
-        BackgroundGame.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/Wings");
+        BackgroundHauptmenue.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/1_menu_music");
+        BackgroundGame.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/1_level_music");
         
         BuySound.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/BuySound");
         click1.clip = (AudioClip)Resources.Load<AudioClip>("Sounds/click1");
