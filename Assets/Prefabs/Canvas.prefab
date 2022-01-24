@@ -69,7 +69,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 0}
-  m_Type: 1
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1086,6 +1086,8 @@ GameObject:
   - component: {fileID: 2108274659930885238}
   - component: {fileID: 2108274659930885239}
   - component: {fileID: 5227279710333256674}
+  - component: {fileID: 423972060}
+  - component: {fileID: 423972059}
   m_Layer: 5
   m_Name: QuitMenu
   m_TagString: Untagged
@@ -1166,6 +1168,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 22342431309e4d08a7eac13c7107a005, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &423972060
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274659930885225}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &423972059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274659930885225}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2108274660043176427
 GameObject:
   m_ObjectHideFlags: 0
@@ -2647,7 +2687,7 @@ Canvas:
   m_OverrideSorting: 1
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
   m_SortingOrder: 1
   m_TargetDisplay: 0
@@ -4108,6 +4148,8 @@ GameObject:
   - component: {fileID: 2108274660558380525}
   - component: {fileID: 2108274660558380526}
   - component: {fileID: 5966675574506762298}
+  - component: {fileID: 423972056}
+  - component: {fileID: 423972055}
   m_Layer: 5
   m_Name: DefeatMenu
   m_TagString: DefeatMenu
@@ -4188,6 +4230,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f272200ddedf444fa15ff2d54a05fd73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &423972056
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274660558380513}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &423972055
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274660558380513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2108274660690195463
 GameObject:
   m_ObjectHideFlags: 0
@@ -4734,6 +4814,8 @@ GameObject:
   - component: {fileID: 2108274660919572395}
   - component: {fileID: 2108274660919572396}
   - component: {fileID: 8331612595399149091}
+  - component: {fileID: 423972058}
+  - component: {fileID: 423972057}
   m_Layer: 5
   m_Name: WinMenu
   m_TagString: Untagged
@@ -4817,6 +4899,44 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac73cdfe7b3f44e8bb9a6d010241c1d4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!223 &423972058
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274660919572399}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 1
+  m_TargetDisplay: 0
+--- !u!114 &423972057
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2108274660919572399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IgnoreReversedGraphics: 1
+  m_BlockingObjects: 0
+  m_BlockingMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!1 &2108274660952768817
 GameObject:
   m_ObjectHideFlags: 0
@@ -7517,7 +7637,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b077818db7df77e4db729d473295e99e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 410d1971d881e384ab7b77315189abef, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
