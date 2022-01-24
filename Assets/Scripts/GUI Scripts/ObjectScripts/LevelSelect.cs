@@ -37,6 +37,7 @@ public class LevelSelect : MonoBehaviour
     /// </summary>
     private void Start()
     {
+
         for (int i = 0; i < _levelManager.Levels.Count; i++)
         {
             _child = LevelButtons[i].transform.GetChild(1).gameObject; 
@@ -64,6 +65,12 @@ public class LevelSelect : MonoBehaviour
                 }
             }
         }
+    }
+
+    public void Update()
+    {
+        if (_levelManager.Levels[4].Stars > 0)
+        { GameObject.Find("LevelsPanel").transform.GetChild(1).gameObject.SetActive(true); }
     }
 
 

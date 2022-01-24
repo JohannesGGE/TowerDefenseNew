@@ -28,25 +28,21 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     GameManager _gameManager;
     private bool buildable;
 
-    private GameObject _popup;
-
-
-
-    
-
 
     public void Start()
     {
-        _gameManager = GameManager.GetInstance();
-        
-        OverlayFolder = GameObject.Find("KeinGeldPopup").transform;
-       
-
+        _gameManager = GameManager.GetInstance();     
     }
 
-    public void Update()
+    private IEnumerator NotEnoughMoney()
     {
+        GameObject _popup;
+        Transform OverlayFolder = GameObject.Find("KeinGeldPopup").transform;
+        _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
 
+        yield return new WaitForSecondsRealtime(2);
+
+        Destroy(_popup);
     }
 
     /// <summary>
@@ -59,34 +55,26 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
 
         buildable = false;
 
+
         switch (eventData.pointerDrag.name)
         {
             case "Green":
                 if (_gameManager.Coins >= GameValues.PriceBasicTower)
                 { buildable = true; }
                 else
-                {
-                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);   
-                    Debug.Log("zu wenig money"); 
-                }
+                { StartCoroutine(NotEnoughMoney()); }
                 break;
             case "Red":
                 if (_gameManager.Coins >= GameValues.PriceFireTower)
                 { buildable = true; }
                 else
-                {
-                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
-                    Debug.Log("zu wenig money");
-                }
+                { StartCoroutine(NotEnoughMoney()); }
                 break;
             case "Blue":
                 if (_gameManager.Coins >= GameValues.PriceIceTower)
                 { buildable = true; }
                 else
-                {
-                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
-                    Debug.Log("zu wenig money");
-                }
+                { StartCoroutine(NotEnoughMoney()); }
                 break;
             default:
                 break;
@@ -112,7 +100,7 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnDrag(PointerEventData eventData)
     {
-        if (eventData != null)
+        if (eventData.pointerDrag.name != "Green" || eventData.pointerDrag.name != "Red" || eventData.pointerDrag.name != "Blue" )
         {
             _rectTransform2.anchoredPosition += eventData.delta;
             _rectTransform.anchoredPosition += eventData.delta;
@@ -130,7 +118,6 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         {
             Destroy(towerDrag);
             Destroy(circleDrag);
-            Destroy(_popup);
             Debug.Log("OnEndDrag");
 
             GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);

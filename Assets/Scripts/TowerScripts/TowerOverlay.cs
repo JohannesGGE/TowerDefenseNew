@@ -52,6 +52,7 @@ namespace Backbone
 
 
 
+
         ///<summary>
         ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
         ///</summary>
@@ -74,18 +75,14 @@ namespace Backbone
 
         public void Chosen()
         {
-           
-
             //TODO Overlay nur auf ausgewähltem Kaktus anzeigen.         
             TowerOverlay [] allTower = FindObjectsOfType<TowerOverlay>();
             for (int i = 0; i < allTower.Length; i++)
             { 
                 allTower[i].Selected = false;
                 allTower[i].transform.Find("UpgradeButton").gameObject.SetActive(false);
-                allTower[i].transform.Find("RangeCircle").gameObject.SetActive(false);
+                allTower[i].transform.Find("RangeCircle").gameObject.SetActive(false); 
             }
-            
-
 
             if (!Selected)
             {
@@ -121,12 +118,19 @@ namespace Backbone
             }
         }
 
-
-        public void StageUpgrade()
+        private IEnumerator NotEnoughMoney()
         {
+            GameObject _popup;
+            Transform OverlayFolder = GameObject.Find("KeinGeldPopup").transform;
+            _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
 
-            Debug.Log("Stage des Turms: " + ActualStage);
+            yield return new WaitForSecondsRealtime(2);
 
+            Destroy(_popup);
+        }
+
+            public void StageUpgrade()
+        {
             switch (ActualStage)
             {
                 ///Basictower
@@ -142,9 +146,11 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
-                ///
+                    ///
                 case "IceStageOne":
                     if (_gameManager.Coins >= ActualCost)
                     {
@@ -154,7 +160,9 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
                 case "FireStageOne":
                     if (_gameManager.Coins >= ActualCost)
@@ -165,7 +173,9 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage2").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
                 case "BasicStageTwo":
                     if (_gameManager.Coins >= ActualCost)
@@ -176,7 +186,9 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
                 case "IceStageTwo":
                     if (_gameManager.Coins >= ActualCost)
@@ -187,7 +199,9 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
                 case "FireStageTwo":
                     if (_gameManager.Coins >= ActualCost)
@@ -198,7 +212,9 @@ namespace Backbone
                         gameObject.transform.Find("TowerStage3").gameObject.SetActive(true);
                     }
                     else
-                    { Debug.Log("not enough gold"); }
+                    {
+                        StartCoroutine(NotEnoughMoney());
+                    }
                     break;
 
                 default:
