@@ -208,7 +208,7 @@ namespace Backbone
         //I can not figure out, if and how that would be possible
 
 
-        protected bool chosen = false;
+
 
         /// <summary>
         /// Called before the first Frame, invokes the <c>UpdateTarget()</c> function

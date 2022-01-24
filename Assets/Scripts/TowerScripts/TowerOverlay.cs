@@ -50,10 +50,7 @@ namespace Backbone
             set { _actualRange = value; }
         }
 
-        /// <summary>
-        /// Variable <c>_selected</c> checks if the Tower was clicked on
-        /// </summary>
-        private bool _selected = false;
+
 
         ///<summary>
         ///Function <c>OnDrawGizmosSelected()</c> Draws circle Sphere around the Tower to marks up the Range (in scene View only)
@@ -65,9 +62,32 @@ namespace Backbone
         }
 
 
+        private bool _selected = false;
+        /// <summary>
+        /// Variable <c>_selected</c> checks if the Tower was clicked on
+        /// </summary>
+        public bool Selected
+        {
+            get { return _selected; }
+            protected set { _selected = value; }
+        }
+
         public void Chosen()
         {
-            if (!_selected)
+           
+
+            //TODO Overlay nur auf ausgewähltem Kaktus anzeigen.         
+            TowerOverlay [] allTower = FindObjectsOfType<TowerOverlay>();
+            for (int i = 0; i < allTower.Length; i++)
+            { 
+                allTower[i].Selected = false;
+                allTower[i].transform.Find("UpgradeButton").gameObject.SetActive(false);
+                allTower[i].transform.Find("RangeCircle").gameObject.SetActive(false);
+            }
+            
+
+
+            if (!Selected)
             {
               if (ActualStage == "BasicStageOne" || ActualStage == "BasicStageTwo" ||
                   ActualStage == "IceStageOne"   || ActualStage == "IceStageTwo" ||
@@ -83,20 +103,21 @@ namespace Backbone
 
         public void ShowRange()
         {
-            if (!_selected)
+            if (!Selected)
             {
                 gameObject.transform.Find("RangeCircle").gameObject.SetActive(true);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Horizontal, _actualRange*2);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, _actualRange*2);
                 gameObject.transform.Find("RangeCircle").gameObject.GetComponent<RectTransform>().ForceUpdateRectTransforms();
                 Debug.Log("Range should appear");
-                _selected = true;
+                Selected = true;
+                
             }
             else
             {
                 gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
                 Debug.Log("Range should disappear");
-                _selected = false;
+                Selected = false;
             }
         }
 
@@ -187,7 +208,7 @@ namespace Backbone
 
             gameObject.transform.Find("UpgradeButton").gameObject.SetActive(false);
             gameObject.transform.Find("RangeCircle").gameObject.SetActive(false);
-            _selected = false;
+            Selected = false;
 
         }
 
