@@ -8,6 +8,9 @@ public class TitleScreen : MonoBehaviour {
     
     private LevelManager _levelManager;
 
+    /// <summary>
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
+    /// </summary>
     void Start() {
         _levelManager = LevelManager.GetInstance();
         _levelManager.LoadLevelStatus();

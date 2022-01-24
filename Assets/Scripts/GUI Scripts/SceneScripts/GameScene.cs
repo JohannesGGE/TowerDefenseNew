@@ -41,13 +41,15 @@ public class GameScene : MonoBehaviour {
     /// </summary>
     public void Update() {
         if(!_gameManager.Paused) {
-            //Defeat Overlay wird aufgerufen wenn Leben auf 0 fallen
+            
+            ///Pruefen ob Leben auf 0 gefallen sind
             if(_gameManager.Lives <= 0) {
                 _gameManager.PauseGame();
                 RefreshPlayPauseButtons();
                 DefeatOverlay();
             }
 
+            ///Pruefen, ob alle Enemys verschwunden sind
             if(_gameManager.LastEnemyKilled) {
                 _gameManager.PauseGame();
                 RefreshPlayPauseButtons();
@@ -88,9 +90,7 @@ public class GameScene : MonoBehaviour {
     /// Defeat Overlay wird aktiviert, wenn Leben auf 0 fallen
     /// </summary>
     private void DefeatOverlay() {
-        GameObject DefeatMenu =
-            GameObject.FindWithTag("LevelCanvas").transform.Find("DefeatMenu")
-                .gameObject; //->funktioniert mit Fehlermeldung im Log
+        GameObject DefeatMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("DefeatMenu").gameObject; 
         DefeatMenu.SetActive(true);
     }
 
@@ -101,8 +101,7 @@ public class GameScene : MonoBehaviour {
 
         GameObject WinMenu = GameObject.FindWithTag("LevelCanvas").transform.Find("WinMenu").gameObject;
 
-        //Sterne setzen
-
+        //Sterne im WinMenu setzen
         switch(_gameManager.Level.Stars) {
             case 1:
                 WinMenu.transform.Find("Stars").GetComponent<CanvasRenderer>().GetComponent<Image>().sprite = OneStar;
@@ -117,7 +116,6 @@ public class GameScene : MonoBehaviour {
                 return;
         }
 
-        //Overlay aktiv setzen
         WinMenu.SetActive(true);
     }
 

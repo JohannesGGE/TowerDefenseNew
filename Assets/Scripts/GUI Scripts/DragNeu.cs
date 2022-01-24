@@ -9,26 +9,33 @@ using Classes;
 
 public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragHandler
 {
+    GameManager _gameManager;
 
-    public bool isDragged = false;
-
-    private Transform PlacedTowerFolder;
-    private Transform OverlayFolder;
-
-    public GameObject Tower;
-    public GameObject Circle;
-
-    //temporaere Variable, um die Groesseneigenschaften eines Objektes anzusprechen
+    ///temporaere Variable, um die Groesseneigenschaften eines Objektes anzusprechen
     private RectTransform _rectTransform;
     private RectTransform _rectTransform2;
 
-    private GameObject towerDrag;
-    private GameObject circleDrag;
+    /// Ordner, in welchem das Objekt erzeugt werden soll
+    private Transform PlacedTowerFolder;
+    private Transform OverlayFolder;
 
-    GameManager _gameManager;
-    private bool buildable;
+    /// Objekte welche erzeugt werden sollen beim drag
+    public GameObject Tower;
+    public GameObject Circle;
+
+    /// temporaere Objekte um die Images während des Draggs anzuzeigen
+    private GameObject _towerDrag;
+    private GameObject _circleDrag;
+
+    public bool isDragged = false;
+
+    public static bool _buildable;
 
 
+
+    /// <summary>
+    /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
+    /// </summary>
     public void Start()
     {
         _gameManager = GameManager.GetInstance();     
@@ -46,33 +53,32 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     }
 
     /// <summary>
-    /// Methode die ausgef�hrt wird, wenn der Drag eines Objektes beginnt
+    /// Methode die ausgefuehrt wird, wenn der Drag eines Objektes beginnt
     /// </summary>
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnBeginDrag(PointerEventData eventData)
     {
         PlacedTowerFolder = gameObject.transform.Find("TowerImage");
 
-        buildable = false;
-
+        _buildable = false;
 
         switch (eventData.pointerDrag.name)
         {
             case "Green":
                 if (_gameManager.Coins >= GameValues.PriceBasicTower)
-                { buildable = true; }
+                { _buildable = true; }
                 else
                 { StartCoroutine(NotEnoughMoney()); }
                 break;
             case "Red":
                 if (_gameManager.Coins >= GameValues.PriceFireTower)
-                { buildable = true; }
+                { _buildable = true; }
                 else
                 { StartCoroutine(NotEnoughMoney()); }
                 break;
             case "Blue":
                 if (_gameManager.Coins >= GameValues.PriceIceTower)
-                { buildable = true; }
+                { _buildable = true; }
                 else
                 { StartCoroutine(NotEnoughMoney()); }
                 break;
@@ -80,15 +86,13 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
                 break;
         }
 
-        if (buildable)
+        if (_buildable)
         {
             Vector3 mousePosition = Input.mousePosition;
-            circleDrag = Instantiate(Circle, mousePosition, Quaternion.identity, PlacedTowerFolder);
-            towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, PlacedTowerFolder);
-            _rectTransform2 = circleDrag.GetComponent<RectTransform>();
-            _rectTransform = towerDrag.GetComponent<RectTransform>();
-
-            Debug.Log("OnBeginDrag");
+            _circleDrag = Instantiate(Circle, mousePosition, Quaternion.identity, PlacedTowerFolder);
+            _towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, PlacedTowerFolder);
+            _rectTransform2 = _circleDrag.GetComponent<RectTransform>();
+            _rectTransform = _towerDrag.GetComponent<RectTransform>();
 
             this.isDragged = true;
         }
@@ -100,11 +104,10 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnDrag(PointerEventData eventData)
     {
-        if (eventData.pointerDrag.name != "Green" || eventData.pointerDrag.name != "Red" || eventData.pointerDrag.name != "Blue" )
+        if (_buildable)
         {
             _rectTransform2.anchoredPosition += eventData.delta;
             _rectTransform.anchoredPosition += eventData.delta;
-            Debug.Log("OnDrag");
         }
     }
 
@@ -114,11 +117,10 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnEndDrag(PointerEventData eventData)
     {
-        if (eventData != null)
+        if (_buildable)
         {
-            Destroy(towerDrag);
-            Destroy(circleDrag);
-            Debug.Log("OnEndDrag");
+            Destroy(_towerDrag);
+            Destroy(_circleDrag);
 
             GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);
             this.isDragged = false;

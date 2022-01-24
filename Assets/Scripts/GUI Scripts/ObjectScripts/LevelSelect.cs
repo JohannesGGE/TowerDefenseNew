@@ -7,6 +7,9 @@ using UnityEngine.UI;
 
 public class LevelSelect : MonoBehaviour
 {
+    private LevelManager _levelManager;
+    private GameManager _gameManager;
+
     //Buttons die im Levelauswahlmenue gedrueckt werden koennen, um ein entsprechendes Level aufzurufen
     public Button[] LevelButtons;
 
@@ -19,25 +22,20 @@ public class LevelSelect : MonoBehaviour
     public Sprite TwoStar;
     public Sprite ThreeStar;
 
-
-    private LevelManager _levelManager;
-    private GameManager _gameManager;
-    
-    public LevelSelect() {
-        _levelManager = LevelManager.GetInstance();
-        _gameManager = GameManager.GetInstance();
-    }
-
     //Variable die speichert wie viele Sterne in einem Level erreicht wurden
     public int StarsReached;
 
+    public LevelSelect()
+    {
+        _levelManager = LevelManager.GetInstance();
+        _gameManager = GameManager.GetInstance();
+    }
 
     /// <summary>
     /// Methode, die zu Beginn aufgerufen wird, wenn das Skript ausgefuehrt wird
     /// </summary>
     private void Start()
     {
-
         for (int i = 0; i < _levelManager.Levels.Count; i++)
         {
             _child = LevelButtons[i].transform.GetChild(1).gameObject; 
@@ -67,8 +65,14 @@ public class LevelSelect : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Methode die jedes Frame aufgerufen wird, waehrend das Skript laeuft
+    /// </summary>
     public void Update()
     {
+
+        ///Abfrage ob in Level 5 bereits Sterne erreicht wurden/das Level bereits geschafft wurde
+        ///Falls ja wird im LevelAuswahlMenue angezeigt, dass mehr Level bald folgen
         if (_levelManager.Levels[4].Stars > 0)
         { GameObject.Find("LevelsPanel").transform.GetChild(1).gameObject.SetActive(true); }
     }
