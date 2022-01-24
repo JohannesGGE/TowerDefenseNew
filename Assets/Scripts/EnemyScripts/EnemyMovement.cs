@@ -49,7 +49,7 @@ public class EnemyMovement : MonoBehaviour
                 mySpriteRenderer.flipX = true;
             }
 
-            if (Vector3.Distance(transform.position, _target.position) <= 2f)
+            if (Vector3.Distance(transform.position, _target.position) <= 5f)
 		{
 			GetNextWaypoint();
 		}

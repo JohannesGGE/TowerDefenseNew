@@ -93,7 +93,7 @@ public class Enemy : MonoBehaviour
     /// </summary>
     protected float _fireDmg;
 
-    protected ParticleSystem particleSystem;
+    new protected ParticleSystem particleSystem;
 
     protected void Start()
     {
