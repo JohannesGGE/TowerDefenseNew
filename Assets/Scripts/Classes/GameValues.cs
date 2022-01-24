@@ -12,7 +12,7 @@ namespace Classes {
         public const float SoundsInitialVolume = 0.4f;
 
         // GameManager -------------------------------------------
-        public const int LivesInitial = 100;
+        public const int LivesInitial = 20;
         public const int CoinsInitial = 500;
         public const bool PausedInitial = true;
         
