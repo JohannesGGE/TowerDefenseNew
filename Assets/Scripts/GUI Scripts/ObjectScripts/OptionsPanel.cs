@@ -11,7 +11,6 @@ public class OptionsPanel : MonoBehaviour {
 
     private void Awake() {
         _soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
-        _soundManager.StartGameBackground();
     }
 
     private void OnEnable() {

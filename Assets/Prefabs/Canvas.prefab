@@ -7245,7 +7245,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'You got defeat!
+  m_text: 'You got defeated!
 
     Wanna Try Again?'
   m_isRightToLeft: 0
