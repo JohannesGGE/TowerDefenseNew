@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Backbone;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using TMPro;
 
 using Classes;
 
@@ -11,7 +12,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
 
     public bool isDragged = false;
 
-    private Transform FolderToBuild;
+    private Transform PlacedTowerFolder;
+    private Transform OverlayFolder;
 
     public GameObject Tower;
     public GameObject Circle;
@@ -26,9 +28,25 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     GameManager _gameManager;
     private bool buildable;
 
+    private GameObject _popup;
+
+
+
+    
+
+
     public void Start()
     {
         _gameManager = GameManager.GetInstance();
+        
+        OverlayFolder = GameObject.Find("KeinGeldPopup").transform;
+       
+
+    }
+
+    public void Update()
+    {
+
     }
 
     /// <summary>
@@ -37,7 +55,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
     /// <param name="eventData"> Objekt welches gedraggt wird </param>
     public void OnBeginDrag(PointerEventData eventData)
     {
-        FolderToBuild = gameObject.transform.Find("TowerImage");
+        PlacedTowerFolder = gameObject.transform.Find("TowerImage");
+
         buildable = false;
 
         switch (eventData.pointerDrag.name)
@@ -46,22 +65,28 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
                 if (_gameManager.Coins >= GameValues.PriceBasicTower)
                 { buildable = true; }
                 else
-                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
-                { Debug.Log("zu wenig money"); }
+                {
+                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);   
+                    Debug.Log("zu wenig money"); 
+                }
                 break;
             case "Red":
                 if (_gameManager.Coins >= GameValues.PriceFireTower)
                 { buildable = true; }
                 else
-                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
-                { Debug.Log("zu wenig money"); }
+                {
+                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
+                    Debug.Log("zu wenig money");
+                }
                 break;
             case "Blue":
                 if (_gameManager.Coins >= GameValues.PriceIceTower)
                 { buildable = true; }
                 else
-                //TODO in GUI sichtbar ausgeben, dass zu wenig Geld da ist.
-                { Debug.Log("zu wenig money"); }
+                {
+                    _popup = Instantiate(Resources.Load("TowerPrefabs/NotEnoughMoney") as GameObject, OverlayFolder);
+                    Debug.Log("zu wenig money");
+                }
                 break;
             default:
                 break;
@@ -70,8 +95,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         if (buildable)
         {
             Vector3 mousePosition = Input.mousePosition;
-            circleDrag = Instantiate(Circle, mousePosition, Quaternion.identity, FolderToBuild);
-            towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, FolderToBuild);
+            circleDrag = Instantiate(Circle, mousePosition, Quaternion.identity, PlacedTowerFolder);
+            towerDrag = Instantiate(Tower, mousePosition, Quaternion.identity, PlacedTowerFolder);
             _rectTransform2 = circleDrag.GetComponent<RectTransform>();
             _rectTransform = towerDrag.GetComponent<RectTransform>();
 
@@ -105,6 +130,7 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
         {
             Destroy(towerDrag);
             Destroy(circleDrag);
+            Destroy(_popup);
             Debug.Log("OnEndDrag");
 
             GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);
