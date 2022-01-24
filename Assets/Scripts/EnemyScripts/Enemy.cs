@@ -20,14 +20,17 @@ public class Enemy : MonoBehaviour
     /// <summary>
     /// Variable <c>speed </c> enthaelt die Geschwindigkeit des Vogels
     /// </summary>
-    [HideInInspector]
-    public float speed;
+    private float _speed;
+
+    public float Speed {
+        get => _speed;
+        set => _speed = value;
+    }
 
     /// <summary>
     /// Variable <c>_speed </c> enthaelt die Anfangsgeschwindigkeit des Vogels
     /// </summary>
-    [HideInInspector]
-    public float startSpeed = GameValues.EnemyInitialSpeed;
+    private float _startSpeed;
 
     /// <summary>
     /// Variable <c> dist </c> enthaelt zurueckgelegte Strecke des Vogels
@@ -95,9 +98,9 @@ public class Enemy : MonoBehaviour
 
     new protected ParticleSystem particleSystem;
 
-    protected void Start()
-    {
-        speed = startSpeed;
+    protected void Start() {
+        _startSpeed = GameValues.EnemyInitialSpeed;
+        _speed = GameValues.EnemyInitialSpeed;
         soundManager = GameObject.FindGameObjectWithTag("SoundManager").GetComponent<SoundManager>();
         sprite = GetComponent<SpriteRenderer>();
         particleSystem = GetComponent<ParticleSystem>();
@@ -138,10 +141,10 @@ public class Enemy : MonoBehaviour
     private IEnumerator SlowDmg(float _pct, float duration) {
         _activeSlowHits++;
          
-        speed = speed * (1f - _pct);
-        if (speed <= startSpeed / GameValues.ReducedSpeed)
+        _speed = _speed * (1f - _pct);
+        if (_speed <= _startSpeed / GameValues.ReducedSpeed)
         {
-            speed = startSpeed / GameValues.ReducedSpeed;
+            _speed = _startSpeed / GameValues.ReducedSpeed;
         }
         sprite.color = new Color(0,35,255,255);
         yield return new WaitForSeconds(duration);
@@ -149,7 +152,7 @@ public class Enemy : MonoBehaviour
         _activeSlowHits--;
         if(_activeSlowHits == 0) {
             sprite.color = new Color(255, 255, 255, 255);
-            speed = startSpeed;
+            _speed = _startSpeed;
         }
     }
 

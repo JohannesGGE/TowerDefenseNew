@@ -11,12 +11,10 @@ namespace Classes {
         public const int LivesInitial = 100;
         public const int CoinsInitial = 500;
         public const bool PausedInitial = true;
-
-
-
+        
 
         // Enemy -------------------------------------------
-        public const float EnemyInitialSpeed = 5f;
+        public const float EnemyInitialSpeed = 140f;
         public const int ReducedSpeed = 2;
 
         public const int SmallBirdHealth = 50;
