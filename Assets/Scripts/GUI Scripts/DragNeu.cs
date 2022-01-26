@@ -122,8 +122,8 @@ public class DragNeu : MonoBehaviour, IBeginDragHandler, IEndDragHandler, IDragH
             Destroy(_towerDrag);
             Destroy(_circleDrag);
 
-            GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);
             this.isDragged = false;
         }
+        GameObject.Find($"Tower Slot {(int)Input.mousePosition.x / 120} {(int)Input.mousePosition.y / 120}").GetComponent<Drop>().SetIsGrass(false);
     }
 }
