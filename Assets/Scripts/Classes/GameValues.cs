@@ -1,6 +1,6 @@
 using static Classes.BirdLevel;
 namespace Classes {
-    
+
     /// <summary>
     /// Abstracte Klasse, die alle wichtigen Werte enthaelt um Balancing zu maachen
     /// </summary>
@@ -15,7 +15,7 @@ namespace Classes {
         public const int LivesInitial = 20;
         public const int CoinsInitial = 500;
         public const bool PausedInitial = true;
-        
+
 
         // Enemy -------------------------------------------
         public const float EnemyInitialSpeed = 140f;
@@ -61,14 +61,14 @@ namespace Classes {
         public const int UpgradeCostBasicTower2 = 150;
         public const int DamageBasicTower2 = 11;
         public const float RangeBasicTower2 = 300f;
-        public const float FireRateBasicTower2 = 1f;
+        public const float FireRateBasicTower2 = 1.3f;
         public const float FireCountdownBasicTower2 = 0f;
 
         //Level 3
         public const int UpgradeCostBasicTower3 = 200; //Ueberfluessig?
-        public const int DamageBasicTower3 = 15;
+        public const int DamageBasicTower3 = 14;
         public const float RangeBasicTower3 = 350f;
-        public const float FireRateBasicTower3 = 1f;
+        public const float FireRateBasicTower3 = 1.5f;
         public const float FireCountdownBasicTower3 = 0f;
 
         // Fire ----
@@ -83,14 +83,14 @@ namespace Classes {
         public const int UpgradeCostFireTower2 = 200;
         public const int DamageFireTower2 = 8;
         public const float RangeFireTower2 = 300f;
-        public const float FireRateFireTower2 = 1f;
+        public const float FireRateFireTower2 = 1.2f;
         public const float FireCountdownFireTower2 = 0f;
 
         //Level 3
         public const int UpgradeCostFireTower3 = 250; //Ueberfluessig? da Stufe 3 nicht upgegraded werden kann?
         public const int DamageFireTower3 = 11;
         public const float RangeFireTower3 = 350f;
-        public const float FireRateFireTower3 = 1f;
+        public const float FireRateFireTower3 = 1.4f;
         public const float FireCountdownFireTower3 = 0f;
 
         // Ice ----
@@ -107,7 +107,7 @@ namespace Classes {
         public const int UpgradeCostIceTower2 = 175;
         public const int DamageIceTower2 = 0;
         public const float RangeIceTower2 = 300f;
-        public const float FireRateIceTower2 = 1f;
+        public const float FireRateIceTower2 = 1.2f;
         public const float FireCountdownIceTower2 = 0f;
         public const float IceDelayIceTower2 = 0.15f;
         public const float IceDurationIceTower2 = 3f;
@@ -116,7 +116,7 @@ namespace Classes {
         public const int UpgradeCostIceTower3 = 200; //Ueberfluesssig?
         public const int DamageIceTower3 = 0;
         public const float RangeIceTower3 = 350f;
-        public const float FireRateIceTower3 = 1f;
+        public const float FireRateIceTower3 = 1.4f;
         public const float FireCountdownIceTower3 = 0f;
         public const float IceDelayIceTower3 = 0.2f;
         public const float IceDurationIceTower3 = 5f;
@@ -127,7 +127,7 @@ namespace Classes {
 
         // Sting ---------------------------------------
 
-        public const float StingSpeed = 800f;
+        public const float StingSpeed = 1000f;
         public const float StingTurnSpeed = 100f;
 
 
